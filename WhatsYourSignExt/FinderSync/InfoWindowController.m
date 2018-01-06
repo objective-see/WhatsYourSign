@@ -18,6 +18,7 @@
 @synthesize icon;
 @synthesize name;
 @synthesize path;
+@synthesize hashes;
 @synthesize signingIcon;
 @synthesize entitlements;
 @synthesize signingStatus;
@@ -86,6 +87,9 @@
     
     //signing details (bottom)
     NSMutableString* csDetails = nil;
+    
+    //directory flag
+    BOOL isDirectory = NO;
     
     //alloc string for summary
     csSummary = [NSMutableString string];
@@ -216,7 +220,6 @@
 
             break;
  
-            
         //everything else
         // ->other signing errors
         default:
@@ -239,6 +242,34 @@
     //assign summary to outlet
     self.summary.stringValue = csSummary;
     
+    //no hashes?
+    if(nil == self.item.signingInfo[KEY_SIGNING_HASHES])
+    {
+        //bundle?
+        // give a more specific error msg
+        if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:self.item.path isDirectory:&isDirectory]) &&
+            (YES == isDirectory) )
+        {
+            //set
+            self.hashes.stringValue = @"none (item is a directory))";
+        }
+        //generic error msg
+        else
+        {
+            //set
+            self.hashes.stringValue = @"none";
+        }
+    }
+    //create clickable 'show hashes' label
+    else
+    {
+        //create/set attributes string
+        self.hashes.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"view hashes" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        
+        //add click event handler
+        [self.hashes addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showHashes:)]];
+    }
+    
     //no entitlements?
     if(nil == self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS])
     {
@@ -249,20 +280,44 @@
     else
     {
         //create/set attributes string
-        entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"view entitlements" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"view entitlements" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.entitlements addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showEntitlements:)]];
     }
 
-    //assign details to outlet
+    //assign code-signing auths to outlet
     self.signingStatus.stringValue = csDetails;
     
     return;
 }
 
 //invoked when user clicks 'show entitlements'
-// display entitlements window pane w/ dictionarys
+// display entitlements window pane w/ dictionary
+- (void)showHashes:(id)sender
+{
+    //dbg msg
+    logMsg(LOG_DEBUG, @"showing hashes");
+    
+    //alloc sheet
+    self.hashesWindowController = [[HashesWindowController alloc] initWithWindowNibName:@"HashesWindow"];
+    
+    //save signing info into iVar
+    self.hashesWindowController.signingInfo = self.item.signingInfo;
+    
+    //show hashes
+    [self.window beginSheet:self.hashesWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        
+        //unset window controller
+        self.hashesWindowController = nil;
+        
+    }];
+    
+    return;
+}
+
+//invoked when user clicks 'show hashes'
+// display hashe window pane w/ dictionary
 - (void)showEntitlements:(id)sender
 {
     //dbg msg

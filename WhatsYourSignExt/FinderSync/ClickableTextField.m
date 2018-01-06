@@ -13,8 +13,8 @@
 //show mouse as 'hand cursor'
 - (void)resetCursorRects
 {
-    //skip if no entitlements
-    if(YES == [self.stringValue isEqualToString:@"none"])
+    //skip if nothing to show
+    if(YES == [self.stringValue hasPrefix:@"none"])
     {
         //bail
         goto bail;

@@ -48,7 +48,7 @@
 #define EXIT_CODE @"exitCode"
 
 //max enable attempts
-#define MAX_ENABLE_ATTEMPTS 5
+#define MAX_ENABLE_ATTEMPTS 10
 
 //frame shift
 // ->for status msg to avoid activity indicator
@@ -68,6 +68,9 @@
 
 //entitlements
 #define KEY_SIGNING_ENTITLEMENTS @"entitlements"
+
+//hashes
+#define KEY_SIGNING_HASHES @"hashes"
 
 //file belongs to apple?
 #define KEY_SIGNING_IS_APPLE @"signedByApple"
@@ -162,5 +165,13 @@
 //more info button tag
 #define BUTTON_MORE_INFO 101
 
+//key md5
+#define KEY_HASH_MD5 @"MD5"
+
+//key sha1
+#define KEY_HASH_SHA1 @"SHA1"
+
+//key sha256
+#define KEY_HASH_SHA256 @"SHA256"
 
 #endif

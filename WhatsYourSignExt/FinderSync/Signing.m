@@ -246,6 +246,9 @@ NSDictionary* extractSigningInfo(NSString* path)
     //status
     OSStatus status = !STATUS_SUCCESS;
     
+    //hashes
+    NSDictionary* hashes = nil;
+    
     //signing information
     CFDictionaryRef signingInformation = NULL;
     
@@ -269,6 +272,15 @@ NSDictionary* extractSigningInfo(NSString* path)
     
     //init signing status
     signingStatus = [NSMutableDictionary dictionary];
+    
+    //first grab hashes
+    // note: if path is bundle, return hashes of binary
+    hashes = hashFile(path);
+    if(0 != hashes.count)
+    {
+        //add
+        signingStatus[KEY_SIGNING_HASHES] = hashes;
+    }
     
     //create static code
     status = SecStaticCodeCreateWithPath((__bridge CFURLRef)([NSURL fileURLWithPath:path]), kSecCSDefaultFlags, &staticCode);
@@ -713,8 +725,8 @@ bail:
 }
 
 //determine if a file is from the app store
-// ->gotta be signed w/ Apple Dev ID & have valid app receipt
-//   note: here, assume this function is only called on Apps signed with Apple Dev ID!
+//  gotta be signed w/ Apple Dev ID & have valid app receipt
+//  note: here, assume this function is only called on Apps signed with Apple Dev ID!
 BOOL fromAppStore(NSString* path)
 {
     //flag
@@ -874,3 +886,5 @@ bail:
     
     return entitlements;
 }
+
+

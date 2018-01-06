@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ClickableTextField.h"
+#import "HashesWindowController.h"
 #import "EntitlementsWindowController.h"
 
 @class Item;
@@ -42,14 +43,20 @@
 //type
 @property (weak) IBOutlet NSTextField *type;
 
+//hashes
+@property (weak) IBOutlet ClickableTextField *hashes;
+
 //entitlements
-@property (weak) IBOutlet NSTextField *entitlements;
+@property (weak) IBOutlet ClickableTextField *entitlements;
 
 //signing status
 @property (weak) IBOutlet NSTextField *signingStatus;
 
 //activity indicator
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
+
+//hashes popup controller
+@property (strong) HashesWindowController *hashesWindowController;
 
 //entitlements popup controller
 @property (strong) EntitlementsWindowController *entitlementsWindowController;

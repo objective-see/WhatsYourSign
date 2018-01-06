@@ -197,7 +197,7 @@ bail:
         
         //nap
         // seems to sometimes take awhile to 'install'
-        [NSThread sleepForTimeInterval:0.5];
+        [NSThread sleepForTimeInterval:0.25];
     }
     
     //sanity check
@@ -239,7 +239,7 @@ bail:
         
         //nap
         // seems to sometimes take awhile to 'install'
-        [NSThread sleepForTimeInterval:0.5];
+        [NSThread sleepForTimeInterval:0.25];
     }
     
     //sanity check
@@ -254,6 +254,9 @@ bail:
     
     //dbg msg
     logMsg(LOG_DEBUG, [NSString stringWithFormat:@"enabled extension %@ via 'pluginkit -e, ...'", EXTENSION_BUNDLE_ID]);
+    
+    //give it a second to sync out plugin db
+    [NSThread sleepForTimeInterval:0.5f];
     
     //relaunch Finder
     // ensures plugin gets loaded, etc
@@ -320,8 +323,8 @@ bail:
     // and if any are found, kill them via SIGKILL!
     do
     {
-        //find process
-        processID = findProcess([extension stringByAppendingPathComponent:@"Contents/MacOS/WhatsYourSign"]);
+        //find process by name
+        processID = findProcess(@"WhatsYourSign");
         if(-1 != processID)
         {
             //dbg msg
@@ -361,6 +364,16 @@ bail:
     {
         // ensures plugin refs, etc are all removed
         execTask(KILLALL, @[@"-SIGHUP", @"Finder"]);
+        
+        //give it a second to restart
+        [NSThread sleepForTimeInterval:1.0f];
+        
+        //tell Finder to activate
+        // otherwise it's fully background'd when app exits for some reason!?
+        system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
+        
+        //dbg msg
+        logMsg(LOG_DEBUG, @"relaunched Finder.app");
     }
     
     //happy

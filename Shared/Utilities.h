@@ -42,4 +42,8 @@ NSMutableDictionary* execTask(NSString* binaryPath, NSArray* arguments);
 //find a process by name
 pid_t findProcess(NSString* processName);
 
+//hash a file
+// ->md5/sha1/sha256
+NSDictionary* hashFile(NSString* filePath);
+
 #endif

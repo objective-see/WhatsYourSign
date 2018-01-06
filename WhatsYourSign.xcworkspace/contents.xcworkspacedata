@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/patrickw/objective-see/WhatsYourSign/Installer/Installer.xcodeproj">
+      location = "group:Installer/Installer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:WhatsYourSignExt/WhatsYourSign.xcodeproj">

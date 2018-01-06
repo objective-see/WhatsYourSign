@@ -19,7 +19,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
-
 //get app's version
 // ->extracted from Info.plist
 NSString* getAppVersion()
@@ -377,7 +376,8 @@ pid_t findProcess(NSString* processName)
         }
         
         //match?
-        if(YES == [processPath isEqualToString:processName])
+        // last path component is name
+        if(YES == [processPath.lastPathComponent isEqualToString:processName])
         {
             //save
             processID = pids[i];
@@ -398,4 +398,126 @@ bail:
     }
     
     return processID;
+}
+
+//hash a file
+// ->md5/sha1/sha256
+NSDictionary* hashFile(NSString* filePath)
+{
+    //file hashes
+    NSDictionary* hashes = nil;
+    
+    //directory flag
+    BOOL isDirectory = NO;
+    
+    //bundle
+    NSBundle* bundle = nil;
+    
+    //file's contents
+    NSData* fileContents = nil;
+    
+    //hash digest (md5)
+    uint8_t digestMD5[CC_MD5_DIGEST_LENGTH] = {0};
+    
+    //md5 hash as string
+    NSMutableString* md5 = nil;
+    
+    //hash digest (sha1)
+    uint8_t digestSHA1[CC_SHA1_DIGEST_LENGTH] = {0};
+    
+    //sha1 hash as string
+    NSMutableString* sha1 = nil;
+    
+    //hash digest (sha256)
+    uint8_t digestSHA256[CC_SHA256_DIGEST_LENGTH] = {0};
+    
+    //sha1 hash as string
+    NSMutableString* sha256 = nil;
+    
+    //index var
+    NSUInteger index = 0;
+    
+    //init md5 hash string
+    md5 = [NSMutableString string];
+    
+    //init sha1 hash string
+    sha1 = [NSMutableString string];
+    
+    //init sha256 string
+    sha256 = [NSMutableString string];
+    
+    //directory?
+    // try see if its a bundle with an executable
+    if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory]) &&
+        (YES == isDirectory) )
+    {
+        //load bundle
+        bundle = [NSBundle bundleWithPath:filePath];
+        
+        //sanity check
+        // bundle w/ executable path?
+        if( (nil == bundle) ||
+            (nil == bundle.executablePath) )
+        {
+            //bail
+            goto bail;
+        }
+        
+        //load file
+        fileContents = [NSData dataWithContentsOfFile:bundle.executablePath];
+    }
+    //file
+    // load directly
+    else
+    {
+        //load
+        fileContents = [NSData dataWithContentsOfFile:filePath];
+    }
+
+    //sanity check
+    if(nil == fileContents)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //md5 it
+    CC_MD5(fileContents.bytes, (unsigned int)fileContents.length, digestMD5);
+    
+    //convert to NSString
+    // ->iterate over each bytes in computed digest and format
+    for(index=0; index < CC_MD5_DIGEST_LENGTH; index++)
+    {
+        //format/append
+        [md5 appendFormat:@"%02lX", (unsigned long)digestMD5[index]];
+    }
+    
+    //sha1 it
+    CC_SHA1(fileContents.bytes, (unsigned int)fileContents.length, digestSHA1);
+    
+    //convert to NSString
+    // ->iterate over each bytes in computed digest and format
+    for(index=0; index < CC_SHA1_DIGEST_LENGTH; index++)
+    {
+        //format/append
+        [sha1 appendFormat:@"%02lX", (unsigned long)digestSHA1[index]];
+    }
+    
+    //sha256 it
+    CC_SHA256(fileContents.bytes, (unsigned int)fileContents.length, digestSHA256);
+    
+    //convert to NSString
+    // ->iterate over each bytes in computed digest and format
+    for(index=0; index < CC_SHA256_DIGEST_LENGTH; index++)
+    {
+        //format/append
+        [sha256 appendFormat:@"%02lX", (unsigned long)digestSHA256[index]];
+    }
+    
+    //init hash dictionary
+    hashes = @{KEY_HASH_MD5:md5, KEY_HASH_SHA1:sha1, KEY_HASH_SHA256:sha256};
+    
+bail:
+    
+    return hashes;
 }
