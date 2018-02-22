@@ -40,9 +40,6 @@
     //load patrons
     self.patrons.string = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"patrons" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL];
     
-    //make 'support us' default
-    [self.supportUs setKeyEquivalent:@"\r"];
-    
     //make first responder
     // calling this without a timeout sometimes fails :/
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{

@@ -297,7 +297,8 @@ NSDictionary* extractSigningInfo(NSString* path)
     }
     
     //check signature
-    status = SecStaticCodeCheckValidityWithErrors(staticCode, kSecCSDoNotValidateResources, NULL, NULL);
+    // be very strict!
+    status = SecStaticCodeCheckValidityWithErrors(staticCode, kSecCSStrictValidate | kSecCSCheckAllArchitectures | kSecCSCheckNestedCode, NULL, NULL);
     
     //(re)save signature status
     signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];

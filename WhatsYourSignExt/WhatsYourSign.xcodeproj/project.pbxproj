@@ -91,9 +91,9 @@
 		7D50B7101D2F69040055CC40 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = ../Shared/Logging.h; sourceTree = "<group>"; };
 		7D5CACB71FE9A9F8002A367A /* ClickableTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableTextField.h; sourceTree = "<group>"; };
 		7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableTextField.m; sourceTree = "<group>"; };
-		7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EntitlementsWindowController.m; path = "/Users/patrickw/objective-see/WhatsYourSign/WhatsYourSignExt/FinderSync/EntitlementsWindowController.m"; sourceTree = "<absolute>"; };
-		7D5CACBD1FE9CC8B002A367A /* EntitlementsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntitlementsWindowController.h; path = "/Users/patrickw/objective-see/WhatsYourSign/WhatsYourSignExt/FinderSync/EntitlementsWindowController.h"; sourceTree = "<absolute>"; };
-		7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EntitlementsWindow.xib; path = "/Users/patrickw/objective-see/WhatsYourSign/WhatsYourSignExt/FinderSync/EntitlementsWindow.xib"; sourceTree = "<absolute>"; };
+		7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntitlementsWindowController.m; sourceTree = "<group>"; };
+		7D5CACBD1FE9CC8B002A367A /* EntitlementsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntitlementsWindowController.h; sourceTree = "<group>"; };
+		7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntitlementsWindow.xib; sourceTree = "<group>"; };
 		7D61ED711D984BA6007FE979 /* WhatsYourSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsYourSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D61ED731D984BA6007FE979 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7D61ED741D984BA6007FE979 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };

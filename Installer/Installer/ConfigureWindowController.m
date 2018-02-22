@@ -27,9 +27,6 @@
     //indicate title bar is transparent (too)
     self.window.titlebarAppearsTransparent = YES;
     
-    //make install button default
-    [self.installButton setKeyEquivalent:@"\r"];
-    
     //make first responder
     // calling this without a timeout sometimes fails :/
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -165,9 +162,6 @@
         
         //nap for UI purposes
         [NSThread sleepForTimeInterval:0.10f];
-        
-        //make support button default
-        [self.supportButton setKeyEquivalent:@"\r"];
         
         //...and also make it first responder
         // calling this without a timeout sometimes fails :/
@@ -465,9 +459,6 @@ bail:
         
         //enable
         self.uninstallButton.enabled = YES;
-        
-        //make it default
-        [self.uninstallButton setKeyEquivalent:@"\r"];
         
         //...and highlighted
         [self.window makeFirstResponder:self.uninstallButton];
