@@ -59,11 +59,16 @@
         [self.statusMsg setStringValue:@"signing info via the UI 🔏"];
     }
     
-    //enable 'uninstall' button when app is installed already
+    //app already installed?
+    // enable 'uninstall' button
+    // change install button to say 'upgrade'
     if(YES == isInstalled)
     {
-        //enable
+        //enable 'uninstall'
         self.uninstallButton.enabled = YES;
+        
+        //set to 'upgrade'
+        self.installButton.title = ACTION_UPGRADE;
     }
     //otherwise disable
     else
@@ -117,10 +122,12 @@
     logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", buttonTitle]);
     #endif
     
-    //Close/No?
-    // ->just exit
-    if( (YES == [buttonTitle isEqualToString:ACTION_CLOSE]) ||
-        (YES == [buttonTitle isEqualToString:ACTION_NO]) )
+    //grab tag
+    action = ((NSButton*)sender).tag;
+    
+    //'close'?
+    // close window to trigger exit logic
+    if(ACTION_CLOSE_FLAG == action)
     {
         //close
         [self.window close];
@@ -129,9 +136,68 @@
         goto bail;
     }
     
-    //Next >>?
-    // ->show 'Support Us' view
-    if(YES == [buttonTitle isEqualToString:ACTION_NEXT])
+    //'restart'?
+    // restart Finder
+    else if(ACTION_RESTART_FLAG == action)
+    {
+        //relaunch in background
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+        ^{
+            //relaunch
+            restartFinder();
+        });
+        
+        //update button tag
+        self.installButton.enabled = NO;
+        
+        //show spinner
+        self.activityIndicator.hidden = NO;
+        
+        //start spinning
+        [self.activityIndicator startAnimation:nil];
+        
+        //set font back to normal
+        self.statusMsg.font = [NSFont fontWithName:@"Menlo" size:13];
+        
+        //set message
+        self.statusMsg.stringValue = @"...restarting Finder.app";
+        
+        //after a bit
+        // update UI to complete install
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            
+            //update button tag
+            self.installButton.enabled = YES;
+            
+            //stop spinning
+            [self.activityIndicator stopAnimation:nil];
+            
+            //hide spinner
+            self.activityIndicator.hidden = YES;
+            
+            //set to bold
+            self.statusMsg.font = [NSFont fontWithName:@"Menlo-Bold" size:13];
+            
+            self.statusMsg.stringValue = @"WhatsYourSign installed!";
+            
+            //update button tag
+            self.installButton.tag = ACTION_NEXT_FLAG;
+            
+            //update button title
+            self.installButton.title = ACTION_NEXT;
+            
+            //and make it first responder
+            [self.window makeFirstResponder:self.installButton];
+            
+        });
+        
+        //bail
+        goto bail;
+    }
+
+    //'next'?
+    // show 'Support Us' view
+    else if(ACTION_NEXT_FLAG == action)
     {
         //frame
         NSRect frame = {0};
@@ -182,9 +248,9 @@
         goto bail;
     }
     
-    //'Yes' for support
-    // ->load supprt in URL
-    if(YES == [buttonTitle isEqualToString:ACTION_YES])
+    //'yes'?'
+    // load supprt in URL
+    else if(ACTION_YES_FLAG == action)
     {
         //open URL
         // ->invokes user's default browser
@@ -202,21 +268,6 @@
     {
         //hide 'get more info' button
         self.moreInfoButton.hidden = YES;
-        
-        //set action
-        // ->install daemon
-        if(YES == [buttonTitle isEqualToString:ACTION_INSTALL])
-        {
-            //set
-            action = ACTION_INSTALL_FLAG;
-        }
-        //set action
-        // ->uninstall daemon
-        else
-        {
-            //set
-            action = ACTION_UNINSTALL_FLAG;
-        }
         
         //disable 'x' button
         // ->don't want user killing app during install/upgrade
@@ -366,11 +417,8 @@ bail:
     //status msg frame
     CGRect statusMsgFrame = {0};
     
-    //action
-    NSString* action = nil;
-    
     //result msg
-    NSMutableString* resultMsg = nil;
+    NSString* resultMsg = nil;
     
     //msg font
     NSColor* resultMsgColor = nil;
@@ -378,37 +426,44 @@ bail:
     //generally want centered text
     [self.statusMsg setAlignment:NSCenterTextAlignment];
     
-    //set action msg for install
-    if(ACTION_INSTALL_FLAG == event)
-    {
-        //set msg
-        action = @"install";
-    }
-    //set action msg for uninstall
-    else
-    {
-        //set msg
-        action = @"uninstall";
-    }
-    
-    //success
+    //success?
     if(YES == success)
     {
-        //set result msg
-        resultMsg = [NSMutableString stringWithFormat:@"WhatsYourSign %@ed!", action];
-        
         //set font to black
         resultMsgColor = [NSColor blackColor];
+        
+        //install?
+        if(ACTION_INSTALL_FLAG == event)
+        {
+            //set result msg
+            resultMsg = @"WhatsYourSign installed!\nRestart 'Finder.app' to complete.";
+        }
+        //uninstall?
+        else
+        {
+            //set result msg
+            resultMsg = @"WhatsYourSign uninstalled!";
+        }
     }
     //failure
     else
     {
-        //set result msg
-        resultMsg = [NSMutableString stringWithFormat:@"error: %@ failed", action];
-        
         //set font to red
         resultMsgColor = [NSColor redColor];
         
+        //install failed?
+        if(ACTION_INSTALL_FLAG == event)
+        {
+            //set result msg
+            resultMsg = @"Error: install failed.";
+        }
+        //uninstall failed?
+        else
+        {
+            //set result msg
+            resultMsg = @"Error: uninstall failed.";
+        }
+    
         //show 'get more info' button
         self.moreInfoButton.hidden = NO;
     }
@@ -429,20 +484,23 @@ bail:
     self.statusMsg.frame = statusMsgFrame;
     
     //set font to bold
-    [self.statusMsg setFont:[NSFont fontWithName:@"Menlo-Bold" size:13]];
+    self.statusMsg.font = [NSFont fontWithName:@"Menlo-Bold" size:13];
     
     //set msg color
-    [self.statusMsg setTextColor:resultMsgColor];
+    self.statusMsg.textColor = resultMsgColor;
     
     //set status msg
-    [self.statusMsg setStringValue:resultMsg];
+    self.statusMsg.stringValue = resultMsg;
     
     //update button
-    // ->after install change butter to 'Next'
+    // after install change buttom to 'Restart'
     if(ACTION_INSTALL_FLAG == event)
     {
-        //set button title to 'close'
-        self.installButton.title = ACTION_NEXT;
+        //update button title
+        self.installButton.title = ACTION_RESTART;
+        
+        //update button tag
+        self.installButton.tag = ACTION_RESTART_FLAG;
         
         //enable
         self.installButton.enabled = YES;
@@ -451,11 +509,14 @@ bail:
         [self.window makeFirstResponder:self.installButton];
     }
     //update button
-    // ->after uninstall change button to 'close'
+    // after uninstall change button to 'close'
     else
     {
-        //set button title to 'close'
+        //set button title
         self.uninstallButton.title = ACTION_CLOSE;
+        
+        //update button tag
+        self.uninstallButton.tag = ACTION_CLOSE_FLAG;
         
         //enable
         self.uninstallButton.enabled = YES;

@@ -29,7 +29,7 @@
 -(BOOL)install;
 
 //uninstall
--(BOOL)uninstall:(BOOL)relaunchFinder;
+-(BOOL)uninstall;
 
 @end
 

@@ -29,7 +29,7 @@ NSString* getAppVersion()
 
 //given a path to binary
 // parse it back up to find app's bundle
-NSBundle* findAppBundle(NSString* binaryPath)
+NSBundle* findAppBundle(NSString* path)
 {
     //app's bundle
     NSBundle* appBundle = nil;
@@ -38,7 +38,7 @@ NSBundle* findAppBundle(NSString* binaryPath)
     NSString* appPath = nil;
     
     //first just try full path
-    appPath = binaryPath;
+    appPath = path;
     
     //try to find the app's bundle/info dictionary
     do
@@ -46,13 +46,17 @@ NSBundle* findAppBundle(NSString* binaryPath)
         //try to load app's bundle
         appBundle = [NSBundle bundleWithPath:appPath];
         
-        //check for match
-        // ->binary path's match
-        if( (nil != appBundle) &&
-            (YES == [appBundle.executablePath isEqualToString:binaryPath]))
+        //got bundle?
+        // check if path is for app, or binary matches
+        if(nil != appBundle)
         {
-            //all done
-            break;
+            //path is for app, or binary matches
+            if( (YES == [path hasSuffix:@".app"]) ||
+                (YES == [appBundle.executablePath isEqualToString:path]) )
+            {
+                //all set
+                break;
+            }
         }
         
         //always unset bundle var since it's being returned
@@ -521,3 +525,24 @@ bail:
     
     return hashes;
 }
+
+//restart Finder.app
+void restartFinder()
+{
+    //relaunch Finder
+    // ensures plugin gets loaded, etc
+    execTask(KILLALL, @[@"-SIGHUP", @"Finder"]);
+    
+    //give it a second to restart
+    [NSThread sleepForTimeInterval:1.0f];
+    
+    //tell Finder to activate
+    // otherwise it's fully background'd when app exits for some reason!?
+    //system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
+    
+    //dbg msg
+    logMsg(LOG_DEBUG, @"relaunched Finder.app");
+    
+    return;
+}
+

@@ -114,35 +114,39 @@
 //path to killall
 #define KILLALL @"/usr/bin/killall"
 
-//action to install
-// ->also button title
-#define ACTION_INSTALL @"Install"
+//button title: upgrade
+#define ACTION_UPGRADE @"Upgrade"
 
 //action to uninstall
 // ->also button title
 #define ACTION_UNINSTALL @"Uninstall"
 
-//button title
-// ->close
+//button title: close
 #define ACTION_CLOSE @"Close"
 
-//button title
-// ->next
+//button title: restart
+#define ACTION_RESTART @"Restart Finder"
+
+//button title: next
 #define ACTION_NEXT @"Next »"
-
-//button title
-// ->no
-#define ACTION_NO @"No"
-
-//button title
-// ->yes
-#define ACTION_YES @"Yes!"
 
 //flag to uninstall
 #define ACTION_UNINSTALL_FLAG 0
 
 //flag to install
 #define ACTION_INSTALL_FLAG 1
+
+//flag to close
+#define ACTION_CLOSE_FLAG 2
+
+//flag for next
+#define ACTION_RESTART_FLAG 3
+
+//flag for next
+#define ACTION_NEXT_FLAG 4
+
+//flag for yes/support
+#define ACTION_YES_FLAG 5
 
 //error msg
 #define KEY_ERROR_MSG @"errorMsg"

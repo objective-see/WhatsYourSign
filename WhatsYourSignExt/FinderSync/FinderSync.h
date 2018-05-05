@@ -17,10 +17,8 @@
 
 /* PROPERTIES */
 
-//info window
-//@property(nonatomic, retain)InfoWindowController* infoWindowController;
+//volumes (directories) to watch
+@property(nonatomic, retain)NSMutableSet* volumes;
 
 @end
 
-//global instance of this
-//extern FinderSync* finderSync;

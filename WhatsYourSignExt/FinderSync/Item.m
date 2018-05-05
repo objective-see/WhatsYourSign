@@ -30,47 +30,59 @@
     self = [super init];
     if(self)
     {
+        //dbg msg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"item: %@", itemPath]);
+        
         //save path
         self.path = itemPath;
         
         //since path is always full path to binary
-        // ->manaully try to find & load bundle (for .apps)
+        // manaully try to find & load bundle (for .apps)
         self.bundle = findAppBundle(self.path);
         
         /* now we have bundle (maybe), try get name and icon */
         
         //get task's name
-        // ->either from bundle or path's last component
+        // either from bundle or path's last component
         self.name = [self getName];
         
         //get task's icon
-        // ->either from bundle or just use system icon
+        // either from bundle or just use a system icon
         self.icon = [self getIcon];
         
         //set type
         [self determineType];
         
         //get code signing info
-        // ->do in background cuz it can be slow!
+        // do in background cuz it can be slow!
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-           ^{
-               //get code signing info
-               [self generateSigningInfo];
+        ^{
+           //get code signing info
+           [self generateSigningInfo];
+        
+           //no errors?
+           //if item is an app, gotta verify its binary too
+           if( (noErr == [self.signingInfo[KEY_SIGNATURE_STATUS] intValue]) &&
+               (YES == [self.path hasSuffix:@".app"]) )
+           {
+               //verify
+               [self verifyBinary];
+           }
+           
+           //nap
+           // allows 'determining' msg / activity indicator to be shown
+           [NSThread sleepForTimeInterval:0.5];
+           
+           //on main thread
+           // tell window to now process signing info
+           dispatch_async(dispatch_get_main_queue(), ^{
                
-               //nap
-               // ->allows 'determining' msg / activity indicator to be shown
-               [NSThread sleepForTimeInterval:0.5];
-               
-               //on main thread
-               // tell window to now process signing info
-               dispatch_async(dispatch_get_main_queue(), ^{
-                   
-                   //process
-                   [self.windowController processCodeSigningInfo];
-                   
-               });
+               //process
+               [self.windowController processCodeSigningInfo];
                
            });
+           
+        });
     }
            
 bail:
@@ -167,7 +179,7 @@ bail:
 }
 
 //get task's name
-// ->either from bundle or path's last component
+// either from bundle or path's last component
 -(NSString*)getName
 {
     //name
@@ -193,7 +205,7 @@ bail:
 }
 
 //get an icon for a process
-// ->for apps, this will be app's icon, otherwise just a standard system one
+// for apps, this will be app's icon, otherwise just a standard system one
 -(NSImage*)getIcon
 {
     //icon's file name
@@ -209,7 +221,7 @@ bail:
     NSImage* taskIcon = nil;
     
     //for app's
-    // ->extract their icon
+    // extract their icon
     if(nil != self.bundle)
     {
         //get file
@@ -234,7 +246,7 @@ bail:
     }
     
     //item is not an app or couldn't get icon
-    // ->try to get it via shared workspace
+    // try to get icon via the shared workspace
     if(nil == taskIcon)
     {
         //extract icon
@@ -242,19 +254,19 @@ bail:
         taskIcon = [[NSWorkspace sharedWorkspace] iconForFile:self.path];
     }
     
-    //'iconForFileType' returns small icons
-    // ->so set size to 128
+    //resize
+    // 'iconForFileType' returns small icons
     [taskIcon setSize:NSMakeSize(128, 128)];
     
     return taskIcon;
 }
 
-//get signing info (which takes a while to generate)
-// ->this method should be called in the background
+//get signing info
+// cal in the background
 -(void)generateSigningInfo
 {
     //xip's are special
-    // ->signing info is appended differently
+    // signing info is appended differently
     if(YES == [self.type isEqualToString:@"XIP Secure Archive"])
     {
         //check
@@ -264,8 +276,55 @@ bail:
     else
     {
         //extract
-        self.signingInfo = extractSigningInfo(self.path);
+        self.signingInfo = extractSigningInfo(self.path, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks);
     }
+    
+    return;
+}
+
+//need extra logic to verify app bundle (main) binary
+// if there are any errors or differnt signing auths, binary's info will be used!
+-(void)verifyBinary
+{
+    //app binary
+    NSString* binaryPath = nil;
+    
+    //signing info
+    NSDictionary* binarySigningInfo = nil;
+    
+    //get app binary
+    binaryPath = self.bundle.executablePath;
+    if(nil == binaryPath)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //get signing info for app binary
+    binarySigningInfo = extractSigningInfo(binaryPath, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks);
+    
+    //error?
+    // use binary's signing info
+    if(noErr != [self.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+    {
+        //update
+        self.signingInfo = binarySigningInfo;
+        
+        //all set
+        goto bail;
+    }
+    
+    //compare all signing auths
+    if(YES != [[NSCountedSet setWithArray:self.signingInfo[KEY_SIGNING_AUTHORITIES]] isEqualToSet: [NSCountedSet setWithArray:binarySigningInfo[KEY_SIGNING_AUTHORITIES]]] )
+    {
+        //update
+        self.signingInfo = binarySigningInfo;
+        
+        //bail
+        goto bail;
+    }
+    
+bail:
     
     return;
 }

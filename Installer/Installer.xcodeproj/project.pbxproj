@@ -41,7 +41,7 @@
 		7D1EAB321D2E14160052ACE2 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Consts.h; path = ../../Shared/Consts.h; sourceTree = "<group>"; };
 		7D1EAB361D2E148B0052ACE2 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../Shared/Utilities.h; sourceTree = "<group>"; };
 		7D1EAB371D2E148B0052ACE2 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../../Shared/Utilities.m; sourceTree = "<group>"; };
-		7D24C8651D2CDEA7009932EE /* WhatsYourSign_Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsYourSign_Installer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D24C8651D2CDEA7009932EE /* WhatsYourSign Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhatsYourSign Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D24C8681D2CDEA7009932EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7D24C8691D2CDEA7009932EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7D24C86C1D2CDEA7009932EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		7D24C8661D2CDEA7009932EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7D24C8651D2CDEA7009932EE /* WhatsYourSign_Installer.app */,
+				7D24C8651D2CDEA7009932EE /* WhatsYourSign Installer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 			);
 			name = Installer;
 			productName = WhatsYourSign_Installer;
-			productReference = 7D24C8651D2CDEA7009932EE /* WhatsYourSign_Installer.app */;
+			productReference = 7D24C8651D2CDEA7009932EE /* WhatsYourSign Installer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -241,7 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#for normal builds\n# just copy in app\ncp -R -f $BUILT_PRODUCTS_DIR/WhatsYourSign.app $BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\n\n#for achieving\n#  1) build finder sync in release mode (don't archive it)\n#  2) then archive (this) installer app\n#cp -R -f $SRCROOT/../DerivedData/WhatsYourSign/Build/Products/Release/WhatsYourSign.app $BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\n";
+			shellScript = "#for normal builds\n# just copy in app\ncp -R -f \"$BUILT_PRODUCTS_DIR/WhatsYourSign.app\" \"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\"\n\n#for achieving\n#  1) build finder sync in release mode (don't archive it)\n#  2) then archive (this) installer app\n#cp -R -f $SRCROOT/../DerivedData/WhatsYourSign/Build/Products/Release/WhatsYourSign.app $BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -390,7 +390,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
-				PRODUCT_NAME = WhatsYourSign_Installer;
+				PRODUCT_NAME = "WhatsYourSign Installer";
 			};
 			name = Debug;
 		};
@@ -407,7 +407,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
-				PRODUCT_NAME = WhatsYourSign_Installer;
+				PRODUCT_NAME = "WhatsYourSign Installer";
 			};
 			name = Release;
 		};

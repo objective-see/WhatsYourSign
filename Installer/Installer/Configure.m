@@ -35,8 +35,7 @@
             logMsg(LOG_DEBUG, @"already installed, so uninstalling...");
             
             //uninstall
-            // no need to relaunch Finder though
-            if(YES != [self uninstall:NO])
+            if(YES != [self uninstall])
             {
                 //bail
                 goto bail;
@@ -56,15 +55,9 @@
         //dbg msg
         logMsg(LOG_DEBUG, @"installed!");
     
-        //start app after a bit
-        // macOS sierra+ this ensures plugin is activated
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            
-            //relaunch
-            // ->use 'open' since allows two instances of app to be run
-            execTask(OPEN, @[@"-n", @"-a", APP_LOCATION]);
-            
-        });
+        //launch main app
+        // waits until done...
+        execTask(OPEN, @[@"-n", @"-W", @"-a", APP_LOCATION]);
     }
     //uninstall extension
     else if(ACTION_UNINSTALL_FLAG == parameter)
@@ -74,7 +67,7 @@
         
         //uninstall
         // and relaunch Finder
-        if(YES != [self uninstall:YES])
+        if(YES != [self uninstall])
         {
             //bail
             goto bail;
@@ -239,7 +232,7 @@ bail:
         
         //nap
         // seems to sometimes take awhile to 'install'
-        [NSThread sleepForTimeInterval:0.25];
+        [NSThread sleepForTimeInterval:0.5];
     }
     
     //sanity check
@@ -256,22 +249,8 @@ bail:
     logMsg(LOG_DEBUG, [NSString stringWithFormat:@"enabled extension %@ via 'pluginkit -e, ...'", EXTENSION_BUNDLE_ID]);
     
     //give it a second to sync out plugin db
-    [NSThread sleepForTimeInterval:0.5f];
-    
-    //relaunch Finder
-    // ensures plugin gets loaded, etc
-    execTask(KILLALL, @[@"-SIGHUP", @"Finder"]);
-    
-    //give it a second to restart
     [NSThread sleepForTimeInterval:1.0f];
     
-    //tell Finder to activate
-    // otherwise it's fully background'd when app exits for some reason!?
-    system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
-    
-    //dbg msg
-    logMsg(LOG_DEBUG, @"relaunched Finder.app");
-
     //no error
     wasInstalled = YES;
     
@@ -282,8 +261,8 @@ bail:
 
 //uninstall
 // a) remove extension (pluginkit -r <path 2 ext>)
-// b) delete folder; /Library/WhatsYourSign or /Application/WhatsYourSign.app
--(BOOL)uninstall:(BOOL)relaunchFinder
+// b) delete folder; ~/Library/WhatsYourSign or /Application/WhatsYourSign.app
+-(BOOL)uninstall
 {
     //return/status var
     BOOL wasUninstalled = NO;
@@ -318,6 +297,26 @@ bail:
         //init folder
         folder = NEW_LOCATION;
     }
+    
+    //dbg msg
+    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing folder (%@)", folder]);
+    
+    //delete folder
+    if(YES != [[NSFileManager defaultManager] removeItemAtPath:folder error:&error])
+    {
+        //err msg
+        logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to delete extension directory %@ (%@)", folder, error]);
+        
+        //bail
+        goto bail;
+    }
+    
+    //dbg msg
+    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing extension (%@) via 'pluginkit -r'", extension]);
+    
+    //remove extension
+    // plugin kit prints err, but it still works
+    execTask(PLUGIN_KIT, @[@"-r", extension]);
 
     //find pid of extension instance(s)
     // and if any are found, kill them via SIGKILL!
@@ -338,44 +337,7 @@ bail:
         }
         
     } while (processID != -1);
-    
-    //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing extension (%@) via 'pluginkit -r'", extension]);
 
-    //remove extension
-    // ->plugin kit prints err, but it still works
-    execTask(PLUGIN_KIT, @[@"-r", extension]);
-    
-    //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing folder (%@)", folder]);
-
-    //delete folder
-    if(YES != [[NSFileManager defaultManager] removeItemAtPath:folder error:&error])
-    {
-        //err msg
-        logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to delete extension directory %@ (%@)", folder, error]);
-        
-        //bail
-        goto bail;
-    }
-
-    //relaunch Finder?
-    if(YES == relaunchFinder)
-    {
-        // ensures plugin refs, etc are all removed
-        execTask(KILLALL, @[@"-SIGHUP", @"Finder"]);
-        
-        //give it a second to restart
-        [NSThread sleepForTimeInterval:1.0f];
-        
-        //tell Finder to activate
-        // otherwise it's fully background'd when app exits for some reason!?
-        system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
-        
-        //dbg msg
-        logMsg(LOG_DEBUG, @"relaunched Finder.app");
-    }
-    
     //happy
     wasUninstalled = YES;
     

@@ -141,7 +141,7 @@
                     [csSummary appendFormat:@" (Apple Dev-ID)"];
                 }
                 //something else
-                // ->ad hoc? 3rd-party?
+                // ad hoc? 3rd-party?
                 else
                 {
                     //append to summary
@@ -221,7 +221,7 @@
             break;
  
         //everything else
-        // ->other signing errors
+        // other signing errors
         default:
             
             //set image
@@ -251,7 +251,7 @@
             (YES == isDirectory) )
         {
             //set
-            self.hashes.stringValue = @"none (item is a directory))";
+            self.hashes.stringValue = @"none (item is a directory)";
         }
         //generic error msg
         else

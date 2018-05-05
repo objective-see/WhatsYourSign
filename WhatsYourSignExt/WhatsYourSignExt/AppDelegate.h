@@ -10,11 +10,12 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+/* PROPERTIES */
+
+//close button
+@property (weak) IBOutlet NSButton *closeButton;
 
 /* METHODS */
-
-//center on main screen
--(void)centerOnMainScreen;
 
 
 @end

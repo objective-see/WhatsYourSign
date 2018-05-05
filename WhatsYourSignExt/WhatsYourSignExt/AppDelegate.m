@@ -15,34 +15,13 @@
 
 @implementation AppDelegate
 
-//center on main screen
--(void)centerOnMainScreen
-{
-    //x position
-    CGFloat xPos = {0};
-    
-    //y position
-    CGFloat yPos = {0};
-    
-    //init x position
-    xPos = NSWidth([[NSScreen mainScreen] frame])/2 - NSWidth([self.window frame])/2;
-    
-    //init y position
-    yPos = NSHeight([[NSScreen mainScreen] frame])/2 - NSHeight([self.window frame])/2;
-    
-    //center window on main screen
-    [self.window setFrame:NSMakeRect(xPos, yPos, NSWidth([self.window frame]), NSHeight([self.window frame])) display:YES];
-
-    return;
-}
-
 //automatically called when nib is loaded
-// ->center window
+// center window
 -(void)awakeFromNib
 {
     //center
-    [self centerOnMainScreen];
-
+    [self.window center];
+    
     //make white
     [self.window setBackgroundColor: NSColor.whiteColor];
 
@@ -50,11 +29,11 @@
 }
 
 //center window on main screen
-// ->also make it key window and in forefront
+// also make it key window and in forefront
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     //center
-    [self centerOnMainScreen];
+    [self.window center];
     
     //make it key window
     [self.window makeKeyAndOrderFront:self];
@@ -73,7 +52,7 @@
 
 //'got' it button handler
 // ->just exit application
--(IBAction)quit:(id)sender
+-(IBAction)close:(id)sender
 {
     //good bye!
     [NSApp terminate:self];

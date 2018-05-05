@@ -11,17 +11,38 @@
 
 @implementation FinderSync
 
+@synthesize volumes;
+
 //init
 -(instancetype)init
 {
     self = [super init];
     if(nil != self)
     {
+        //init
+        volumes = [NSMutableSet set];
+        
         //dbg msg
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
         
-        //watch all directories
-        [FIFinderSyncController defaultController].directoryURLs = [NSSet setWithObject:[NSURL fileURLWithPath:@"/"]];
+        //watch all volumes
+        for(NSURL* volume in [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:nil options:NSVolumeEnumerationSkipHiddenVolumes])
+        {
+            //add to set
+            [self.volumes addObject:volume];
+        }
+        
+        //dbg msg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"mounted volumes: %@", self.volumes]);
+        
+        //set directories
+        [FIFinderSyncController defaultController].directoryURLs = self.volumes;
+        
+        //register for volume mount
+        [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidMountNotification object:nil];
+        
+        //register for volume unmount
+        [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidUnmountNotification object:nil];
     }
     
     return self;
@@ -51,6 +72,41 @@ bail:
 
     return menu;
 }
+
+//callback for volume events
+-(void)volumeEvent:(NSNotification*)notification
+{
+    //dbg msg
+    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"volume notification: %@", notification]);
+    
+    //mount?
+    // add volume
+    if(YES == [notification.name isEqualToString:NSWorkspaceDidMountNotification])
+    {
+        //dbg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"adding %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
+        
+        //add to set
+        [self.volumes addObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+    }
+    
+    //unmount?
+    // remove volume
+    else if(YES == [notification.name isEqualToString:NSWorkspaceDidUnmountNotification])
+    {
+        //dbg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
+        
+        //remove from set
+        [self.volumes removeObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+    }
+    
+    //update watched directories
+    [FIFinderSyncController defaultController].directoryURLs = self.volumes;
+    
+    return;
+}
+
 
 //show signing info
 -(void)showSigningInfo:(id)sender

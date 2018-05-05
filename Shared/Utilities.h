@@ -46,4 +46,8 @@ pid_t findProcess(NSString* processName);
 // ->md5/sha1/sha256
 NSDictionary* hashFile(NSString* filePath);
 
+//restart Finder.app
+void restartFinder(void);
+
+
 #endif
