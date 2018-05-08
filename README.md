@@ -11,30 +11,38 @@ WhatsYourSign should build cleanly in Xcode (though you will have to remove code
 
 **Mahalo!**<br>
 This product is supported by the following patrons:
-+ Ash Moran
 + Lance Gaines
-+ Justin Esgar
-+ Khalil Sehnaoui
++ Ash Morgan
+
 + Nando Mendonca
-+ Edmund Harriss
-+ Andy One
-+ Michael Thomas
-+ Russell	Imrie
-+ Brent Joyce
-+ Les Aker
-+ Mike Windham
-+ Ryan Grimes
-+ Bill Smartt
-+ Martin OConnell
-+ David Sulpy
-+ Shain Singh
-+ Chad Collins
-+ Harry Hoffman
-+ Keelian Wardle	
-+ Christopher Giffard
-+ Conrad Rushing
-+ Stuart Ashenbrenner
-+ trifero	
-+ Peter Sinclair	
++ Khalil Sehnaoui
++ Jeff Golden
++ Geoffrey Weber
+
 + Ming
++ Peter Sinclair
++ trifero
++ Keelian Wardle
++ Chad Collins
++ Shain Singh
++ David Sulpy
++ Martin OConnell
++ Bill Smartt
++ Mike Windham
++ Brent Joyce
++ Russell Imrie
++ Michael Thomas
++ Andy One
++ Edmund Harriss
++ Brad Knowles
++ Tom Smith
++ Chuck Talk
++ Derivative Fool
++ Joaquim Espinhara
++ Rudolf Coetzee
++ Chris Ferebee
++ Les Aker
++ Allen Hancock
++ Stuart Ashenbrenner
+
 + Gamer_Bot
