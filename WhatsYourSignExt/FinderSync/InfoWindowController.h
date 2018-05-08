@@ -61,6 +61,9 @@
 //entitlements popup controller
 @property (strong) EntitlementsWindowController *entitlementsWindowController;
 
+//close button
+@property (weak) IBOutlet NSButton *closeButton;
+
 /* METHODS */
 
 //process item's code signing info

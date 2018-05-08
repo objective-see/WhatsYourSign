@@ -11,7 +11,7 @@
 
 @implementation FinderSync
 
-@synthesize volumes;
+@synthesize directories;
 
 //init
 -(instancetype)init
@@ -20,23 +20,46 @@
     if(nil != self)
     {
         //init
-        volumes = [NSMutableSet set];
+        directories = [NSMutableSet set];
         
         //dbg msg
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
         
-        //watch all volumes
-        for(NSURL* volume in [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:nil options:NSVolumeEnumerationSkipHiddenVolumes])
+        //watch all mounted volumes
+        // note: skip '/' as it causes perf issues, but will watch it sub-directories
+        for(NSURL* volume in [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:0])
         {
+            //skip '/'
+            if(YES == [volume.path isEqualToString:@"/"])
+            {
+                //skip
+                continue;
+            }
+            
             //add to set
-            [self.volumes addObject:volume];
+            [self.directories addObject:volume];
+        }
+        
+        //also add all directories under '/'
+        // ...but skip '/.file' otherwise is cause file writes to be delayed...
+        for(NSURL* directory in [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:@"/"] includingPropertiesForKeys:@[] options:0 error:nil])
+        {
+            //skip '/.file'
+            if(YES == [directory.path isEqualToString:@"/.file"])
+            {
+                //skip
+                continue;
+            }
+            
+            //add to set
+            [self.directories addObject:directory];
         }
         
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"mounted volumes: %@", self.volumes]);
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"initializing 'watch' directories with: %@", self.directories]);
         
         //set directories
-        [FIFinderSyncController defaultController].directoryURLs = self.volumes;
+        [FIFinderSyncController defaultController].directoryURLs = self.directories;
         
         //register for volume mount
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidMountNotification object:nil];
@@ -87,7 +110,7 @@ bail:
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"adding %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
         
         //add to set
-        [self.volumes addObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+        [self.directories addObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
     }
     
     //unmount?
@@ -98,11 +121,11 @@ bail:
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
         
         //remove from set
-        [self.volumes removeObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+        [self.directories removeObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
     }
     
     //update watched directories
-    [FIFinderSyncController defaultController].directoryURLs = self.volumes;
+    [FIFinderSyncController defaultController].directoryURLs = self.directories;
     
     return;
 }

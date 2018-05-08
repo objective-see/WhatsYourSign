@@ -10,10 +10,10 @@
 
 @interface HashesWindowController : NSWindowController
 
-//signing info
-@property(nonatomic, retain)NSDictionary* signingInfo;
+//hashes
+@property(nonatomic, retain)NSDictionary* hashes;
 
-//entitlements
-@property (unsafe_unretained) IBOutlet NSTextView *hashes;
+//hash text view
+@property (unsafe_unretained) IBOutlet NSTextView *hashList;
 
 @end

@@ -19,6 +19,7 @@
 @synthesize name;
 @synthesize path;
 @synthesize hashes;
+@synthesize closeButton;
 @synthesize signingIcon;
 @synthesize entitlements;
 @synthesize signingStatus;
@@ -72,6 +73,15 @@
     //make window front
     [NSApp activateIgnoringOtherApps:YES];
     
+    //make 'close' first responder
+    // calling this without a timeout sometimes fails :/
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        
+        //and make it first responder
+        [self.window makeFirstResponder:self.closeButton];
+        
+    });
+    
     return;
 }
 
@@ -102,7 +112,7 @@
     
     //start summary with item name
     [csSummary appendString:[self.item.name stringByDeletingPathExtension]];
-
+    
     //process
     switch([self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
     {
@@ -243,7 +253,7 @@
     self.summary.stringValue = csSummary;
     
     //no hashes?
-    if(nil == self.item.signingInfo[KEY_SIGNING_HASHES])
+    if(nil == self.item.hashes)
     {
         //bundle?
         // give a more specific error msg
@@ -303,7 +313,7 @@
     self.hashesWindowController = [[HashesWindowController alloc] initWithWindowNibName:@"HashesWindow"];
     
     //save signing info into iVar
-    self.hashesWindowController.signingInfo = self.item.signingInfo;
+    self.hashesWindowController.hashes = self.item.hashes;
     
     //show hashes
     [self.window beginSheet:self.hashesWindowController.window completionHandler:^(NSModalResponse returnCode) {

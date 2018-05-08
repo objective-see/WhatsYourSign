@@ -9,6 +9,7 @@
 #ifndef WYS_Utilities_h
 #define WYS_Utilities_h
 
+#import <mach-o/fat.h>
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
@@ -28,9 +29,6 @@ NSBundle* findAppBundle(NSString* binaryPath);
 //given a directory and a filter predicate
 // ->return all matches
 NSArray* directoryContents(NSString* directory, NSString* predicate);
-
-//hash (sha1/md5) a file
-NSDictionary* hashFile(NSString* filePath);
 
 //get app's version
 // ->extracted from Info.plist

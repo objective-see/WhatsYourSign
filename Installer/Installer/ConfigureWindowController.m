@@ -108,18 +108,15 @@
 //button handler for uninstall/install
 -(IBAction)buttonHandler:(id)sender
 {
-    //button title
-    NSString* buttonTitle = nil;
-    
-    //extact button title
-    buttonTitle = ((NSButton*)sender).title;
-    
     //action
     NSUInteger action = 0;
     
+    //uninstall flag
+    __block BOOL uninstalled = NO;
+    
     //dbg msg
     #ifdef DEBUG
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", buttonTitle]);
+    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", ((NSButton*)sender).title]);
     #endif
     
     //grab tag
@@ -137,7 +134,7 @@
     }
     
     //'restart'?
-    // restart Finder
+    // restart Finder, and then exit (uninstall) or update UI (install)
     else if(ACTION_RESTART_FLAG == action)
     {
         //relaunch in background
@@ -146,6 +143,10 @@
             //relaunch
             restartFinder();
         });
+        
+        //set flag
+        // need to know if user uninstalled (to exit app now)
+        uninstalled = [self.statusMsg.stringValue containsString:@"uninstall"];
         
         //update button tag
         self.installButton.enabled = NO;
@@ -163,32 +164,56 @@
         self.statusMsg.stringValue = @"...restarting Finder.app";
         
         //after a bit
-        // update UI to complete install
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        // on uninstall: close app
+        // on install:   update UI to complete install
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             
-            //update button tag
-            self.installButton.enabled = YES;
+            //check if we're here cuz of an uninstall
+            // and if so, close the app
+            if(YES == uninstalled)
+            {
+                //set message
+                self.statusMsg.stringValue = @"...now exiting, goodbye!";
+                
+                //close app after 1 second
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    
+                    //close app
+                    [NSApp terminate:self];
+                    
+                    //done
+                    return;
+                });
+            }
             
-            //stop spinning
-            [self.activityIndicator stopAnimation:nil];
-            
-            //hide spinner
-            self.activityIndicator.hidden = YES;
-            
-            //set to bold
-            self.statusMsg.font = [NSFont fontWithName:@"Menlo-Bold" size:13];
-            
-            self.statusMsg.stringValue = @"WhatsYourSign installed!";
-            
-            //update button tag
-            self.installButton.tag = ACTION_NEXT_FLAG;
-            
-            //update button title
-            self.installButton.title = ACTION_NEXT;
-            
-            //and make it first responder
-            [self.window makeFirstResponder:self.installButton];
-            
+            //installed
+            // update UI
+            else
+            {
+                //update button tag
+                self.installButton.enabled = YES;
+                
+                //stop spinning
+                [self.activityIndicator stopAnimation:nil];
+                
+                //hide spinner
+                self.activityIndicator.hidden = YES;
+                
+                //set to bold
+                self.statusMsg.font = [NSFont fontWithName:@"Menlo-Bold" size:13];
+                
+                //set msg
+                self.statusMsg.stringValue = @"WhatsYourSign installed!";
+                
+                //update button tag
+                self.installButton.tag = ACTION_NEXT_FLAG;
+                
+                //update button title
+                self.installButton.title = ACTION_NEXT;
+                
+                //and make it first responder
+                [self.window makeFirstResponder:self.installButton];
+            }
         });
         
         //bail
@@ -220,10 +245,10 @@
         //pre-req
         [self.supportView setWantsLayer:YES];
         
-        //update overlay to take up entire window
+        //update view to take up entire window
         self.supportView.frame = frame;
         
-        //set overlay's view color to white
+        //set view color to white
         self.supportView.layer.backgroundColor = [NSColor whiteColor].CGColor;
         
         //nap for UI purposes
@@ -253,7 +278,7 @@
     else if(ACTION_YES_FLAG == action)
     {
         //open URL
-        // ->invokes user's default browser
+        // invokes user's default browser
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PATREON_URL]];
         
         //close
@@ -442,7 +467,7 @@ bail:
         else
         {
             //set result msg
-            resultMsg = @"WhatsYourSign uninstalled!";
+            resultMsg = @"WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete.";
         }
     }
     //failure
@@ -493,8 +518,8 @@ bail:
     self.statusMsg.stringValue = resultMsg;
     
     //update button
-    // after install change buttom to 'Restart'
-    if(ACTION_INSTALL_FLAG == event)
+    // no errors, change button to 'Restart'
+    if(YES == success)
     {
         //update button title
         self.installButton.title = ACTION_RESTART;
@@ -509,20 +534,20 @@ bail:
         [self.window makeFirstResponder:self.installButton];
     }
     //update button
-    // after uninstall change button to 'close'
+    // on error, change button to 'Close'
     else
     {
         //set button title
-        self.uninstallButton.title = ACTION_CLOSE;
+        self.installButton.title = ACTION_CLOSE;
         
         //update button tag
-        self.uninstallButton.tag = ACTION_CLOSE_FLAG;
+        self.installButton.tag = ACTION_CLOSE_FLAG;
         
-        //enable
-        self.uninstallButton.enabled = YES;
+        //disable other button
+        self.uninstallButton.enabled = NO;
         
         //...and highlighted
-        [self.window makeFirstResponder:self.uninstallButton];
+        [self.window makeFirstResponder:self.installButton];
     }
     
     //ok to re-enable 'x' button

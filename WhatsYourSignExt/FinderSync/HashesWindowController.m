@@ -12,7 +12,7 @@
 @implementation HashesWindowController
 
 //window load
-- (void)windowDidLoad
+-(void)windowDidLoad
 {
     //formatted hashes
     NSMutableString* formattedHashes = nil;
@@ -24,31 +24,31 @@
     formattedHashes = [NSMutableString string];
     
     //set font
-    self.hashes.font = [NSFont fontWithName:@"Menlo" size:11];
+    self.hashList.font = [NSFont fontWithName:@"Menlo" size:11];
     
     //set inset
-    self.hashes.textContainerInset = NSMakeSize(0, 10);
+    self.hashList.textContainerInset = NSMakeSize(0, 10);
     
     //add md5
-    if(nil != self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_MD5])
+    if(nil != self.hashes[KEY_HASH_MD5])
     {
-        [formattedHashes appendString:[NSString stringWithFormat:@"%@:    %@\n", KEY_HASH_MD5, self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_MD5]]];
+        [formattedHashes appendString:[NSString stringWithFormat:@"%@:    %@\n", KEY_HASH_MD5, self.hashes[KEY_HASH_MD5]]];
     }
     
     //add sha1
-    if(nil != self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_SHA1])
+    if(nil != self.hashes[KEY_HASH_SHA1])
     {
-        [formattedHashes appendString:[NSString stringWithFormat:@"%@:   %@\n", KEY_HASH_SHA1, self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_SHA1]]];
+        [formattedHashes appendString:[NSString stringWithFormat:@"%@:   %@\n", KEY_HASH_SHA1, self.hashes[KEY_HASH_SHA1]]];
     }
     
     //add sha256
-    if(nil != self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_SHA256])
+    if(nil != self.hashes[KEY_HASH_SHA256])
     {
-        [formattedHashes appendString:[NSString stringWithFormat:@"%@: %@\n", KEY_HASH_SHA256, self.signingInfo[KEY_SIGNING_HASHES][KEY_HASH_SHA256]]];
+        [formattedHashes appendString:[NSString stringWithFormat:@"%@: %@\n", KEY_HASH_SHA256, self.hashes[KEY_HASH_SHA256]]];
     }
     
     //add hashes
-    self.hashes.string = formattedHashes;
+    self.hashList.string = formattedHashes;
     
     return;
 }

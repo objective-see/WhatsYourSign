@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
+#import "Xips.h"
 #import "Item.h"
 #import "Consts.h"
 #import "Logging.h"
@@ -20,6 +21,7 @@
 @synthesize path;
 @synthesize type;
 @synthesize bundle;
+@synthesize hashes;
 @synthesize signingInfo;
 @synthesize windowController;
 
@@ -61,10 +63,12 @@
            [self generateSigningInfo];
         
            //no errors?
-           //if item is an app, gotta verify its binary too
-           if( (noErr == [self.signingInfo[KEY_SIGNATURE_STATUS] intValue]) &&
-               (YES == [self.path hasSuffix:@".app"]) )
+           // if item is an app, might have to verify its (fat) binary too
+           if(YES == [self shouldVerifyBinary])
            {
+               //dbg msg
+               logMsg(LOG_DEBUG, [NSString stringWithFormat:@"verifying %@'s main binary", self.name]);
+               
                //verify
                [self verifyBinary];
            }
@@ -88,6 +92,55 @@
 bail:
     
     return self;
+}
+
+//item is an app (bundle), verify its binary if:
+// a) no codesigning issues
+// b) has main binary (path)
+// c) main binary is fat
+-(BOOL)shouldVerifyBinary
+{
+    //flag
+    BOOL shouldVerify = NO;
+    
+    //app binary
+    NSString* binaryPath = nil;
+    
+    //not an app bundle?
+    if(YES != [self.path hasSuffix:@".app"])
+    {
+        //bail
+        goto bail;
+    }
+    
+    //already, any code-signing errors?
+    if(noErr != [self.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+    {
+        //bail
+        goto bail;
+    }
+
+    //has app binary
+    binaryPath = self.bundle.executablePath;
+    if(nil == binaryPath)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //binary isn't fat
+    if(YES != isBinaryFat(binaryPath))
+    {
+        //bail
+        goto bail;
+    }
+    
+    //binary should be verified
+    shouldVerify = YES;
+    
+bail:
+    
+    return shouldVerify;
 }
 
 //set item type
@@ -250,7 +303,6 @@ bail:
     if(nil == taskIcon)
     {
         //extract icon
-        // ->
         taskIcon = [[NSWorkspace sharedWorkspace] iconForFile:self.path];
     }
     
@@ -265,6 +317,12 @@ bail:
 // cal in the background
 -(void)generateSigningInfo
 {
+    //app binary
+    NSString* binaryPath = nil;
+    
+    //directory flag
+    BOOL isDirectory = NO;
+    
     //xip's are special
     // signing info is appended differently
     if(YES == [self.type isEqualToString:@"XIP Secure Archive"])
@@ -276,7 +334,29 @@ bail:
     else
     {
         //extract
-        self.signingInfo = extractSigningInfo(self.path, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks);
+        // pass 'YES' to also generate entitlements
+        self.signingInfo = extractSigningInfo(self.path, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks, YES);
+        
+        //if item is app bundle
+        // generate hashes of app's executable!
+        if(YES == [self.path hasSuffix:@".app"])
+        {
+            //get app binary
+            binaryPath = self.bundle.executablePath;
+            if(nil != binaryPath)
+            {
+                //add app's binary hashes
+                self.hashes = hashFile(self.path);
+            }
+        }
+        
+        //don't hash directories
+        if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:&isDirectory]) &&
+            (YES != isDirectory) )
+        {
+            //add hashes
+            self.hashes = hashFile(self.path);
+        }
     }
     
     return;
@@ -290,7 +370,7 @@ bail:
     NSString* binaryPath = nil;
     
     //signing info
-    NSDictionary* binarySigningInfo = nil;
+    NSMutableDictionary* binarySigningInfo = nil;
     
     //get app binary
     binaryPath = self.bundle.executablePath;
@@ -301,12 +381,15 @@ bail:
     }
     
     //get signing info for app binary
-    binarySigningInfo = extractSigningInfo(binaryPath, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks);
+    binarySigningInfo = extractSigningInfo(binaryPath, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks, YES);
     
     //error?
     // use binary's signing info
-    if(noErr != [self.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+    if(noErr != [binarySigningInfo[KEY_SIGNATURE_STATUS] intValue])
     {
+        //dbg msg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ has a signing error (%@)", binaryPath, binarySigningInfo[KEY_SIGNATURE_STATUS]]);
+        
         //update
         self.signingInfo = binarySigningInfo;
         
@@ -314,9 +397,13 @@ bail:
         goto bail;
     }
     
-    //compare all signing auths
+    //different signing auths?
+    // use binary's signing info
     if(YES != [[NSCountedSet setWithArray:self.signingInfo[KEY_SIGNING_AUTHORITIES]] isEqualToSet: [NSCountedSet setWithArray:binarySigningInfo[KEY_SIGNING_AUTHORITIES]]] )
     {
+        //dbg msg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ signing auths mismatch (%@ vs. %@)", binaryPath, binarySigningInfo[KEY_SIGNING_AUTHORITIES], self.signingInfo[KEY_SIGNING_AUTHORITIES]]);
+        
         //update
         self.signingInfo = binarySigningInfo;
         

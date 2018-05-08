@@ -76,6 +76,71 @@ NSBundle* findAppBundle(NSString* path)
     return appBundle;
 }
 
+//check if file is (likely) fat binary
+BOOL isBinaryFat(NSString* path)
+{
+    //fat
+    BOOL isFat = NO;
+    
+    //handle
+    NSFileHandle *handle = nil;
+    
+    //magic (4-bytes)
+    NSData *magic = nil;
+    
+    //open
+    handle = [NSFileHandle fileHandleForReadingAtPath:path];
+    if(nil == handle)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //wrap
+    @try
+    {
+        //read first 4 bytes
+        magic = [handle readDataOfLength:0x4];
+    }
+    @catch(NSException *exception)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //sanity check
+    if(magic.length < 0x4)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //universal (fat)?
+    if( (FAT_MAGIC != *(const uint32_t *)magic.bytes) &&
+        (FAT_CIGAM != *(const uint32_t *)magic.bytes) )
+    {
+        //bail
+        goto bail;
+    }
+    
+    //ok fat!
+    isFat = YES;
+    
+bail:
+    
+    //close handle
+    if(nil != handle)
+    {
+        //close
+        [handle closeFile];
+        
+        //unset
+        handle = nil;
+    }
+    
+    return isFat;
+}
+
 //exec a process and grab it's stdout/stderr/exit code
 NSMutableDictionary* execTask(NSString* binaryPath, NSArray* arguments)
 {
@@ -405,7 +470,7 @@ bail:
 }
 
 //hash a file
-// ->md5/sha1/sha256
+// md5/sha1/sha256
 NSDictionary* hashFile(NSString* filePath)
 {
     //file hashes

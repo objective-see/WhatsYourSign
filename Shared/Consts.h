@@ -69,9 +69,6 @@
 //entitlements
 #define KEY_SIGNING_ENTITLEMENTS @"entitlements"
 
-//hashes
-#define KEY_SIGNING_HASHES @"hashes"
-
 //file belongs to apple?
 #define KEY_SIGNING_IS_APPLE @"signedByApple"
 

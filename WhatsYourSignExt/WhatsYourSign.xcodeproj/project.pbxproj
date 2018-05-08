@@ -36,6 +36,7 @@
 		7D8810A11FECD363002F34F4 /* HashesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8810A01FECD363002F34F4 /* HashesWindow.xib */; };
 		7D8810A41FECD37E002F34F4 /* HashesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8810A21FECD37E002F34F4 /* HashesWindowController.m */; };
 		7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */; };
+		CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6CAC7120A0E65F00188B0A /* Xips.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		7D8810A31FECD37E002F34F4 /* HashesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashesWindowController.h; sourceTree = "<group>"; };
 		7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSApplicationKeyEvents.m; sourceTree = "<group>"; };
 		7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSApplicationKeyEvents.h; sourceTree = "<group>"; };
+		CD6CAC7120A0E65F00188B0A /* Xips.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Xips.m; sourceTree = "<group>"; };
+		CD6CAC7320A0E67500188B0A /* Xips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xips.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				7D1EAB171D2E0FE50052ACE2 /* images */,
 				7D7335441FEA2FC5002A186A /* xibs */,
 				7D2E2D211D5FCE3600D009E0 /* AppReceipt.h */,
+				CD6CAC7120A0E65F00188B0A /* Xips.m */,
+				CD6CAC7320A0E67500188B0A /* Xips.h */,
 				7D2E2D221D5FCE3600D009E0 /* AppReceipt.m */,
 				7D5CACB71FE9A9F8002A367A /* ClickableTextField.h */,
 				7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */,
@@ -364,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D5CACBF1FE9CC8B002A367A /* EntitlementsWindowController.m in Sources */,
+				CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */,
 				7D173EC71D2CE6A100FEED93 /* Item.m in Sources */,
 				7D2E2D231D5FCE3600D009E0 /* Signing.m in Sources */,
 				7D173EC51D2CE6A100FEED93 /* InfoWindowController.m in Sources */,

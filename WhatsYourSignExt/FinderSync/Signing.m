@@ -1,238 +1,25 @@
 //
-//  Signing.m
-//  WhatsYourSign
+//  File: Signing.m
+//  Project: Proc Info
 //
-//  Created by Patrick Wardle on 7/7/16.
-//  Copyright (c) 2016 Objective-See. All rights reserved.
+//  Created by: Patrick Wardle
+//  Copyright:  2017 Objective-See
+//  License:    Creative Commons Attribution-NonCommercial 4.0 International License
 //
 
 #import "Consts.h"
 #import "Signing.h"
-#import "Logging.h"
 #import "Utilities.h"
 #import "AppReceipt.h"
 
-#import <signal.h>
-#import <unistd.h>
-#import <libproc.h>
+#import <mach-o/fat.h>
+#import <mach-o/arch.h>
+#import <mach-o/swap.h>
+
 #import <sys/sysctl.h>
 #import <Security/Security.h>
-#import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-#import <Security/Security.h>
-
-/* apple XIP
- 
- $ pkgutil --check-signature ~/Downloads/Xcode_8_beta_5.xip
- Package "Xcode_8_beta_5.xip":
- Status: signed Apple Software
- Certificate Chain:
- 1. Software Update
- SHA1 fingerprint: 1E 34 E3 91 C6 44 37 DD 24 BE 57 B1 66 7B 2F DA 09 76 E1 FD
- ------------------------
- ...
- 
-*/
-
-/* apple dev-ID XIP
-
- $ pkgutil --check-signature /Users/patrickw/Downloads/Mac.Linux.USB.Loader.xip
- Package "Mac.Linux.USB.Loader.xip":
- Status: signed by a certificate trusted by Mac OS X
- Certificate Chain:
- 1. Developer ID Installer: Ryan Bowring (8PA6GA85US)
- SHA1 fingerprint: 8D EE 85 79 AB E7 CD AE 59 66 80 46 DE 86 75 D1 B8 02 B9 6E
- -----------------------------------------------------------------------------
- 2. Developer ID Certification Authority
- ...
- 
-*/
-
-/* non-apple XIP
- 
- $ pkgutil --check-signature ~/Downloads/thisisatest.xip
- Package "thisisatest.xip":
- Status: signed by untrusted certificate
- Certificate Chain:
- 1. LCARS
- SHA1 fingerprint: C7 72 90 60 72 22 1E 5F 7C 4E 31 BF 8E 0B 83 A7 D1 8E F8 3D
- -----------------------------------------------------------------------------
- ...
-
-*/
-
-//process a XIP
-NSDictionary* checkXIP(NSString* archive)
-{
-    //info dictionary
-    NSMutableDictionary* signingStatus = nil;
-    
-    //results from 'pkgutil' cmd
-    NSMutableDictionary* results = nil;
-    
-    //array of parsed results
-    NSArray* parsedResults = nil;
-    
-    //result
-    NSString* result = nil;
-    
-    //line number
-    NSUInteger lineNumber = 0;
-    
-    //trusted flag
-    BOOL trusted = NO;
-    
-    //init signing status
-    signingStatus = [NSMutableDictionary dictionary];
-
-    //exec 'pkgutil --check-signature' to check XIP signature
-    results = execTask(PKG_UTIL, @[@"--check-signature", archive]);
-    if( (0 != [results[EXIT_CODE] intValue]) ||
-        (0 == [results[STDOUT] length]) )
-    {
-        //bail
-        goto bail;
-    }
-    
-    //parse results
-    // ->format: <file path>: <file types>
-    parsedResults = [[[NSString alloc] initWithData:results[STDOUT] encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
-    
-    //sanity check
-    // ->should be two items in array, <file path> and <file type>
-    if(parsedResults.count < 2)
-    {
-        //bail
-        goto bail;
-    }
-    
-    //signing status comes second
-    // ->also trim whitespace
-    result = [parsedResults[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    //parse result
-    // ->first check if from apple
-    if(YES == [result containsString:@"signed Apple Software"])
-    {
-        //signed
-        signingStatus[KEY_SIGNATURE_STATUS] = STATUS_SUCCESS;
-        
-        //by apple
-        signingStatus[KEY_SIGNING_IS_APPLE] = @YES;
-        
-        //set flag
-        trusted = YES;
-    }
-    //not apple
-    // ->but signed with trusted cert
-    else if(YES == [result containsString:@"signed by a certificate trusted by Mac OS X"])
-    {
-        //signed
-        signingStatus[KEY_SIGNATURE_STATUS] = STATUS_SUCCESS;
-        
-        //not apple
-        signingStatus[KEY_SIGNING_IS_APPLE] = @NO;
-        
-        //trusted
-        trusted = YES;
-    }
-    //not apple
-    // ->but signed with untrusted cert
-    else if(YES == [result containsString:@"signed by untrusted certificate"])
-    {
-        //signed
-        signingStatus[KEY_SIGNATURE_STATUS] = STATUS_SUCCESS;
-        
-        //not apple
-        signingStatus[KEY_SIGNING_IS_APPLE] = @NO;
-    }
-    
-    //error
-    // ->not signed, or something else, just bail
-    else
-    {
-        //signed
-        signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSInternalError];
-        
-        //bail
-        goto bail;
-    }
-    
-    //one more sanity check
-    // ->should be at least 3 lines for cert chain
-    if(parsedResults.count < 3)
-    {
-        //bail
-        goto bail;
-    }
-    
-    //init array for certificate names
-    signingStatus[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
-    
-    //extract cert chain
-    // format: <digit>. auth
-    // for example: 1. Software Update
-    for(__strong NSString* line in parsedResults)
-    {
-        //skip first three lines
-        if(lineNumber < 3)
-        {
-            //inc
-            lineNumber++;
-            
-            //next
-            continue;
-        }
-        
-        //trim line
-        line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
-        //skip blank/too short lines
-        if( (nil == line) ||
-            (line.length < 4) )
-        {
-            //skip
-            continue;
-        }
-        
-        //start with <digit>.
-        if( (YES == [[NSCharacterSet decimalDigitCharacterSet] characterIsMember:[line characterAtIndex:0]]) &&
-            ('.' == [line characterAtIndex:1]) )
-        {
-            //add
-            [signingStatus[KEY_SIGNING_AUTHORITIES] addObject:[line substringFromIndex:3]];
-        }
-    }
-    
-    //check for developer ID?
-    // ->XIP has to be trusted and have certain strings
-    if(YES == trusted)
-    {
-        //check signing auths
-        if( (YES == [signingStatus[KEY_SIGNING_AUTHORITIES] containsObject:@"Apple Root CA"]) &&
-            (YES == [signingStatus[KEY_SIGNING_AUTHORITIES] containsObject:@"Developer ID Certification Authority"]) )
-        {
-            //set
-            signingStatus[KEY_SIGNING_IS_APPLE_DEV_ID] = @YES;
-        }
-    }
-    
-    //finally check if its revoked
-    // other APIs might not detect/catch this
-    if(YES == isRevoked(archive))
-    {
-        //update status
-        signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:CSSMERR_TP_CERT_REVOKED];
-        
-        //bail
-        goto bail;
-    }
-    
-bail:
-    
-    return signingStatus;
-}
 
 //determine the offset (if any)
 // of the 'best' architecture in a (fat) binary
@@ -244,7 +31,7 @@ uint32_t bestArchOffset(NSString* path)
     //pool
     @autoreleasepool
     {
-        
+    
     //binary
     NSMutableData* binary = nil;
     
@@ -265,6 +52,14 @@ uint32_t bestArchOffset(NSString* path)
     
     //best matching architecture
     struct fat_arch *bestArchitecture = NULL;
+        
+    //not fat?
+    // can just return offset:0
+    if(YES != isBinaryFat(path))
+    {
+        //bail
+        goto bail;
+    }
     
     //load binary into memory
     binary = [NSMutableData dataWithContentsOfFile:path];
@@ -288,7 +83,7 @@ uint32_t bestArchOffset(NSString* path)
     //binary is fat
     // init pointer to fat header
     fatHeader = (struct fat_header*)binaryBytes;
-    
+
     //swap size?
     if(fatHeader->magic == OSSwapHostToBigInt32(FAT_MAGIC))
     {
@@ -305,7 +100,7 @@ uint32_t bestArchOffset(NSString* path)
     
     //init pointer to fat architectures
     fatArchitectures = (char*)binaryBytes + sizeof(struct fat_header);
-    
+        
     //get local architecture
     localArchitecture = NXGetLocalArchInfo();
     
@@ -315,7 +110,7 @@ uint32_t bestArchOffset(NSString* path)
         //swap
         swap_fat_arch(fatArchitectures, fatArchitectureCount, localArchitecture->byteorder);
     }
-    
+        
     //find best architecture
     bestArchitecture = NXFindBestFatArch(localArchitecture->cputype, localArchitecture->cpusubtype, fatArchitectures, fatArchitectureCount);
     if(NULL == bestArchitecture)
@@ -326,9 +121,10 @@ uint32_t bestArchOffset(NSString* path)
     
     //init offset
     offset = bestArchitecture->offset;
-        
+    
 bail:
-      ;
+        
+    ;
         
     }//autorelease
     
@@ -336,10 +132,10 @@ bail:
 }
 
 //get the signing info of a item
-NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
+NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL entitlements)
 {
     //info dictionary
-    NSMutableDictionary* signingStatus = nil;
+    NSMutableDictionary* signingInfo = nil;
     
     //offset of best architecture
     // for universal/fat binary, need to check correct arch
@@ -352,7 +148,7 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
     OSStatus status = -1;
     
     //signing information
-    CFDictionaryRef signingInformation = NULL;
+    CFDictionaryRef signingDetails = NULL;
     
     //cert chain
     NSArray* certificateChain = nil;
@@ -367,13 +163,11 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
     CFStringRef commonName = NULL;
     
     //init signing status
-    signingStatus = [NSMutableDictionary dictionary];
-    
-    //sanity check
+    signingInfo = [NSMutableDictionary dictionary];
     if(nil == path)
     {
         //set err
-        signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSObjectRequired];
+        signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSObjectRequired];
         
         //bail
         goto bail;
@@ -387,7 +181,7 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
     status = SecStaticCodeCreateWithPathAndAttributes((__bridge CFURLRef)([NSURL fileURLWithPath:path]), kSecCSDefaultFlags, (__bridge CFDictionaryRef)@{(__bridge NSString *)kSecCodeAttributeUniversalFileOffset : [NSNumber numberWithUnsignedInt:offset]}, &staticCode);
     
     //save signature status
-    signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
+    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
     if(noErr != status)
     {
         //bail
@@ -398,14 +192,14 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
     status = SecStaticCodeCheckValidity(staticCode, flags, NULL);
     
     //(re)save signature status
-    signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
+    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
     
     //if file is signed
     // grab signing authorities
     if(noErr == status)
     {
         //grab signing authorities
-        status = SecCodeCopySigningInformation(staticCode, kSecCSSigningInformation, &signingInformation);
+        status = SecCodeCopySigningInformation(staticCode, kSecCSSigningInformation, &signingDetails);
         if(noErr != status)
         {
             //bail
@@ -413,21 +207,21 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
         }
         
         //determine if binary is signed by Apple
-        signingStatus[KEY_SIGNING_IS_APPLE] = [NSNumber numberWithBool:isApple(path, flags)];
+        signingInfo[KEY_SIGNING_IS_APPLE] = [NSNumber numberWithBool:isApple(path, flags)];
         
         //not apple proper
         // is signed with Apple Dev ID?
-        if(YES != [signingStatus[KEY_SIGNING_IS_APPLE] boolValue])
+        if(YES != [signingInfo[KEY_SIGNING_IS_APPLE] boolValue])
         {
             //determine if binary is Apple Dev ID
-            signingStatus[KEY_SIGNING_IS_APPLE_DEV_ID] = [NSNumber numberWithBool:isSignedDevID(path, flags)];
+            signingInfo[KEY_SIGNING_IS_APPLE_DEV_ID] = [NSNumber numberWithBool:isSignedDevID(path, flags)];
             
             //if dev id
             // from app store?
-            if(YES == [signingStatus[KEY_SIGNING_IS_APPLE_DEV_ID] boolValue])
+            if(YES == [signingInfo[KEY_SIGNING_IS_APPLE_DEV_ID] boolValue])
             {
                 //from app store?
-                signingStatus[KEY_SIGNING_IS_APP_STORE] = [NSNumber numberWithBool:fromAppStore(path)];
+                signingInfo[KEY_SIGNING_IS_APP_STORE] = [NSNumber numberWithBool:fromAppStore(path)];
             }
         }
     }
@@ -440,10 +234,10 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
     }
     
     //init array for certificate names
-    signingStatus[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
+    signingInfo[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
     
     //get cert chain
-    certificateChain = [(__bridge NSDictionary*)signingInformation objectForKey:(__bridge NSString*)kSecCodeInfoCertificates];
+    certificateChain = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoCertificates];
     
     //get name of all certs
     // add each to list
@@ -464,22 +258,29 @@ NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags)
         }
         
         //save
-        [signingStatus[KEY_SIGNING_AUTHORITIES] addObject:(__bridge NSString*)commonName];
+        [signingInfo[KEY_SIGNING_AUTHORITIES] addObject:(__bridge NSString*)commonName];
         
         //release name
         CFRelease(commonName);
     }
     
+    //add entitlements?
+    if(YES == entitlements)
+    {
+        //extract entitlements via Apple's 'codesign'
+        signingInfo[KEY_SIGNING_ENTITLEMENTS] = extractEntitlements(path);
+    }
+    
 bail:
     
     //free signing info
-    if(NULL != signingInformation)
+    if(NULL != signingDetails)
     {
         //free
-        CFRelease(signingInformation);
+        CFRelease(signingDetails);
         
         //unset
-        signingInformation = NULL;
+        signingDetails = NULL;
     }
     
     //free static code
@@ -492,7 +293,7 @@ bail:
         staticCode = NULL;
     }
     
-    return signingStatus;
+    return signingInfo;
 }
 
 //determine if a file is signed by Apple proper
@@ -522,7 +323,7 @@ BOOL isApple(NSString* path, SecCSFlags flags)
     // (3rd party: 'anchor apple generic')
     status = SecRequirementCreateWithString(CFSTR("anchor apple"), kSecCSDefaultFlags, &requirementRef);
     if( (noErr != status) ||
-       (requirementRef == NULL) )
+        (requirementRef == NULL) )
     {
         //bail
         goto bail;
@@ -532,7 +333,7 @@ BOOL isApple(NSString* path, SecCSFlags flags)
     // note: ignore 'errSecCSBadResource' as lots of signed apple files return this issue :/
     status = SecStaticCodeCheckValidity(staticCode, flags, requirementRef);
     if( (noErr != status) &&
-       (errSecCSBadResource != status) )
+        (errSecCSBadResource != status) )
     {
         //bail
         // just means isn't signed by apple
@@ -672,76 +473,76 @@ NSData* getGUID()
     //only init guid once
     dispatch_once(&onceToken,
     ^{
-      
-      //get master port
-      kernResult = IOMasterPort(MACH_PORT_NULL, &masterPort);
-      if(KERN_SUCCESS != kernResult)
-      {
-          //bail
-          goto bail;
-      }
-      
-      //get matching dictionary for 'en0'
-      matchingDict = IOBSDNameMatching(masterPort, 0, "en0");
-      if(NULL == matchingDict)
-      {
-          //bail
-          goto bail;
-      }
-      
-      //get matching services
-      kernResult = IOServiceGetMatchingServices(masterPort, matchingDict, &iterator);
-      if(KERN_SUCCESS != kernResult)
-      {
-          //bail
-          goto bail;
-      }
-      
-      //iterate over services, looking for 'IOMACAddress'
-      while((service = IOIteratorNext(iterator)) != 0)
-      {
-          //parent
-          io_object_t parentService = 0;
           
-          //get parent
-          kernResult = IORegistryEntryGetParentEntry(service, kIOServicePlane, &parentService);
-          if(KERN_SUCCESS == kernResult)
+          //get master port
+          kernResult = IOMasterPort(MACH_PORT_NULL, &masterPort);
+          if(KERN_SUCCESS != kernResult)
           {
-              //release prev
-              if(NULL != registryProperty)
-              {
-                  //release
-                  CFRelease(registryProperty);
-              }
-              
-              //get registry property for 'IOMACAddress'
-              registryProperty = (CFDataRef) IORegistryEntryCreateCFProperty(parentService, CFSTR("IOMACAddress"), kCFAllocatorDefault, 0);
-              
-              //release parent
-              IOObjectRelease(parentService);
+              //bail
+              goto bail;
           }
           
-          //release service
-          IOObjectRelease(service);
-      }
-      
-      //release iterator
-      IOObjectRelease(iterator);
-      
-      //convert guid to NSData*
-      // also release registry property
-      if(NULL != registryProperty)
-      {
-          //convert
-          guid = [NSData dataWithData:(__bridge NSData *)registryProperty];
+          //get matching dictionary for 'en0'
+          matchingDict = IOBSDNameMatching(masterPort, 0, "en0");
+          if(NULL == matchingDict)
+          {
+              //bail
+              goto bail;
+          }
           
-          //release
-          CFRelease(registryProperty);
-      }
-                      
+          //get matching services
+          kernResult = IOServiceGetMatchingServices(masterPort, matchingDict, &iterator);
+          if(KERN_SUCCESS != kernResult)
+          {
+              //bail
+              goto bail;
+          }
+          
+          //iterate over services, looking for 'IOMACAddress'
+          while((service = IOIteratorNext(iterator)) != 0)
+          {
+              //parent
+              io_object_t parentService = 0;
+              
+              //get parent
+              kernResult = IORegistryEntryGetParentEntry(service, kIOServicePlane, &parentService);
+              if(KERN_SUCCESS == kernResult)
+              {
+                  //release prev
+                  if(NULL != registryProperty)
+                  {
+                      //release
+                      CFRelease(registryProperty);
+                  }
+                  
+                  //get registry property for 'IOMACAddress'
+                  registryProperty = (CFDataRef) IORegistryEntryCreateCFProperty(parentService, CFSTR("IOMACAddress"), kCFAllocatorDefault, 0);
+                  
+                  //release parent
+                  IOObjectRelease(parentService);
+              }
+              
+              //release service
+              IOObjectRelease(service);
+          }
+          
+          //release iterator
+          IOObjectRelease(iterator);
+          
+          //convert guid to NSData*
+          // also release registry property
+          if(NULL != registryProperty)
+          {
+              //convert
+              guid = [NSData dataWithData:(__bridge NSData *)registryProperty];
+              
+              //release
+              CFRelease(registryProperty);
+          }
+          
 bail:
-          ;
-        
+      ;
+          
       });//only once
     
     return guid;
@@ -773,7 +574,7 @@ BOOL isSignedDevID(NSString* path, SecCSFlags flags)
     //create req string w/ 'anchor apple generic'
     status = SecRequirementCreateWithString(CFSTR("anchor apple generic"), kSecCSDefaultFlags, &requirementRef);
     if( (noErr != status) ||
-       (requirementRef == NULL) )
+        (requirementRef == NULL) )
     {
         //bail
         goto bail;
@@ -819,7 +620,7 @@ bail:
 
 //determine if a file is from the app store
 // gotta be signed w/ Apple Dev ID & have valid app receipt
-//   note: here, assume this function is only called on Apps signed with Apple Dev ID!
+// note: here, assume this function is only called on Apps signed with Apple Dev ID!
 BOOL fromAppStore(NSString* path)
 {
     //flag
@@ -881,7 +682,8 @@ bail:
     return appStoreApp;
 }
 
-//extract entitlements
+//extact entitlements
+// note: execs apple's 'codesign' binary
 NSDictionary* extractEntitlements(NSString* path)
 {
     //entitlements
@@ -898,7 +700,7 @@ NSDictionary* extractEntitlements(NSString* path)
     
     //entitlements as xml
     NSString* entitlementsXML = nil;
-
+    
     //exec 'codesign'
     results = execTask(CODE_SIGN, @[@"-d", @"--entitlements", @"-", path]);
     if(noErr != [results[EXIT_CODE] intValue])
@@ -925,7 +727,7 @@ NSDictionary* extractEntitlements(NSString* path)
         //convert to string
         entitlementsXML = [[NSString alloc] initWithData:[results[STDOUT] subdataWithRange:NSMakeRange(0x8, [results[STDOUT] length] - 0x8)] encoding:NSUTF8StringEncoding];
     }
-   
+    
     //other just convert as is
     else
     {
@@ -955,27 +757,4 @@ NSDictionary* extractEntitlements(NSString* path)
 bail:
     
     return entitlements;
-}
-
-//check if a file has a cert that has been revoked
-// exec 'spctl --assess <path to file>' and looks for 'CSSMERR_TP_CERT_REVOKED'
-BOOL isRevoked(NSString* path)
-{
-    //flag
-    BOOL revoked = NO;
-    
-    //results
-    NSMutableDictionary* results = nil;
-    
-    //exec 'spctl --assess <path to file>'
-    results = execTask(SPCTL, @[@"--assess", path]);
-    if(YES == [[[NSString alloc] initWithData:results[STDERR] encoding:NSUTF8StringEncoding] containsString:@"CSSMERR_TP_CERT_REVOKED"])
-    {
-        //revoked
-        revoked = YES;
-    }
-    
-bail:
-    
-    return revoked;
 }

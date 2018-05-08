@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-               BuildableName = "WhatsYourSign_Installer.app"
+               BuildableName = "WhatsYourSign Installer.app"
                BlueprintName = "Installer"
                ReferencedContainer = "container:Installer.xcodeproj">
             </BuildableReference>
@@ -49,7 +49,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign_Installer.app"
+            BuildableName = "WhatsYourSign Installer.app"
             BlueprintName = "Installer"
             ReferencedContainer = "container:Installer.xcodeproj">
          </BuildableReference>
@@ -73,7 +73,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign_Installer.app"
+            BuildableName = "WhatsYourSign Installer.app"
             BlueprintName = "Installer"
             ReferencedContainer = "container:Installer.xcodeproj">
          </BuildableReference>
@@ -92,7 +92,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign_Installer.app"
+            BuildableName = "WhatsYourSign Installer.app"
             BlueprintName = "Installer"
             ReferencedContainer = "container:Installer.xcodeproj">
          </BuildableReference>

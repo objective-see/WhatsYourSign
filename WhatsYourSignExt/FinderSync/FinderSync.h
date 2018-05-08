@@ -17,8 +17,8 @@
 
 /* PROPERTIES */
 
-//volumes (directories) to watch
-@property(nonatomic, retain)NSMutableSet* volumes;
+//directories to watch
+@property(nonatomic, retain)NSMutableSet* directories;
 
 @end
 

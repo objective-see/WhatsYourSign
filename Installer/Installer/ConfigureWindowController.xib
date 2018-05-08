@@ -112,7 +112,7 @@
                         <action selector="buttonHandler:" target="-2" id="uik-ZX-MTQ"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="9Sm-sm-Qzm" userLabel="Yes">
+                <button verticalHuggingPriority="750" fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="9Sm-sm-Qzm" userLabel="Yes">
                     <rect key="frame" x="331" y="13" width="115" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Yes!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ezp-te-R3O">

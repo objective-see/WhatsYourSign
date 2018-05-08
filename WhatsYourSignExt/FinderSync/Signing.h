@@ -1,28 +1,25 @@
 //
-//  Signing.h
-//  WhatsYourSign
+//  File: Signing.h
+//  Project: Proc Info
 //
-//  Created by Patrick Wardle on 7/7/16.
-//  Copyright (c) 2016 Objective-See. All rights reserved.
+//  Created by: Patrick Wardle
+//  Copyright:  2017 Objective-See
+//  License:    Creative Commons Attribution-NonCommercial 4.0 International License
 //
 
-#ifndef WYS_Signing_h
-#define WYS_Signing_h
-
-#import <mach-o/fat.h>
-#import <mach-o/arch.h>
-#import <mach-o/swap.h>
+#ifndef Signing_h
+#define Signing_h
 
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
 /* FUNCTIONS */
 
-//get signing info for XIP
-NSDictionary* checkXIP(NSString* archive);
+//check if file is (likely) fat binary
+BOOL isBinaryFat(NSString* path);
 
 //get the signing info of a file
-NSDictionary* extractSigningInfo(NSString* path, SecCSFlags flags);
+NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL entitlements);
 
 //determine if a file is signed by Apple proper
 BOOL isApple(NSString* path, SecCSFlags flags);
@@ -38,12 +35,8 @@ BOOL fromAppStore(NSString* path);
 // from Apple's 'Get the GUID in OS X' (see: 'Validating Receipts Locally')
 NSData* getGUID(void);
 
-//extract entitlements
-// invokes 'codesign' to extract
+//extact entitlements
+// note: execs apple's 'codesign' binary
 NSDictionary* extractEntitlements(NSString* path);
-
-//check if a file has a cert that has been revoked
-// exec 'spctl --assess <path to file>' and looks for 'CSSMERR_TP_CERT_REVOKED'
-BOOL isRevoked(NSString* path);
 
 #endif

@@ -36,8 +36,11 @@
 //bundle
 @property(nonatomic, retain)NSBundle* bundle;
 
+//hashes
+@property(nonatomic, retain)NSDictionary* hashes;
+
 //signing info
-@property(nonatomic, retain)NSDictionary* signingInfo;
+@property(nonatomic, retain)NSMutableDictionary* signingInfo;
 
 /* METHODS */
 
