@@ -500,8 +500,14 @@ NSDictionary* hashFile(NSString* filePath)
     //hash digest (sha256)
     uint8_t digestSHA256[CC_SHA256_DIGEST_LENGTH] = {0};
     
-    //sha1 hash as string
+    //sha256 hash as string
     NSMutableString* sha256 = nil;
+    
+    //hash digest (sha512)
+    uint8_t digestSHA512[CC_SHA512_DIGEST_LENGTH] = {0};
+    
+    //sha512 hash as string
+    NSMutableString* sha512 = nil;
     
     //index var
     NSUInteger index = 0;
@@ -514,6 +520,9 @@ NSDictionary* hashFile(NSString* filePath)
     
     //init sha256 string
     sha256 = [NSMutableString string];
+    
+    //init sha512 string
+    sha512 = [NSMutableString string];
     
     //directory?
     // try see if its a bundle with an executable
@@ -583,8 +592,19 @@ NSDictionary* hashFile(NSString* filePath)
         [sha256 appendFormat:@"%02lX", (unsigned long)digestSHA256[index]];
     }
     
+    //sha512 it
+    CC_SHA512(fileContents.bytes, (unsigned int)fileContents.length, digestSHA512);
+    
+    //convert to NSString
+    // ->iterate over each bytes in computed digest and format
+    for(index=0; index < CC_SHA512_DIGEST_LENGTH; index++)
+    {
+        //format/append
+        [sha512 appendFormat:@"%02lX", (unsigned long)digestSHA512[index]];
+    }
+    
     //init hash dictionary
-    hashes = @{KEY_HASH_MD5:md5, KEY_HASH_SHA1:sha1, KEY_HASH_SHA256:sha256};
+    hashes = @{KEY_HASH_MD5:md5, KEY_HASH_SHA1:sha1, KEY_HASH_SHA256:sha256, KEY_HASH_SHA512:sha512};
     
 bail:
     
