@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0920"
-   wasCreatedForAppExtension = "YES"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
+      parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -18,21 +17,7 @@
                BlueprintIdentifier = "7D61ED701D984BA6007FE979"
                BuildableName = "WhatsYourSign.app"
                BlueprintName = "WhatsYourSign"
-               ReferencedContainer = "container:../WhatsYourSignExt/WhatsYourSign.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-               BuildableName = "WhatsYourSign Installer.app"
-               BlueprintName = "Installer"
-               ReferencedContainer = "container:Installer.xcodeproj">
+               ReferencedContainer = "container:WhatsYourSign.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign Installer.app"
-            BlueprintName = "Installer"
-            ReferencedContainer = "container:Installer.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -68,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign Installer.app"
-            BlueprintName = "Installer"
-            ReferencedContainer = "container:Installer.xcodeproj">
+            BlueprintIdentifier = "7D61ED701D984BA6007FE979"
+            BuildableName = "WhatsYourSign.app"
+            BlueprintName = "WhatsYourSign"
+            ReferencedContainer = "container:WhatsYourSign.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -85,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D24C8641D2CDEA7009932EE"
-            BuildableName = "WhatsYourSign Installer.app"
-            BlueprintName = "Installer"
-            ReferencedContainer = "container:Installer.xcodeproj">
+            BlueprintIdentifier = "7D61ED701D984BA6007FE979"
+            BuildableName = "WhatsYourSign.app"
+            BlueprintName = "WhatsYourSign"
+            ReferencedContainer = "container:WhatsYourSign.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

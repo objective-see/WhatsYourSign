@@ -47,5 +47,8 @@ NSDictionary* hashFile(NSString* filePath);
 //restart Finder.app
 void restartFinder(void);
 
+//check if (full) dark mode
+// meaning, Mojave+ and dark mode enabled
+BOOL isDarkMode(void);
 
 #endif

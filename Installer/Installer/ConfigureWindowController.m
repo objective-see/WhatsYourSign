@@ -52,7 +52,7 @@
         //init status msg
         [self.statusMsg setStringValue:@"signing info via the UI"];
     }
-    //el capitan supports emojis
+    //el capitan+ supports emojis
     else
     {
         //init status msg
@@ -99,8 +99,13 @@
     //make window front
     [NSApp activateIgnoringOtherApps:YES];
     
-    //make white
-    [self.window setBackgroundColor: NSColor.whiteColor];
+    //not in dark mode?
+    // make window white
+    if(YES != isDarkMode())
+    {
+        //make white
+        self.window.backgroundColor = NSColor.whiteColor;
+    }
 
     return;
 }
@@ -224,32 +229,25 @@
     // show 'Support Us' view
     else if(ACTION_NEXT_FLAG == action)
     {
-        //frame
-        NSRect frame = {0};
-        
         //unset window title
         self.window.title = @"";
         
-        //get main window's frame
-        frame = self.window.contentView.frame;
+        //set content view size
+        self.window.contentSize = self.supportView.frame.size;
         
-        //set origin to 0/0
-        frame.origin = CGPointZero;
+        //update config view
+        self.window.contentView = self.supportView;
+
+        //not in dark mode?
+        // set view color to white
+        if(YES != isDarkMode())
+        {
+            //set view color to white
+            self.supportView.layer.backgroundColor = NSColor.whiteColor.CGColor;
+        }
         
-        //increase y offset
-        frame.origin.y += 5;
-        
-        //reduce height
-        frame.size.height -= 5;
-        
-        //pre-req
-        [self.supportView setWantsLayer:YES];
-        
-        //update view to take up entire window
-        self.supportView.frame = frame;
-        
-        //set view color to white
-        self.supportView.layer.backgroundColor = [NSColor whiteColor].CGColor;
+        //force redraw of status msg
+        self.window.contentView.needsDisplay = YES;
         
         //nap for UI purposes
         [NSThread sleepForTimeInterval:0.10f];
@@ -263,19 +261,13 @@
             
         });
         
-        //add to main window
-        [self.window.contentView addSubview:self.supportView];
-        
-        //show
-        self.supportView.hidden = NO;
-        
         //bail
         goto bail;
     }
     
     //'yes'?'
     // load supprt in URL
-    else if(ACTION_YES_FLAG == action)
+    else if(ACTION_SUPPORT_FLAG == action)
     {
         //open URL
         // invokes user's default browser
@@ -445,18 +437,12 @@ bail:
     //result msg
     NSString* resultMsg = nil;
     
-    //msg font
-    NSColor* resultMsgColor = nil;
-    
     //generally want centered text
     [self.statusMsg setAlignment:NSCenterTextAlignment];
     
     //success?
     if(YES == success)
     {
-        //set font to black
-        resultMsgColor = [NSColor blackColor];
-        
         //install?
         if(ACTION_INSTALL_FLAG == event)
         {
@@ -474,7 +460,7 @@ bail:
     else
     {
         //set font to red
-        resultMsgColor = [NSColor redColor];
+        self.statusMsg.textColor = NSColor.redColor;
         
         //install failed?
         if(ACTION_INSTALL_FLAG == event)
@@ -510,9 +496,6 @@ bail:
     
     //set font to bold
     self.statusMsg.font = [NSFont fontWithName:@"Menlo-Bold" size:13];
-    
-    //set msg color
-    self.statusMsg.textColor = resultMsgColor;
     
     //set status msg
     self.statusMsg.stringValue = resultMsg;

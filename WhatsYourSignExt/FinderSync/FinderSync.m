@@ -25,34 +25,38 @@
         //dbg msg
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
         
-        //watch all mounted volumes
-        // note: skip '/' as it causes perf issues, but will watch it sub-directories
-        for(NSURL* volume in [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:0])
+        //catalina?
+        // watch all mounted volumes
+        if(YES == [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 15, 0}])
         {
-            //skip '/'
-            if(YES == [volume.path isEqualToString:@"/"])
-            {
-                //skip
-                continue;
-            }
-            
-            //add to set
-            [self.directories addObject:volume];
+            //watch all
+            self.directories = [NSMutableSet setWithArray: [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:0]];
         }
-        
-        //also add all directories under '/'
-        // ...but skip '/.file' otherwise is cause file writes to be delayed...
-        for(NSURL* directory in [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:@"/"] includingPropertiesForKeys:@[] options:0 error:nil])
+        //pre-catalina
+        // watch all mounted volumes, but skip '/.file'
+        else
         {
-            //skip '/.file'
-            if(YES == [directory.path isEqualToString:@"/.file"])
+            //watch all mounted volumes
+            // note: skip '/' as it causes perf issues, but will watch it sub-directories
+            for(NSURL* volume in [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:0])
             {
-                //skip
-                continue;
+                //skip '/'
+                if(YES == [volume.path isEqualToString:@"/"]) continue;
+            
+                //add to set
+                [self.directories addObject:volume];
             }
             
-            //add to set
-            [self.directories addObject:directory];
+            //also add all directories under '/'
+            // ...but skip '/.file' otherwise is cause file writes to be delayed...
+            for(NSURL* directory in [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:@"/"] includingPropertiesForKeys:@[] options:0 error:nil])
+            {
+                //skip '/.file'
+                if(YES == [directory.path isEqualToString:@"/.file"]) continue;
+                
+                //add to set
+                [self.directories addObject:directory];
+            }
         }
         
         //dbg msg

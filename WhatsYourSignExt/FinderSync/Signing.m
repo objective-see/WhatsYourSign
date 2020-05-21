@@ -162,6 +162,21 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     //common name on chert
     CFStringRef commonName = NULL;
     
+    //token
+    static dispatch_once_t onceToken = 0;
+    
+    //is notarized requirement
+    static SecRequirementRef isNotarized = nil;
+    
+    //only once
+    // init notarization requirements
+    dispatch_once(&onceToken, ^{
+        
+        //init
+        SecRequirementCreateWithString(CFSTR("notarized"), kSecCSDefaultFlags, &isNotarized);
+
+    });
+    
     //init signing status
     signingInfo = [NSMutableDictionary dictionary];
     if(nil == path)
@@ -240,7 +255,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     certificateChain = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoCertificates];
     
     //get name of all certs
-    // add each to list
+    // add each cert to list
     for(index = 0; index < certificateChain.count; index++)
     {
         //extract cert
@@ -249,20 +264,28 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         //get common name
         status = SecCertificateCopyCommonName(certificate, &commonName);
         
-        //skip ones that error out
-        if( (noErr != status) ||
-           (NULL == commonName))
+        //add (valid ones)
+        if( (noErr == status) &&
+            (NULL != commonName) )
         {
-            //skip
-            continue;
+            //save
+            [signingInfo[KEY_SIGNING_AUTHORITIES] addObject:(__bridge NSString*)commonName];
         }
         
-        //save
-        [signingInfo[KEY_SIGNING_AUTHORITIES] addObject:(__bridge NSString*)commonName];
-        
-        //release name
-        CFRelease(commonName);
+        //cleanup
+        if(NULL != commonName)
+        {
+            //release name
+            CFRelease(commonName);
+            
+            //unset
+            commonName = NULL;
+        }
     }
+    
+    //set notarization status
+    // note: SecStaticCodeCheckValidity returns 0 on success, hence the `!`
+    signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInt:!SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized)];
     
     //add entitlements?
     if(YES == entitlements)

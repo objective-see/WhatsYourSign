@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
+#import "Utilities.h"
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -22,9 +23,14 @@
     //center
     [self.window center];
     
-    //make white
-    [self.window setBackgroundColor: NSColor.whiteColor];
-
+    //not in dark mode?
+    // make window white
+    if(YES != isDarkMode())
+    {
+        //make white
+        self.window.backgroundColor = NSColor.whiteColor;
+    }
+    
     return;
 }
 

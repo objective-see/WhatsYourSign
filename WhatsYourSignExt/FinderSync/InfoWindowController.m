@@ -46,8 +46,13 @@
     //indicate title bar is transparent (too)
     self.window.titlebarAppearsTransparent = YES;
     
-    //make white
-    [self.window setBackgroundColor: NSColor.whiteColor];
+    //not in dark mode?
+    // make window white
+    if(YES != isDarkMode())
+    {
+        //make white
+        self.window.backgroundColor = NSColor.whiteColor;
+    }
     
     //set name
     self.name.stringValue = self.item.name;
@@ -128,8 +133,8 @@
                 //set icon
                 csIcon = [NSImage imageNamed:@"signedApple"];
                 
-                //append to summary
-                [csSummary appendFormat:@" (Apple)"];
+                //set summary details
+                self.summaryDetails.stringValue = @"(Signer: Apple)";
             }
             //item signed, third party/ad hoc, etc
             else
@@ -140,22 +145,29 @@
                 //from app store?
                 if(YES == [self.item.signingInfo[KEY_SIGNING_IS_APP_STORE] boolValue])
                 {
-                    //append to summary
-                    [csSummary appendFormat:@" (Mac App Store)"];
+                    //set summary details
+                    self.summaryDetails.stringValue = @"(Signer: Mac App Store)";
                 }
                 //developer id?
                 // ->but not from app store
                 else if(YES == [self.item.signingInfo[KEY_SIGNING_IS_APPLE_DEV_ID] boolValue])
                 {
-                    //append to summary
-                    [csSummary appendFormat:@" (Apple Dev-ID)"];
+                    //notarized?
+                    if(YES == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] boolValue])
+                    {
+                        //append to summary
+                        [csSummary appendFormat:@" & notarized"];
+                    }
+                    
+                    //set summary details
+                    self.summaryDetails.stringValue = @"(Signer: Apple Dev-ID)";
                 }
                 //something else
                 // ad hoc? 3rd-party?
                 else
                 {
-                    //append to summary
-                    [csSummary appendFormat:@" (3rd-party)"];
+                    //set summary details
+                    self.summaryDetails.stringValue = @"(Signer 3rd-party (adhoc?))";
                 }
             }
             
@@ -163,7 +175,7 @@
             csDetails = [NSMutableString string];
             
             //no signing auths
-            // ->usually (always?) adhoc
+            // usually (always?) adhoc
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
@@ -281,7 +293,7 @@
     }
     
     //no entitlements?
-    if(nil == self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS])
+    if(0 == [self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS] count])
     {
         //set
         self.entitlements.stringValue = @"none";

@@ -7,6 +7,7 @@
 //
 
 #import "Consts.h"
+#import "Utilities.h"
 #import "ErrorWindowController.h"
 
 @interface ErrorWindowController ()
@@ -19,8 +20,8 @@
 @synthesize shouldExit;
 @synthesize closeButton;
 
-//automatically called when nib is loaded
-// ->center window
+//invoked when nib is loaded
+// just center the window
 -(void)awakeFromNib
 {
     //center
@@ -90,8 +91,13 @@
         
     });
     
-    //make white
-    [self.window setBackgroundColor: NSColor.whiteColor];
+    //not in dark mode?
+    // make window white
+    if(YES != isDarkMode())
+    {
+        //make white
+        self.window.backgroundColor = NSColor.whiteColor;
+    }
     
     return;
 }

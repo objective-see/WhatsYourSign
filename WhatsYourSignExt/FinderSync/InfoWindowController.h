@@ -28,6 +28,9 @@
 //top summary
 @property (weak) IBOutlet NSTextField *summary;
 
+//top summary details
+@property (weak) IBOutlet NSTextField *summaryDetails;
+
 //item's icon
 @property (weak) IBOutlet NSImageView *icon;
 

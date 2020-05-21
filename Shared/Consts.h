@@ -78,6 +78,9 @@
 //from app store
 #define KEY_SIGNING_IS_APP_STORE @"fromAppStore"
 
+//is notarized?
+#define KEY_SIGNING_IS_NOTARIZED @"notarized"
+
 //OS version x
 #define OS_MAJOR_VERSION_X 10
 
@@ -142,8 +145,8 @@
 //flag for next
 #define ACTION_NEXT_FLAG 4
 
-//flag for yes/support
-#define ACTION_YES_FLAG 5
+//flag for support
+#define ACTION_SUPPORT_FLAG 5
 
 //error msg
 #define KEY_ERROR_MSG @"errorMsg"
