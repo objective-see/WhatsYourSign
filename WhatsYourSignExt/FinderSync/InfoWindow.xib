@@ -127,9 +127,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26D-C2-Ebp">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26D-C2-Ebp">
                         <rect key="frame" x="91" y="258" width="583" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" id="HZs-Ex-mLD">
                             <font key="font" size="12" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -168,9 +167,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-2V-W7T">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-2V-W7T">
                         <rect key="frame" x="91" y="285" width="583" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining signing status..." id="BJc-I7-Awh">
                             <font key="font" size="20" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -179,21 +177,29 @@
                     </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="26D-C2-Ebp" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="67" id="2Wc-54-k4m"/>
                     <constraint firstAttribute="trailing" secondItem="900-VP-ZHi" secondAttribute="trailing" constant="20" id="44Z-Yk-rlv"/>
                     <constraint firstItem="g4g-UB-MZA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="5Ml-FB-kLz"/>
                     <constraint firstAttribute="trailing" secondItem="0P3-FI-m6a" secondAttribute="trailing" constant="20" id="6NN-eW-eaU"/>
                     <constraint firstItem="g4g-UB-MZA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="74m-vT-aM3"/>
                     <constraint firstAttribute="bottom" secondItem="1MK-HC-CHS" secondAttribute="bottom" constant="20" id="9Dk-yt-zAj"/>
+                    <constraint firstItem="26D-C2-Ebp" firstAttribute="leading" secondItem="g4g-UB-MZA" secondAttribute="trailing" constant="9" id="HPd-qi-yKC"/>
+                    <constraint firstItem="vK1-2V-W7T" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="37" id="LtD-13-RMJ"/>
                     <constraint firstItem="vF4-bf-unv" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="28" id="Rnq-Es-m9F"/>
+                    <constraint firstAttribute="trailing" secondItem="vK1-2V-W7T" secondAttribute="trailing" constant="20" id="UVl-DD-0qw"/>
                     <constraint firstAttribute="trailing" secondItem="1MK-HC-CHS" secondAttribute="trailing" constant="20" id="Ub5-Eg-dZN"/>
                     <constraint firstItem="4eH-pP-5MZ" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="122" id="XdE-wb-lAp"/>
                     <constraint firstItem="900-VP-ZHi" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="104" id="aZo-Mm-TYX"/>
                     <constraint firstItem="0P3-FI-m6a" firstAttribute="leading" secondItem="vF4-bf-unv" secondAttribute="trailing" constant="17" id="dbU-ex-C9D"/>
                     <constraint firstItem="4eH-pP-5MZ" firstAttribute="leading" secondItem="vF4-bf-unv" secondAttribute="trailing" constant="17" id="idb-Mj-fJk"/>
                     <constraint firstItem="vF4-bf-unv" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="125" id="kX9-JT-Eic"/>
+                    <constraint firstItem="900-VP-ZHi" firstAttribute="top" secondItem="vK1-2V-W7T" secondAttribute="bottom" constant="36" id="pir-7X-va1"/>
                     <constraint firstAttribute="trailing" secondItem="4eH-pP-5MZ" secondAttribute="trailing" constant="20" id="tdF-Ir-F81"/>
                     <constraint firstItem="0P3-FI-m6a" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="152" id="uhb-b9-EWp"/>
+                    <constraint firstItem="vK1-2V-W7T" firstAttribute="leading" secondItem="g4g-UB-MZA" secondAttribute="trailing" constant="9" id="vc6-qN-PkL"/>
+                    <constraint firstAttribute="trailing" secondItem="26D-C2-Ebp" secondAttribute="trailing" constant="20" id="x0M-N6-gyG"/>
                     <constraint firstItem="900-VP-ZHi" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="yrY-rB-Vre"/>
+                    <constraint firstItem="900-VP-ZHi" firstAttribute="top" secondItem="26D-C2-Ebp" secondAttribute="bottom" constant="9" id="z5h-hR-auV"/>
                 </constraints>
             </view>
             <connections>
