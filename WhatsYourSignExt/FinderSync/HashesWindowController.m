@@ -47,6 +47,12 @@
         [formattedHashes appendString:[NSString stringWithFormat:@"%@: %@\n", KEY_HASH_SHA256, self.hashes[KEY_HASH_SHA256]]];
     }
     
+    //add sha512
+    if(nil != self.hashes[KEY_HASH_SHA512])
+    {
+        [formattedHashes appendString:[NSString stringWithFormat:@"%@: %@\n", KEY_HASH_SHA512, self.hashes[KEY_HASH_SHA512]]];
+    }
+    
     //add hashes
     self.hashList.string = formattedHashes;
     

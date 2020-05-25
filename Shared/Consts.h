@@ -178,4 +178,7 @@
 //key sha256
 #define KEY_HASH_SHA256 @"SHA256"
 
+//key sha512
+#define KEY_HASH_SHA512 @"SHA512"
+
 #endif
