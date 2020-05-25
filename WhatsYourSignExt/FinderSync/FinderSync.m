@@ -26,7 +26,7 @@
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
         
         //set dirs
-        self.directories = [NSMutableSet setWithArray: [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:0]];
+        self.directories = [NSMutableSet setWithArray: [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:NSVolumeEnumerationSkipHiddenVolumes]];
         
         //dbg msg
         logMsg(LOG_DEBUG, [NSString stringWithFormat:@"initializing 'watch' directories with: %@", self.directories]);

@@ -47,7 +47,7 @@
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgM-lv-GeJ">
                         <rect key="frame" x="13" y="43" width="114" height="123"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon" id="bCU-0f-ff8"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="bCU-0f-ff8"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="293" translatesAutoresizingMaskIntoConstraints="NO" id="SpB-Xc-WlB">
                         <rect key="frame" x="142" y="10" width="297" height="47"/>
@@ -198,9 +198,9 @@
         </customView>
     </objects>
     <resources>
+        <image name="AppIcon" width="512" height="512"/>
         <image name="FriendsAiro" width="162" height="163"/>
         <image name="Love" width="256" height="256"/>
-        <image name="icon" width="512" height="512"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>
     </resources>
 </document>

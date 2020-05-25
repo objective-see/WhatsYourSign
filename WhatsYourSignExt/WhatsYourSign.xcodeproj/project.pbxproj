@@ -27,7 +27,6 @@
 		7D5CACC01FE9CEC1002A367A /* EntitlementsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */; };
 		7D61ED751D984BA6007FE979 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61ED741D984BA6007FE979 /* AppDelegate.m */; };
 		7D61ED781D984BA6007FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61ED771D984BA6007FE979 /* main.m */; };
-		7D61ED7A1D984BA6007FE979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D61ED791D984BA6007FE979 /* Assets.xcassets */; };
 		7D61ED7D1D984BA6007FE979 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D61ED7B1D984BA6007FE979 /* MainMenu.xib */; };
 		7D61ED821D984BB6007FE979 /* WhatsYourSign.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D24C89A1D2CDEF9009932EE /* WhatsYourSign.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D7335481FEA3187002A186A /* Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7335471FEA3187002A186A /* Exception.m */; };
@@ -37,6 +36,7 @@
 		7D8810A41FECD37E002F34F4 /* HashesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8810A21FECD37E002F34F4 /* HashesWindowController.m */; };
 		7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */; };
 		CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6CAC7120A0E65F00188B0A /* Xips.m */; };
+		CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +99,6 @@
 		7D61ED731D984BA6007FE979 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7D61ED741D984BA6007FE979 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7D61ED771D984BA6007FE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7D61ED791D984BA6007FE979 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D61ED7C1D984BA6007FE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7D61ED7E1D984BA6007FE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D7335461FEA3187002A186A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = ../Shared/Exception.h; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSApplicationKeyEvents.h; sourceTree = "<group>"; };
 		CD6CAC7120A0E65F00188B0A /* Xips.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Xips.m; sourceTree = "<group>"; };
 		CD6CAC7320A0E67500188B0A /* Xips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xips.h; sourceTree = "<group>"; };
+		CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppIcon.iconset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,10 +227,10 @@
 		7D61ED721D984BA6007FE979 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */,
 				7D4B34CC1D98858F0069E4DE /* Images */,
 				7D61ED731D984BA6007FE979 /* AppDelegate.h */,
 				7D61ED741D984BA6007FE979 /* AppDelegate.m */,
-				7D61ED791D984BA6007FE979 /* Assets.xcassets */,
 				7D61ED7B1D984BA6007FE979 /* MainMenu.xib */,
 				7D61ED7E1D984BA6007FE979 /* Info.plist */,
 				7D61ED761D984BA6007FE979 /* Supporting Files */,
@@ -355,9 +355,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D4B34D81D9889C50069E4DE /* icon.png in Resources */,
+				CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */,
 				7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */,
 				7D4B34C71D9884120069E4DE /* rightClick.png in Resources */,
-				7D61ED7A1D984BA6007FE979 /* Assets.xcassets in Resources */,
 				7D61ED7D1D984BA6007FE979 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,7 +520,6 @@
 		7D24C8A51D2CDEF9009932EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FinderSync/FinderSync.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
@@ -544,7 +543,6 @@
 		7D24C8A61D2CDEF9009932EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FinderSync/FinderSync.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
@@ -568,7 +566,6 @@
 		7D61ED801D984BA6007FE979 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -590,7 +587,6 @@
 		7D61ED811D984BA6007FE979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
