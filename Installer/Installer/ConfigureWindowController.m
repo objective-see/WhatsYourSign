@@ -50,13 +50,13 @@
     if(getVersion(gestaltSystemVersionMinor) <= OS_MINOR_VERSION_YOSEMITE)
     {
         //init status msg
-        [self.statusMsg setStringValue:@"signing info via the UI"];
+        [self.statusMsg setStringValue:@"Code-signing info via the UI"];
     }
     //el capitan+ supports emojis
     else
     {
         //init status msg
-        [self.statusMsg setStringValue:@"signing info via the UI 🔏"];
+        [self.statusMsg setStringValue:@"Code-signing info via the UI 🔏"];
     }
     
     //app already installed?

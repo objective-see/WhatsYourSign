@@ -17,15 +17,16 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="600" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1417"/>
-            <value key="minSize" type="size" width="480" height="100"/>
+            <value key="minSize" type="size" width="600" height="100"/>
+            <value key="maxSize" type="size" width="1500" height="270"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="fjc-Vr-I97">
-                        <rect key="frame" x="394" y="2" width="83" height="32"/>
+                        <rect key="frame" x="514" y="2" width="83" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="71" id="FOf-mv-ue0"/>
                             <constraint firstAttribute="height" constant="21" id="LUl-pH-Wrx"/>
@@ -42,7 +43,7 @@ Gw
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RUH-k1-xgb">
-                        <rect key="frame" x="189" y="10" width="102" height="15"/>
+                        <rect key="frame" x="249" y="10" width="102" height="15"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Entitlements" id="iny-wp-VI1">
                             <font key="font" size="13" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -50,18 +51,18 @@ Gw
                         </textFieldCell>
                     </textField>
                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZ7-FI-Xua">
-                        <rect key="frame" x="-1" y="40" width="482" height="231"/>
+                        <rect key="frame" x="-1" y="40" width="602" height="231"/>
                         <clipView key="contentView" drawsBackground="NO" id="Vka-gz-tp4">
-                            <rect key="frame" x="1" y="1" width="480" height="229"/>
+                            <rect key="frame" x="1" y="1" width="600" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="K8r-7O-jbE">
-                                    <rect key="frame" x="0.0" y="-1" width="480" height="229"/>
+                                    <rect key="frame" x="0.0" y="-1" width="600" height="229"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="480" height="229"/>
-                                    <size key="maxSize" width="482" height="10000000"/>
+                                    <size key="minSize" width="600" height="229"/>
+                                    <size key="maxSize" width="600" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
@@ -90,7 +91,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="140" y="147"/>
+            <point key="canvasLocation" x="197" y="147"/>
         </window>
     </objects>
 </document>

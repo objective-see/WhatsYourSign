@@ -69,7 +69,7 @@
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRj-I0-15e">
                         <rect key="frame" x="12" y="35" width="92" height="92"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon" id="9iG-ot-b7i"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="9iG-ot-b7i"/>
                     </imageView>
                 </subviews>
             </view>
@@ -80,6 +80,6 @@
         </window>
     </objects>
     <resources>
-        <image name="icon" width="512" height="512"/>
+        <image name="AppIcon" width="512" height="512"/>
     </resources>
 </document>
