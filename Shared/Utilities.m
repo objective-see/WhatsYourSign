@@ -638,25 +638,25 @@ BOOL isDarkMode()
     //flag
     BOOL darkMode = NO;
     
-    //not mojave?
-    // bail, since not true dark mode
-    if(YES != [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 14, 0}])
+    //appearance
+    NSAppearanceName appearanceName = nil;
+    
+    //log msg
+    logMsg(LOG_DEBUG, @"checking for dark mode");
+    
+    //10.14+ introduced dark mode
+    // check via effective appearance
+    if(@available(macOS 10.14, *))
     {
-        //bail
-        goto bail;
+        //get appearance name
+        appearanceName = [NSApplication.sharedApplication.effectiveAppearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]];
+        
+        //dbg msg
+        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"appearance: %@", appearanceName]);
+        
+        //set
+        darkMode = [appearanceName isEqualToString:NSAppearanceNameDarkAqua];
     }
-    
-    //not dark mode?
-    if(YES != [[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"] isEqualToString:@"Dark"])
-    {
-        //bail
-        goto bail;
-    }
-    
-    //dark mode
-    darkMode = YES;
-    
-bail:
     
     return darkMode;
 }
