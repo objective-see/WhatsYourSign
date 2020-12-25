@@ -140,8 +140,13 @@ void signalHandler(int signal, siginfo_t *info, void *context)
 	uContext = (ucontext_t *)context;
 
     //create error msg
+#if (defined(__arm64__) && defined(__APPLE__)) || defined(__aarch64__)
+    errorMessage = [NSString stringWithFormat:@"unhandled exception caught, si_signo: %d  /si_code: %s  /si_addr: %p",
+              info->si_signo, (info->si_code == SEGV_MAPERR) ? "SEGV_MAPERR" : "SEGV_ACCERR", info->si_addr];
+#else
     errorMessage = [NSString stringWithFormat:@"unhandled exception caught, si_signo: %d  /si_code: %s  /si_addr: %p /rip: %p",
               info->si_signo, (info->si_code == SEGV_MAPERR) ? "SEGV_MAPERR" : "SEGV_ACCERR", info->si_addr, (unsigned long*)uContext->uc_mcontext->__ss.__rip];
+#endif
     
     //err msg
     logMsg(LOG_ERR, [NSString stringWithFormat:@"OBJECTIVE-SEE ERROR: %@", errorMessage]);
@@ -165,7 +170,11 @@ void signalHandler(int signal, siginfo_t *info, void *context)
     errorInfo[KEY_ERROR_MSG] = @"ERROR: unrecoverable fault";
     
     //add sub msg
+#if (defined(__arm64__) && defined(__APPLE__)) || defined(__aarch64__)
+    errorInfo[KEY_ERROR_SUB_MSG] = [NSString stringWithFormat:@"si_signo: %d", info->si_signo];
+#else
     errorInfo[KEY_ERROR_SUB_MSG] = [NSString stringWithFormat:@"si_signo: %d / rip: %p", info->si_signo, (unsigned long*)uContext->uc_mcontext->__ss.__rip];
+#endif
     
     //set error URL
     errorInfo[KEY_ERROR_URL] = FATAL_ERROR_URL;
