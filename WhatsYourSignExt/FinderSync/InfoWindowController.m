@@ -8,7 +8,6 @@
 
 #import "Item.h"
 #import "Consts.h"
-#import "Logging.h"
 #import "Utilities.h"
 #import "AppDelegate.h"
 #import "InfoWindowController.h"
@@ -124,8 +123,42 @@
         //happily signed
         case noErr:
             
+            //init string for details
+            csDetails = [NSMutableString string];
+            
             //append to summary
             [csSummary appendFormat:@" is validly signed"];
+            
+            //no signing auths
+            // usually (always?) adhoc
+            if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
+            {
+                //append to details
+                [csDetails appendString:@"signed, but no signing authorities (adhoc?)"];
+            }
+            
+            //add each signing auth
+            else
+            {
+                //add signing auth
+                for(NSString* signingAuthority in self.item.signingInfo[KEY_SIGNING_AUTHORITIES])
+                {
+                    //append to details
+                    [csDetails appendString:[NSString stringWithFormat:@"› %@ \n", signingAuthority]];
+                }
+            }
+            
+            //disk images/packages
+            // don't have more info about who signed it
+            if( (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"dmg"]) ||
+                (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"pkg"]) )
+            {
+                //set icon to default (signed)
+                csIcon = [NSImage imageNamed:@"signed"];
+                
+                //done
+                break;
+            }
             
             //item signed by apple
             if(YES == [self.item.signingInfo[KEY_SIGNING_IS_APPLE] boolValue])
@@ -168,28 +201,6 @@
                 {
                     //set summary details
                     self.summaryDetails.stringValue = @"(Signer 3rd-party (adhoc?))";
-                }
-            }
-            
-            //init string for details
-            csDetails = [NSMutableString string];
-            
-            //no signing auths
-            // usually (always?) adhoc
-            if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
-            {
-                //append to details
-                [csDetails appendString:@"signed, but no signing authorities (adhoc?)"];
-            }
-            
-            //add each signing auth
-            else
-            {
-                //add signing auth
-                for(NSString* signingAuthority in self.item.signingInfo[KEY_SIGNING_AUTHORITIES])
-                {
-                    //append to details
-                    [csDetails appendString:[NSString stringWithFormat:@"› %@ \n", signingAuthority]];
                 }
             }
             
@@ -262,7 +273,11 @@
     self.signingIcon.image = csIcon;
     
     //assign summary to outlet
-    self.summary.stringValue = csSummary;
+    if(0 != csSummary.length)
+    {
+        //set
+        self.summary.stringValue = csSummary;
+    }
     
     //no hashes?
     if(nil == self.item.hashes)
@@ -302,15 +317,15 @@
     else
     {
         //create/set attributes string
-        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"view entitlements" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Entitlements" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.entitlements addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showEntitlements:)]];
     }
-
-    //assign code-signing auths to outlet
-    self.signingStatus.stringValue = csDetails;
     
+    //assign details to outlet
+    self.signingStatus.stringValue = (0 != csDetails.length) ? csDetails: @"none";
+
     return;
 }
 
@@ -319,7 +334,7 @@
 - (void)showHashes:(id)sender
 {
     //dbg msg
-    logMsg(LOG_DEBUG, @"showing hashes");
+    //logMsg(LOG_DEBUG, @"showing hashes");
     
     //alloc sheet
     self.hashesWindowController = [[HashesWindowController alloc] initWithWindowNibName:@"HashesWindow"];
@@ -343,7 +358,7 @@
 - (void)showEntitlements:(id)sender
 {
     //dbg msg
-    logMsg(LOG_DEBUG, @"showing entitlements");
+    //logMsg(LOG_DEBUG, @"showing entitlements");
     
     //alloc sheet
     self.entitlementsWindowController = [[EntitlementsWindowController alloc] initWithWindowNibName:@"EntitlementsWindow"];
@@ -363,7 +378,7 @@
 }
 
 //invoked when user clicks button
-// ->trigger action such as opening product website, updating, etc
+// trigger action such as opening product website, updating, etc
 -(IBAction)closeButtonHandler:(id)sender
 {
     //always close window

@@ -6,10 +6,9 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import "Consts.h"
-#import "Logging.h"
+#import "consts.h"
 #import "Configure.h"
-#import "Utilities.h"
+#import "utilities.h"
 #import "ConfigureWindowController.h"
 
 @implementation ConfigureWindowController
@@ -40,11 +39,11 @@
 }
 
 //configure window/buttons
-// ->also brings window to front
+// also brings window to front
 -(void)configure:(BOOL)isInstalled
 {
     //set window title
-    [self window].title = [NSString stringWithFormat:@"version %@", getAppVersion()];
+    [self window].title = [NSString stringWithFormat:@"WYS v%@", getAppVersion()];
     
     //yosemite doesn't support emojis :P
     if(getVersion(gestaltSystemVersionMinor) <= OS_MINOR_VERSION_YOSEMITE)
@@ -120,9 +119,9 @@
     __block BOOL uninstalled = NO;
     
     //dbg msg
-    #ifdef DEBUG
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", ((NSButton*)sender).title]);
-    #endif
+    //#ifdef DEBUG
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", ((NSButton*)sender).title]);
+    //#endif
     
     //grab tag
     action = ((NSButton*)sender).tag;

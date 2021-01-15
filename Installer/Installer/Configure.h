@@ -9,7 +9,7 @@
 #ifndef __WYS_Configure_h
 #define __WYS_Configure_h
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface Configure : NSObject
 {

@@ -6,13 +6,17 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
+//TODO: update Signing.m?
+
 #import "Xips.h"
 #import "Item.h"
-#import "Consts.h"
-#import "Logging.h"
+#import "consts.h"
 #import "Signing.h"
-#import "Utilities.h"
+#import "Packages.h"
+#import "utilities.h"
 #import "FinderSync.h"
+
+#import <os/log.h>
 
 @implementation Item
 
@@ -33,7 +37,7 @@
     if(self)
     {
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"item: %@", itemPath]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"item: %@", itemPath]);
         
         //save path
         self.path = itemPath;
@@ -67,7 +71,7 @@
            if(YES == [self shouldVerifyBinary])
            {
                //dbg msg
-               logMsg(LOG_DEBUG, [NSString stringWithFormat:@"verifying %@'s main binary", self.name]);
+               //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"verifying %@'s main binary", self.name]);
                
                //verify
                [self verifyBinary];
@@ -144,7 +148,8 @@ bail:
 }
 
 //set item type
-// use 'typeOfFile' for apps/bundle and 'file' cmd for rest (as its more accurate)
+// use 'typeOfFile' for apps/bundle/packages
+// and 'file' cmd for rest (as its somewhat more accurate)
 -(void)determineType
 {
     //directory flag
@@ -162,10 +167,18 @@ bail:
     //array of parsed results
     NSArray* parsedResults = nil;
     
-    //path is a directory?
-    // ...might be a app/bundle, etc so use NSWorkspace's 'typeOfFile' method
-    if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:&isDirectory]) &&
-        (YES == isDirectory) )
+    //set directory flag
+    [NSFileManager.defaultManager fileExistsAtPath:self.path isDirectory:&isDirectory];
+    
+    //TODO: API for this, ya?
+    //dmg?
+    //spctl -a -t open --context context:primary-signature -v <pathToDMG>
+    
+    //for bundles/disk images/packages, etc...
+    // ...use NSWorkspace's 'typeOfFile' method as it produces better results
+    if( (YES == isDirectory) ||
+        (NSOrderedSame == [self.path.pathExtension caseInsensitiveCompare:@"dmg"]) ||
+        (NSOrderedSame == [self.path.pathExtension caseInsensitiveCompare:@"pkg"]) )
     {
         //first try via 'typeOfFile'
         likelyType = [[NSWorkspace sharedWorkspace] typeOfFile:self.path error:nil];
@@ -204,7 +217,7 @@ bail:
         parsedResults = [[[NSString alloc] initWithData:results[STDOUT] encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":\n"]];
         
         //sanity check
-        // ->should be two items in array, <file path> and <file type>
+        // should be two items in array, <file path> and <file type>
         if(parsedResults.count < 2)
         {
             //bail
@@ -314,7 +327,7 @@ bail:
 }
 
 //get signing info
-// cal in the background
+// call in the background
 -(void)generateSigningInfo
 {
     //app binary
@@ -323,6 +336,9 @@ bail:
     //directory flag
     BOOL isDirectory = NO;
     
+    //dbg msg
+    os_log(OS_LOG_DEFAULT, "WYS: generating signing information for %{public}@", self.path);
+    
     //xip's are special
     // signing info is appended differently
     if(YES == [self.type isEqualToString:@"XIP Secure Archive"])
@@ -330,6 +346,17 @@ bail:
         //check
         self.signingInfo = checkXIP(self.path);
     }
+    
+    //as are .pkgs
+    else if(NSOrderedSame == [self.path.pathExtension caseInsensitiveCompare:@"pkg"])
+    {
+        //check
+        self.signingInfo = checkPackage(self.path);
+        
+        //add hashes
+        self.hashes = hashFile(self.path);
+    }
+
     //extract via Sec* APIs
     else
     {
@@ -363,7 +390,7 @@ bail:
 }
 
 //need extra logic to verify app bundle (main) binary
-// if there are any errors or differnt signing auths, binary's info will be used!
+// if there are any errors or different signing auths, binary's info will be used!
 -(void)verifyBinary
 {
     //app binary
@@ -388,7 +415,7 @@ bail:
     if(noErr != [binarySigningInfo[KEY_SIGNATURE_STATUS] intValue])
     {
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ has a signing error (%@)", binaryPath, binarySigningInfo[KEY_SIGNATURE_STATUS]]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ has a signing error (%@)", binaryPath, binarySigningInfo[KEY_SIGNATURE_STATUS]]);
         
         //update
         self.signingInfo = binarySigningInfo;
@@ -402,7 +429,7 @@ bail:
     if(YES != [[NSCountedSet setWithArray:self.signingInfo[KEY_SIGNING_AUTHORITIES]] isEqualToSet: [NSCountedSet setWithArray:binarySigningInfo[KEY_SIGNING_AUTHORITIES]]] )
     {
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ signing auths mismatch (%@ vs. %@)", binaryPath, binarySigningInfo[KEY_SIGNING_AUTHORITIES], self.signingInfo[KEY_SIGNING_AUTHORITIES]]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ signing auths mismatch (%@ vs. %@)", binaryPath, binarySigningInfo[KEY_SIGNING_AUTHORITIES], self.signingInfo[KEY_SIGNING_AUTHORITIES]]);
         
         //update
         self.signingInfo = binarySigningInfo;

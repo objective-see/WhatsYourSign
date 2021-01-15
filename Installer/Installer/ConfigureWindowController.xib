@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +24,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="460" height="176"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="460" height="176"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -143,12 +143,12 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Love" id="gFa-Lq-B5f"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SuP-hO-Ag8">
-                    <rect key="frame" x="623" y="295" width="66" height="52"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.75" id="SuP-hO-Ag8">
+                    <rect key="frame" x="515" y="266" width="167" height="78"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FriendsAiro" id="lWy-KF-KXe"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Friends1Password" id="lWy-KF-KXe"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0ij-1d-0pA">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" alphaValue="0.75" id="0ij-1d-0pA">
                     <rect key="frame" x="497" y="318" width="118" height="29"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Special mahalo to :" id="onz-yf-wM5">
@@ -157,17 +157,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="X7Y-gb-ZeN">
-                    <rect key="frame" x="556" y="290" width="59" height="29"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Airo" id="Sw3-OM-f2U">
-                        <font key="font" size="15" name="AvenirNextCondensed-Regular"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="660" translatesAutoresizingMaskIntoConstraints="NO" id="WR4-34-pw9">
-                    <rect key="frame" x="18" y="256" width="664" height="54"/>
+                    <rect key="frame" x="18" y="255" width="664" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Support WhatsYourSign?" id="89n-4R-bQG">
                         <font key="font" size="32" name="AvenirNextCondensed-Regular"/>
@@ -185,7 +176,7 @@
                     </textFieldCell>
                 </textField>
                 <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHL-6y-LP5">
-                    <rect key="frame" x="138" y="185" width="358" height="44"/>
+                    <rect key="frame" x="138" y="180" width="358" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" allowsUndo="NO" alignment="left" title="It's free, open-source, &amp; written" id="Cu7-ka-lOz">
                         <font key="font" size="32" name="AvenirNextCondensed-Regular"/>
@@ -198,9 +189,9 @@
         </customView>
     </objects>
     <resources>
-        <image name="FriendsAiro" width="162" height="163"/>
+        <image name="Friends1Password" width="666" height="134"/>
         <image name="Love" width="256" height="256"/>
-        <image name="icon" width="512" height="512"/>
+        <image name="icon" width="256" height="256"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>
     </resources>
 </document>

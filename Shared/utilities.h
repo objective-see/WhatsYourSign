@@ -10,8 +10,8 @@
 #define WYS_Utilities_h
 
 #import <mach-o/fat.h>
-#import <AppKit/AppKit.h>
-#import <Foundation/Foundation.h>
+@import AppKit;
+@import Foundation;
 
 /* FUNCTIONS */
 

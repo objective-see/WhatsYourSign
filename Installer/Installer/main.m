@@ -10,6 +10,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+//TODO: rem
+@import CommonCrypto;
+
 //main interface
 // ->check if admin, if not, spawn with privs
 int main(int argc, const char * argv[])
@@ -23,13 +26,13 @@ int main(int argc, const char * argv[])
         if(YES == shouldPrompt4Perms())
         {
             //dbg msg
-            logMsg(LOG_DEBUG, @"non-privileged installer instance");
+            //logMsg(LOG_DEBUG, @"non-privileged installer instance");
             
             //spawn as root
             if(YES != spawnAsRoot(argv[0]))
             {
                 //err msg
-                logMsg(LOG_ERR, @"failed to spawn self with privileges");
+                //logMsg(LOG_ERR, @"failed to spawn self with privileges");
                 
                 //bail
                 goto bail;
@@ -44,7 +47,7 @@ int main(int argc, const char * argv[])
         else
         {
             //dbg msg
-            logMsg(LOG_DEBUG, @"privileged installer instance");
+            //logMsg(LOG_DEBUG, @"privileged installer instance");
             
             //app away
             retVar = NSApplicationMain(argc, (const char **)argv);
@@ -172,7 +175,7 @@ BOOL spawnAsRoot(const char* path2Self)
     if(errAuthorizationSuccess != osStatus)
     {
         //err msg
-        logMsg(LOG_ERR, [NSString stringWithFormat:@"AuthorizationCreate() failed with %d", osStatus]);
+        //logMsg(LOG_ERR, [NSString stringWithFormat:@"AuthorizationCreate() failed with %d", osStatus]);
         
         //bail
         goto bail;
@@ -189,7 +192,7 @@ BOOL spawnAsRoot(const char* path2Self)
     if(errAuthorizationSuccess != osStatus)
     {
         //err msg
-        logMsg(LOG_ERR, [NSString stringWithFormat:@"AuthorizationExecuteWithPrivileges() failed with %d", osStatus]);
+        //logMsg(LOG_ERR, [NSString stringWithFormat:@"AuthorizationExecuteWithPrivileges() failed with %d", osStatus]);
         
         //bail
         goto bail;

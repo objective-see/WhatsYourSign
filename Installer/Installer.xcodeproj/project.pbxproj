@@ -12,8 +12,7 @@
 		7D1EAB281D2E12D30052ACE2 /* ConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB231D2E12D30052ACE2 /* ConfigureWindowController.xib */; };
 		7D1EAB291D2E12D30052ACE2 /* ErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB241D2E12D30052ACE2 /* ErrorWindowController.m */; };
 		7D1EAB2A1D2E12D30052ACE2 /* ErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB251D2E12D30052ACE2 /* ErrorWindowController.xib */; };
-		7D1EAB301D2E13650052ACE2 /* Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB2F1D2E13650052ACE2 /* Exception.m */; };
-		7D1EAB381D2E148B0052ACE2 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB371D2E148B0052ACE2 /* Utilities.m */; };
+		7D1EAB381D2E148B0052ACE2 /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB371D2E148B0052ACE2 /* utilities.m */; };
 		7D24C86A1D2CDEA7009932EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C8691D2CDEA7009932EE /* AppDelegate.m */; };
 		7D24C86D1D2CDEA7009932EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C86C1D2CDEA7009932EE /* main.m */; };
 		7D24C86F1D2CDEA7009932EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D24C86E1D2CDEA7009932EE /* Assets.xcassets */; };
@@ -23,7 +22,6 @@
 		7D3AD3971FEA28BC00AEEE31 /* patrons.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D3AD3961FEA28BC00AEEE31 /* patrons.txt */; };
 		7D4B34CA1D9885820069E4DE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C81D9885820069E4DE /* icon.png */; };
 		7D4B34CB1D9885820069E4DE /* whatsYourSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C91D9885820069E4DE /* whatsYourSign.png */; };
-		7D50B70C1D2F68EB0055CC40 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50B70A1D2F68EB0055CC40 /* Logging.m */; };
 		7D5CACC21FE9EEC1002A367A /* objectiveSee.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CACC11FE9EE0B002A367A /* objectiveSee.png */; };
 /* End PBXBuildFile section */
 
@@ -36,11 +34,9 @@
 		7D1EAB241D2E12D30052ACE2 /* ErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorWindowController.m; sourceTree = "<group>"; };
 		7D1EAB251D2E12D30052ACE2 /* ErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorWindowController.xib; sourceTree = "<group>"; };
 		7D1EAB261D2E12D30052ACE2 /* ErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorWindowController.h; sourceTree = "<group>"; };
-		7D1EAB2E1D2E13650052ACE2 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = ../../Shared/Exception.h; sourceTree = "<group>"; };
-		7D1EAB2F1D2E13650052ACE2 /* Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Exception.m; path = ../../Shared/Exception.m; sourceTree = "<group>"; };
-		7D1EAB321D2E14160052ACE2 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Consts.h; path = ../../Shared/Consts.h; sourceTree = "<group>"; };
-		7D1EAB361D2E148B0052ACE2 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../Shared/Utilities.h; sourceTree = "<group>"; };
-		7D1EAB371D2E148B0052ACE2 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../../Shared/Utilities.m; sourceTree = "<group>"; };
+		7D1EAB321D2E14160052ACE2 /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../../Shared/consts.h; sourceTree = "<group>"; };
+		7D1EAB361D2E148B0052ACE2 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilities.h; path = ../../Shared/utilities.h; sourceTree = "<group>"; };
+		7D1EAB371D2E148B0052ACE2 /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = utilities.m; path = ../../Shared/utilities.m; sourceTree = "<group>"; };
 		7D24C8651D2CDEA7009932EE /* WhatsYourSign Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhatsYourSign Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D24C8681D2CDEA7009932EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7D24C8691D2CDEA7009932EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,8 +51,6 @@
 		7D3B524E1D9F695E006568D9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		7D4B34C81D9885820069E4DE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Shared/icon.png; sourceTree = "<group>"; };
 		7D4B34C91D9885820069E4DE /* whatsYourSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whatsYourSign.png; path = ../../Shared/whatsYourSign.png; sourceTree = "<group>"; };
-		7D50B70A1D2F68EB0055CC40 /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Logging.m; path = ../../Shared/Logging.m; sourceTree = "<group>"; };
-		7D50B70B1D2F68EB0055CC40 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = ../../Shared/Logging.h; sourceTree = "<group>"; };
 		7D5CACC11FE9EE0B002A367A /* objectiveSee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = objectiveSee.png; sourceTree = "<group>"; };
 		CDE22E23247B5A7800C88F5C /* WhatsYourSign Installer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WhatsYourSign Installer.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,13 +130,9 @@
 			children = (
 				7D4B34C81D9885820069E4DE /* icon.png */,
 				7D4B34C91D9885820069E4DE /* whatsYourSign.png */,
-				7D50B70A1D2F68EB0055CC40 /* Logging.m */,
-				7D50B70B1D2F68EB0055CC40 /* Logging.h */,
-				7D1EAB361D2E148B0052ACE2 /* Utilities.h */,
-				7D1EAB371D2E148B0052ACE2 /* Utilities.m */,
-				7D1EAB321D2E14160052ACE2 /* Consts.h */,
-				7D1EAB2E1D2E13650052ACE2 /* Exception.h */,
-				7D1EAB2F1D2E13650052ACE2 /* Exception.m */,
+				7D1EAB361D2E148B0052ACE2 /* utilities.h */,
+				7D1EAB371D2E148B0052ACE2 /* utilities.m */,
+				7D1EAB321D2E14160052ACE2 /* consts.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -254,12 +244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1EAB201D2E12310052ACE2 /* ConfigureWindowController.m in Sources */,
-				7D50B70C1D2F68EB0055CC40 /* Logging.m in Sources */,
-				7D1EAB301D2E13650052ACE2 /* Exception.m in Sources */,
 				7D24C86D1D2CDEA7009932EE /* main.m in Sources */,
 				7D24C86A1D2CDEA7009932EE /* AppDelegate.m in Sources */,
 				7D1EAB291D2E12D30052ACE2 /* ErrorWindowController.m in Sources */,
-				7D1EAB381D2E148B0052ACE2 /* Utilities.m in Sources */,
+				7D1EAB381D2E148B0052ACE2 /* utilities.m in Sources */,
 				7D1EAB211D2E12310052ACE2 /* Configure.m in Sources */,
 				7D3AD3931FEA262E00AEEE31 /* AboutWindowController.m in Sources */,
 			);
@@ -383,7 +371,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Installer/WhatsYourSign Installer.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -395,7 +383,7 @@
 				INFOPLIST_FILE = Installer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "WhatsYourSign Installer";
 			};
@@ -408,7 +396,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Installer/WhatsYourSign Installer.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_INSTALLER_APP=1";
@@ -416,7 +404,7 @@
 				INFOPLIST_FILE = Installer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "WhatsYourSign Installer";
 			};

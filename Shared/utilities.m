@@ -6,18 +6,18 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import "Consts.h"
-#import "Logging.h"
-#import "Utilities.h"
+#import "consts.h"
+#import "utilities.h"
 
 #import <signal.h>
 #import <unistd.h>
 #import <libproc.h>
 #import <sys/sysctl.h>
 #import <Security/Security.h>
-#import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+
+@import Foundation;
 
 //get app's version
 // ->extracted from Info.plist
@@ -205,7 +205,7 @@ NSMutableDictionary* execTask(NSString* binaryPath, NSArray* arguments)
     task.standardError = stdErrPipe;
     
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"execing task, %@ (arguments: %@)", task.launchPath, task.arguments]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"execing task, %@ (arguments: %@)", task.launchPath, task.arguments]);
     
     //wrap task launch
     @try
@@ -482,29 +482,52 @@ NSDictionary* hashFile(NSString* filePath)
     //bundle
     NSBundle* bundle = nil;
     
+    //handle
+    NSFileHandle* handle = nil;
+    
+    //path
+    // might be app's binary
+    NSString* path = nil;
+    
+    //offset
+    NSUInteger offset = 0;
+    
     //file's contents
-    NSData* fileContents = nil;
+    // per chunk (to handle big files)
+    NSData* chunk = nil;
+    
+    //md5 context
+    CC_MD5_CTX md5Context = {0};
     
     //hash digest (md5)
-    uint8_t digestMD5[CC_MD5_DIGEST_LENGTH] = {0};
+    uint8_t md5Digest[CC_MD5_DIGEST_LENGTH] = {0};
     
     //md5 hash as string
     NSMutableString* md5 = nil;
     
+    //sha1 context
+    CC_SHA1_CTX sha1Context = {0};
+    
     //hash digest (sha1)
-    uint8_t digestSHA1[CC_SHA1_DIGEST_LENGTH] = {0};
+    uint8_t sha1Digest[CC_SHA1_DIGEST_LENGTH] = {0};
     
     //sha1 hash as string
     NSMutableString* sha1 = nil;
     
+    //sha256 context
+    CC_SHA256_CTX sha256Context = {0};
+    
     //hash digest (sha256)
-    uint8_t digestSHA256[CC_SHA256_DIGEST_LENGTH] = {0};
+    uint8_t sha256Digest[CC_SHA256_DIGEST_LENGTH] = {0};
     
     //sha256 hash as string
     NSMutableString* sha256 = nil;
     
+    //sha512 context
+    CC_SHA512_CTX sha512Context = {0};
+    
     //hash digest (sha512)
-    uint8_t digestSHA512[CC_SHA512_DIGEST_LENGTH] = {0};
+    uint8_t sha512Digest[CC_SHA512_DIGEST_LENGTH] = {0};
     
     //sha512 hash as string
     NSMutableString* sha512 = nil;
@@ -524,6 +547,10 @@ NSDictionary* hashFile(NSString* filePath)
     //init sha512 string
     sha512 = [NSMutableString string];
     
+    //init path
+    // might be updated if app bundle
+    path = filePath;
+    
     //directory?
     // try see if its a bundle with an executable
     if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory]) &&
@@ -541,72 +568,97 @@ NSDictionary* hashFile(NSString* filePath)
             goto bail;
         }
         
-        //load file
-        fileContents = [NSData dataWithContentsOfFile:bundle.executablePath];
+        //update path
+        path = bundle.executablePath;
     }
-    //file
-    // load directly
-    else
+    
+    //open handle to file
+    handle = [NSFileHandle fileHandleForReadingAtPath:path];
+    if(nil == handle) goto bail;
+    
+    //init hash contexts
+    CC_MD5_Init(&md5Context);
+    CC_SHA1_Init(&sha1Context);
+    CC_SHA256_Init(&sha256Context);
+    CC_SHA512_Init(&sha512Context);
+                 
+    //read/hash file
+    // in chunks, to handle large files
+    while(YES)
     {
-        //load
-        fileContents = [NSData dataWithContentsOfFile:filePath];
-    }
+        //wrap
+        // 'readDataOfLength' can throw
+        @try
+        {
+            //read in chunk
+            chunk = [handle readDataOfLength:1024*1024];
+            if(chunk.length == 0) break;
+        }
+        @catch(NSException* exception)
+        {
+            //bail
+            goto bail;
+        }
+        
+        //hash updates
+        CC_MD5_Update(&md5Context, (const void *)chunk.bytes, (CC_LONG)chunk.length);
+        CC_SHA1_Update(&sha1Context, (const void *)chunk.bytes, (CC_LONG)chunk.length);
+        CC_SHA256_Update(&sha256Context, (const void *)chunk.bytes, (CC_LONG)chunk.length);
+        CC_SHA512_Update(&sha512Context, (const void *)chunk.bytes, (CC_LONG)chunk.length);
+        
+        //inc
+        offset += chunk.length;
 
-    //sanity check
-    if(nil == fileContents)
-    {
-        //bail
-        goto bail;
+        //advance handle
+        [handle seekToFileOffset:offset];
     }
     
-    //md5 it
-    CC_MD5(fileContents.bytes, (unsigned int)fileContents.length, digestMD5);
+    //finalize hashes
+    CC_MD5_Final(md5Digest, &md5Context);
+    CC_SHA1_Final(sha1Digest, &sha1Context);
+    CC_SHA256_Final(sha256Digest, &sha256Context);
+    CC_SHA512_Final(sha512Digest, &sha512Context);
     
-    //convert to NSString
-    // ->iterate over each bytes in computed digest and format
+    //convert md5 to NSString
     for(index=0; index < CC_MD5_DIGEST_LENGTH; index++)
     {
         //format/append
-        [md5 appendFormat:@"%02lX", (unsigned long)digestMD5[index]];
+        [md5 appendFormat:@"%02lX", (unsigned long)md5Digest[index]];
     }
     
-    //sha1 it
-    CC_SHA1(fileContents.bytes, (unsigned int)fileContents.length, digestSHA1);
-    
-    //convert to NSString
-    // ->iterate over each bytes in computed digest and format
+    //convert sha1 to NSString
     for(index=0; index < CC_SHA1_DIGEST_LENGTH; index++)
     {
         //format/append
-        [sha1 appendFormat:@"%02lX", (unsigned long)digestSHA1[index]];
+        [sha1 appendFormat:@"%02lX", (unsigned long)sha1Digest[index]];
     }
     
-    //sha256 it
-    CC_SHA256(fileContents.bytes, (unsigned int)fileContents.length, digestSHA256);
-    
-    //convert to NSString
-    // ->iterate over each bytes in computed digest and format
+    //convert sha256 to NSString
     for(index=0; index < CC_SHA256_DIGEST_LENGTH; index++)
     {
         //format/append
-        [sha256 appendFormat:@"%02lX", (unsigned long)digestSHA256[index]];
+        [sha256 appendFormat:@"%02lX", (unsigned long)sha256Digest[index]];
     }
     
-    //sha512 it
-    CC_SHA512(fileContents.bytes, (unsigned int)fileContents.length, digestSHA512);
-    
-    //convert to NSString
-    // ->iterate over each bytes in computed digest and format
+    //convert sha256 to NSString
     for(index=0; index < CC_SHA512_DIGEST_LENGTH; index++)
     {
         //format/append
-        [sha512 appendFormat:@"%02lX", (unsigned long)digestSHA512[index]];
+        [sha512 appendFormat:@"%02lX", (unsigned long)sha512Digest[index]];
     }
     
     //init hash dictionary
     hashes = @{KEY_HASH_MD5:md5, KEY_HASH_SHA1:sha1, KEY_HASH_SHA256:sha256, KEY_HASH_SHA512:sha512};
     
 bail:
+
+    //close handle?
+    if(nil != handle)
+    {
+        //close
+        [handle closeFile];
+        handle = nil;
+    }
     
     return hashes;
 }
@@ -626,7 +678,7 @@ void restartFinder()
     //system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
     
     //dbg msg
-    logMsg(LOG_DEBUG, @"relaunched Finder.app");
+    //logMsg(LOG_DEBUG, @"relaunched Finder.app");
     
     return;
 }
@@ -641,9 +693,6 @@ BOOL isDarkMode()
     //appearance
     NSAppearanceName appearanceName = nil;
     
-    //log msg
-    logMsg(LOG_DEBUG, @"checking for dark mode");
-    
     //10.14+ introduced dark mode
     // check via effective appearance
     if(@available(macOS 10.14, *))
@@ -651,13 +700,9 @@ BOOL isDarkMode()
         //get appearance name
         appearanceName = [NSApplication.sharedApplication.effectiveAppearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]];
         
-        //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"appearance: %@", appearanceName]);
-        
         //set
         darkMode = [appearanceName isEqualToString:NSAppearanceNameDarkAqua];
     }
     
     return darkMode;
 }
-

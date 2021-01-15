@@ -14,14 +14,13 @@
 		7D1EAB141D2CED220052ACE2 /* signed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB101D2CED220052ACE2 /* signed.png */; };
 		7D1EAB151D2CED220052ACE2 /* signedApple.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB111D2CED220052ACE2 /* signedApple.png */; };
 		7D1EAB161D2CED220052ACE2 /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB121D2CED220052ACE2 /* unknown.png */; };
-		7D1EAB351D2E147B0052ACE2 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB341D2E147B0052ACE2 /* Utilities.m */; };
+		7D1EAB351D2E147B0052ACE2 /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB341D2E147B0052ACE2 /* utilities.m */; };
 		7D24C8A01D2CDEF9009932EE /* FinderSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C89F1D2CDEF9009932EE /* FinderSync.m */; };
 		7D2E2D231D5FCE3600D009E0 /* Signing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E2D1F1D5FCE3600D009E0 /* Signing.m */; };
 		7D2E2D241D5FCE3600D009E0 /* AppReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E2D221D5FCE3600D009E0 /* AppReceipt.m */; };
 		7D4B34C71D9884120069E4DE /* rightClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C51D9883940069E4DE /* rightClick.png */; };
 		7D4B34D81D9889C50069E4DE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34D41D9889B40069E4DE /* icon.png */; };
 		7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34D51D9889B40069E4DE /* whatsYourSign.png */; };
-		7D50B7121D2F69040055CC40 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50B70F1D2F69040055CC40 /* Logging.m */; };
 		7D5CACB91FE9A9F8002A367A /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */; };
 		7D5CACBF1FE9CC8B002A367A /* EntitlementsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */; };
 		7D5CACC01FE9CEC1002A367A /* EntitlementsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */; };
@@ -29,13 +28,12 @@
 		7D61ED781D984BA6007FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61ED771D984BA6007FE979 /* main.m */; };
 		7D61ED7D1D984BA6007FE979 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D61ED7B1D984BA6007FE979 /* MainMenu.xib */; };
 		7D61ED821D984BB6007FE979 /* WhatsYourSign.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D24C89A1D2CDEF9009932EE /* WhatsYourSign.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7D7335481FEA3187002A186A /* Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7335471FEA3187002A186A /* Exception.m */; };
-		7D7335491FEA31E5002A186A /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB341D2E147B0052ACE2 /* Utilities.m */; };
-		7D73354A1FEA31EA002A186A /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D50B70F1D2F69040055CC40 /* Logging.m */; };
+		7D7335491FEA31E5002A186A /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB341D2E147B0052ACE2 /* utilities.m */; };
 		7D8810A11FECD363002F34F4 /* HashesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8810A01FECD363002F34F4 /* HashesWindow.xib */; };
 		7D8810A41FECD37E002F34F4 /* HashesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8810A21FECD37E002F34F4 /* HashesWindowController.m */; };
 		7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */; };
 		CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6CAC7120A0E65F00188B0A /* Xips.m */; };
+		CDCC763D258CA1A400F471D3 /* Packages.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC763B258CA1A300F471D3 /* Packages.m */; };
 		CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */; };
 /* End PBXBuildFile section */
 
@@ -73,9 +71,9 @@
 		7D1EAB101D2CED220052ACE2 /* signed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signed.png; sourceTree = "<group>"; };
 		7D1EAB111D2CED220052ACE2 /* signedApple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signedApple.png; sourceTree = "<group>"; };
 		7D1EAB121D2CED220052ACE2 /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unknown.png; sourceTree = "<group>"; };
-		7D1EAB311D2E14090052ACE2 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Consts.h; path = ../Shared/Consts.h; sourceTree = "<group>"; };
-		7D1EAB331D2E147B0052ACE2 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../Shared/Utilities.h; sourceTree = "<group>"; };
-		7D1EAB341D2E147B0052ACE2 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../Shared/Utilities.m; sourceTree = "<group>"; };
+		7D1EAB311D2E14090052ACE2 /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Shared/consts.h; sourceTree = "<group>"; };
+		7D1EAB331D2E147B0052ACE2 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilities.h; path = ../Shared/utilities.h; sourceTree = "<group>"; };
+		7D1EAB341D2E147B0052ACE2 /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = utilities.m; path = ../Shared/utilities.m; sourceTree = "<group>"; };
 		7D24C89A1D2CDEF9009932EE /* WhatsYourSign.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WhatsYourSign.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D24C89D1D2CDEF9009932EE /* FinderSync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FinderSync.entitlements; sourceTree = "<group>"; };
 		7D24C89E1D2CDEF9009932EE /* FinderSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderSync.h; sourceTree = "<group>"; };
@@ -88,8 +86,6 @@
 		7D4B34C51D9883940069E4DE /* rightClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightClick.png; sourceTree = "<group>"; };
 		7D4B34D41D9889B40069E4DE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Shared/icon.png; sourceTree = "<group>"; };
 		7D4B34D51D9889B40069E4DE /* whatsYourSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whatsYourSign.png; path = ../../Shared/whatsYourSign.png; sourceTree = "<group>"; };
-		7D50B70F1D2F69040055CC40 /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Logging.m; path = ../Shared/Logging.m; sourceTree = "<group>"; };
-		7D50B7101D2F69040055CC40 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = ../Shared/Logging.h; sourceTree = "<group>"; };
 		7D5CACB71FE9A9F8002A367A /* ClickableTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableTextField.h; sourceTree = "<group>"; };
 		7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableTextField.m; sourceTree = "<group>"; };
 		7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntitlementsWindowController.m; sourceTree = "<group>"; };
@@ -101,8 +97,6 @@
 		7D61ED771D984BA6007FE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7D61ED7C1D984BA6007FE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7D61ED7E1D984BA6007FE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D7335461FEA3187002A186A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = ../Shared/Exception.h; sourceTree = "<group>"; };
-		7D7335471FEA3187002A186A /* Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Exception.m; path = ../Shared/Exception.m; sourceTree = "<group>"; };
 		7D8810A01FECD363002F34F4 /* HashesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HashesWindow.xib; sourceTree = "<group>"; };
 		7D8810A21FECD37E002F34F4 /* HashesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashesWindowController.m; sourceTree = "<group>"; };
 		7D8810A31FECD37E002F34F4 /* HashesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashesWindowController.h; sourceTree = "<group>"; };
@@ -110,6 +104,9 @@
 		7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSApplicationKeyEvents.h; sourceTree = "<group>"; };
 		CD6CAC7120A0E65F00188B0A /* Xips.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Xips.m; sourceTree = "<group>"; };
 		CD6CAC7320A0E67500188B0A /* Xips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xips.h; sourceTree = "<group>"; };
+		CDCC763B258CA1A300F471D3 /* Packages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packages.m; sourceTree = "<group>"; };
+		CDCC763C258CA1A300F471D3 /* Packages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packages.h; sourceTree = "<group>"; };
+		CDCC7644258CA59F00F471D3 /* packageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packageKit.h; sourceTree = "<group>"; };
 		CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppIcon.iconset; sourceTree = "<group>"; };
 		CDE22E24247B5A8700C88F5C /* WhatsYourSign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsYourSign.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,11 +143,11 @@
 		7D24C8791D2CDEC6009932EE = {
 			isa = PBXGroup;
 			children = (
-				CDE22E24247B5A8700C88F5C /* WhatsYourSign.entitlements */,
-				7D5815371D9857C000FED513 /* Shared */,
 				7D61ED721D984BA6007FE979 /* Application */,
 				7D24C89B1D2CDEF9009932EE /* FinderSync */,
 				7D24C8831D2CDEC6009932EE /* Products */,
+				7D5815371D9857C000FED513 /* Shared */,
+				CDE22E24247B5A8700C88F5C /* WhatsYourSign.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,30 +163,33 @@
 		7D24C89B1D2CDEF9009932EE /* FinderSync */ = {
 			isa = PBXGroup;
 			children = (
-				7D1EAB171D2E0FE50052ACE2 /* images */,
-				7D7335441FEA2FC5002A186A /* xibs */,
 				7D2E2D211D5FCE3600D009E0 /* AppReceipt.h */,
-				CD6CAC7120A0E65F00188B0A /* Xips.m */,
-				CD6CAC7320A0E67500188B0A /* Xips.h */,
 				7D2E2D221D5FCE3600D009E0 /* AppReceipt.m */,
 				7D5CACB71FE9A9F8002A367A /* ClickableTextField.h */,
 				7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */,
 				7D5CACBD1FE9CC8B002A367A /* EntitlementsWindowController.h */,
 				7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */,
 				7D24C89E1D2CDEF9009932EE /* FinderSync.h */,
+				CDCC7644258CA59F00F471D3 /* packageKit.h */,
 				7D24C89F1D2CDEF9009932EE /* FinderSync.m */,
 				7D8810A31FECD37E002F34F4 /* HashesWindowController.h */,
 				7D8810A21FECD37E002F34F4 /* HashesWindowController.m */,
+				7D1EAB171D2E0FE50052ACE2 /* images */,
+				7D24C8A11D2CDEF9009932EE /* Info.plist */,
 				7D173EC21D2CE6A100FEED93 /* InfoWindowController.h */,
 				7D173EBE1D2CE6A100FEED93 /* InfoWindowController.m */,
-				7D173EC01D2CE6A100FEED93 /* Item.m */,
 				7D173EC11D2CE6A100FEED93 /* Item.h */,
+				7D173EC01D2CE6A100FEED93 /* Item.m */,
 				7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */,
 				7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */,
+				CDCC763C258CA1A300F471D3 /* Packages.h */,
+				CDCC763B258CA1A300F471D3 /* Packages.m */,
 				7D2E2D201D5FCE3600D009E0 /* Signing.h */,
 				7D2E2D1F1D5FCE3600D009E0 /* Signing.m */,
-				7D24C8A11D2CDEF9009932EE /* Info.plist */,
 				7D24C89C1D2CDEF9009932EE /* Supporting Files */,
+				7D7335441FEA2FC5002A186A /* xibs */,
+				CD6CAC7320A0E67500188B0A /* Xips.h */,
+				CD6CAC7120A0E65F00188B0A /* Xips.m */,
 			);
 			path = FinderSync;
 			sourceTree = "<group>";
@@ -215,13 +215,9 @@
 		7D5815371D9857C000FED513 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7D7335461FEA3187002A186A /* Exception.h */,
-				7D7335471FEA3187002A186A /* Exception.m */,
-				7D50B70F1D2F69040055CC40 /* Logging.m */,
-				7D50B7101D2F69040055CC40 /* Logging.h */,
-				7D1EAB331D2E147B0052ACE2 /* Utilities.h */,
-				7D1EAB341D2E147B0052ACE2 /* Utilities.m */,
-				7D1EAB311D2E14090052ACE2 /* Consts.h */,
+				7D1EAB331D2E147B0052ACE2 /* utilities.h */,
+				7D1EAB341D2E147B0052ACE2 /* utilities.m */,
+				7D1EAB311D2E14090052ACE2 /* consts.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -304,7 +300,7 @@
 		7D24C87A1D2CDEC6009932EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Objective-See";
 				TargetAttributes = {
 					7D24C8991D2CDEF9009932EE = {
@@ -371,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCC763D258CA1A400F471D3 /* Packages.m in Sources */,
 				7D5CACBF1FE9CC8B002A367A /* EntitlementsWindowController.m in Sources */,
 				CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */,
 				7D173EC71D2CE6A100FEED93 /* Item.m in Sources */,
@@ -380,9 +377,8 @@
 				7D2E2D241D5FCE3600D009E0 /* AppReceipt.m in Sources */,
 				7D5CACB91FE9A9F8002A367A /* ClickableTextField.m in Sources */,
 				7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */,
-				7D1EAB351D2E147B0052ACE2 /* Utilities.m in Sources */,
+				7D1EAB351D2E147B0052ACE2 /* utilities.m in Sources */,
 				7D24C8A01D2CDEF9009932EE /* FinderSync.m in Sources */,
-				7D50B7121D2F69040055CC40 /* Logging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,10 +386,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D73354A1FEA31EA002A186A /* Logging.m in Sources */,
-				7D7335491FEA31E5002A186A /* Utilities.m in Sources */,
+				7D7335491FEA31E5002A186A /* utilities.m in Sources */,
 				7D61ED781D984BA6007FE979 /* main.m in Sources */,
-				7D7335481FEA3187002A186A /* Exception.m in Sources */,
 				7D61ED751D984BA6007FE979 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -433,20 +428,23 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Objective-See, LLC (VBG97UB4TA)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -477,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -486,20 +485,23 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Objective-See, LLC (VBG97UB4TA)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -527,14 +529,14 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = FinderSync/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
@@ -547,18 +549,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FinderSync/FinderSync.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = FinderSync/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
@@ -577,13 +579,13 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -601,13 +603,13 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

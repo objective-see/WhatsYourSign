@@ -10,8 +10,8 @@
 #ifndef Signing_h
 #define Signing_h
 
-#import <AppKit/AppKit.h>
-#import <Foundation/Foundation.h>
+@import AppKit;
+@import Foundation;
 
 /* FUNCTIONS */
 

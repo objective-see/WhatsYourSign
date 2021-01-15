@@ -6,7 +6,6 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import "Logging.h"
 #import "FinderSync.h"
 
 @implementation FinderSync
@@ -23,13 +22,13 @@
         directories = [NSMutableSet set];
         
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
         
         //set dirs
         self.directories = [NSMutableSet setWithArray: [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:NSVolumeEnumerationSkipHiddenVolumes]];
         
         //dbg msg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"initializing 'watch' directories with: %@", self.directories]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"initializing 'watch' directories with: %@", self.directories]);
         
         //set directories
         [FIFinderSyncController defaultController].directoryURLs = self.directories;
@@ -76,14 +75,14 @@ bail:
 -(void)volumeEvent:(NSNotification*)notification
 {
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"volume notification: %@", notification]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"volume notification: %@", notification]);
     
     //mount?
     // add volume
     if(YES == [notification.name isEqualToString:NSWorkspaceDidMountNotification])
     {
         //dbg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"adding %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"adding %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
         
         //add to set
         [self.directories addObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
@@ -94,7 +93,7 @@ bail:
     else if(YES == [notification.name isEqualToString:NSWorkspaceDidUnmountNotification])
     {
         //dbg
-        logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
+        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
         
         //remove from set
         [self.directories removeObject:notification.userInfo[NSWorkspaceVolumeURLKey]];

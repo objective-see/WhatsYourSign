@@ -6,12 +6,13 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import OSLog;
+@import Foundation;
 
-#import "Consts.h"
-#import "Logging.h"
+
+#import "consts.h"
 #import "Configure.h"
-#import "Utilities.h"
+#import "utilities.h"
 
 @implementation Configure
 
@@ -25,14 +26,14 @@
     if(ACTION_INSTALL_FLAG == parameter)
     {
         //dbg msg
-        logMsg(LOG_DEBUG, @"installing...");
+        os_log(OS_LOG_DEFAULT, "WYS: installing...");
         
         //already installed?
         // uninstall everything first
         if(YES == [self isInstalled])
         {
             //dbg msg
-            logMsg(LOG_DEBUG, @"already installed, so uninstalling...");
+            os_log(OS_LOG_DEFAULT, "WYS: already installed, so uninstalling...");
             
             //uninstall
             if(YES != [self uninstall])
@@ -42,7 +43,7 @@
             }
             
             //dbg msg
-            logMsg(LOG_DEBUG, @"uninstalled");
+            os_log(OS_LOG_DEFAULT, "WYS: uninstalled");
         }
         
         //install
@@ -53,8 +54,8 @@
         }
         
         //dbg msg
-        logMsg(LOG_DEBUG, @"installed!");
-    
+        os_log(OS_LOG_DEFAULT, "WYS: installed!");
+        
         //launch main app
         // waits until done...
         execTask(OPEN, @[@"-n", @"-W", @"-a", APP_LOCATION]);
@@ -63,7 +64,7 @@
     else if(ACTION_UNINSTALL_FLAG == parameter)
     {
         //dbg msg
-        logMsg(LOG_DEBUG, @"uninstalling...");
+        //logMsg(LOG_DEBUG, @"uninstalling...");
         
         //uninstall
         // and relaunch Finder
@@ -74,7 +75,7 @@
         }
         
         //dbg msg
-        logMsg(LOG_DEBUG, @"uninstalled!");
+        //logMsg(LOG_DEBUG, @"uninstalled!");
     }
 
     //no errors
@@ -146,20 +147,20 @@ bail:
     if(YES != [[NSFileManager defaultManager] copyItemAtPath:pathSrc toPath:pathDest error:&error])
     {
         //err msg
-        logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to copy %@ -> %@ (%@)", pathSrc, pathDest, error]);
+        //logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to copy %@ -> %@ (%@)", pathSrc, pathDest, error]);
         
         //bail
         goto bail;
     }
 
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"copied %@ -> %@", pathSrc, pathDest]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"copied %@ -> %@", pathSrc, pathDest]);
     
     //remove xattrs
     execTask(XATTR, @[@"-cr", pathDest]);
     
     //dbg msg
-    logMsg(LOG_DEBUG, @"removed xattrz");
+    //logMsg(LOG_DEBUG, @"removed xattrz");
     
     //init path to (now) installed extension
     extension = [[APP_LOCATION stringByAppendingPathComponent:@"Contents/PlugIns"] stringByAppendingPathComponent:EXTENSION_NAME];
@@ -173,7 +174,7 @@ bail:
         if(0 != [results[EXIT_CODE] intValue])
         {
             //err msg
-            logMsg(LOG_ERR, [NSString stringWithFormat:@"pluginkit failed to install extension (%@)",  results]);
+            //logMsg(LOG_ERR, [NSString stringWithFormat:@"pluginkit failed to install extension (%@)",  results]);
             
             //bail
             goto bail;
@@ -197,14 +198,14 @@ bail:
     if(attempts == MAX_ENABLE_ATTEMPTS)
     {
         //err msg
-        logMsg(LOG_ERR, @"failed to install extension");
+        //logMsg(LOG_ERR, @"failed to install extension");
         
         //bail
         goto bail;
     }
 
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"added extension %@ via 'pluginkit -a'", extension]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"added extension %@ via 'pluginkit -a'", extension]);
 
     //now enable
     // try a few times since sometimes fails!?
@@ -215,7 +216,7 @@ bail:
         if(0 != [results[EXIT_CODE] intValue])
         {
             //err msg
-            logMsg(LOG_ERR, [NSString stringWithFormat:@"pluginkit failed to enable extension (%@)", results]);
+            //logMsg(LOG_ERR, [NSString stringWithFormat:@"pluginkit failed to enable extension (%@)", results]);
             
             //bail
             goto bail;
@@ -239,14 +240,14 @@ bail:
     if(attempts == MAX_ENABLE_ATTEMPTS)
     {
         //err msg
-        logMsg(LOG_ERR, @"failed to enable extension");
+        //logMsg(LOG_ERR, @"failed to enable extension");
         
         //bail
         goto bail;
     }
     
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"enabled extension %@ via 'pluginkit -e, ...'", EXTENSION_BUNDLE_ID]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"enabled extension %@ via 'pluginkit -e, ...'", EXTENSION_BUNDLE_ID]);
     
     //give it a second to sync out plugin db
     [NSThread sleepForTimeInterval:1.0f];
@@ -299,20 +300,20 @@ bail:
     }
     
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing folder (%@)", folder]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing folder (%@)", folder]);
     
     //delete folder
     if(YES != [[NSFileManager defaultManager] removeItemAtPath:folder error:&error])
     {
         //err msg
-        logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to delete extension directory %@ (%@)", folder, error]);
+        //logMsg(LOG_ERR, [NSString stringWithFormat:@"failed to delete extension directory %@ (%@)", folder, error]);
         
         //bail
         goto bail;
     }
     
     //dbg msg
-    logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing extension (%@) via 'pluginkit -r'", extension]);
+    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing extension (%@) via 'pluginkit -r'", extension]);
     
     //remove extension
     // plugin kit prints err, but it still works
@@ -327,7 +328,7 @@ bail:
         if(-1 != processID)
         {
             //dbg msg
-            logMsg(LOG_DEBUG, [NSString stringWithFormat:@"sending SIGKILL to %d", processID]);
+            //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"sending SIGKILL to %d", processID]);
 
             //kill
             kill(processID, SIGKILL);

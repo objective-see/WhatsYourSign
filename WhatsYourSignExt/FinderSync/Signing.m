@@ -7,6 +7,8 @@
 //  License:    Creative Commons Attribution-NonCommercial 4.0 International License
 //
 
+//TODO: keep, cuz notarized!
+
 #import "Consts.h"
 #import "Signing.h"
 #import "Utilities.h"
@@ -17,9 +19,10 @@
 #import <mach-o/swap.h>
 
 #import <sys/sysctl.h>
-#import <Security/Security.h>
-#import <CommonCrypto/CommonDigest.h>
-#import <SystemConfiguration/SystemConfiguration.h>
+
+@import Security;
+@import CommonCrypto;
+@import SystemConfiguration;
 
 //determine the offset (if any)
 // of the 'best' architecture in a (fat) binary
@@ -209,8 +212,9 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     //(re)save signature status
     signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
     
+    //TODO: notarization
     //if file is signed
-    // grab signing authorities
+    // grab entitlements, signing authorities, notarization status?
     if(noErr == status)
     {
         //grab signing authorities
@@ -219,6 +223,14 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         {
             //bail
             goto bail;
+        }
+        
+        //add entitlements?
+        if( (YES == entitlements) &&
+            (nil != [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoEntitlementsDict]) )
+        {
+                //extract/save
+                signingInfo[KEY_SIGNING_ENTITLEMENTS] = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoEntitlementsDict];
         }
         
         //determine if binary is signed by Apple
@@ -286,13 +298,6 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     //set notarization status
     // note: SecStaticCodeCheckValidity returns 0 on success, hence the `!`
     signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInt:!SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized)];
-    
-    //add entitlements?
-    if(YES == entitlements)
-    {
-        //extract entitlements via Apple's 'codesign'
-        signingInfo[KEY_SIGNING_ENTITLEMENTS] = extractEntitlements(path);
-    }
     
 bail:
     
@@ -703,81 +708,4 @@ BOOL fromAppStore(NSString* path)
 bail:
     
     return appStoreApp;
-}
-
-//extact entitlements
-// note: execs apple's 'codesign' binary
-NSDictionary* extractEntitlements(NSString* path)
-{
-    //entitlements
-    NSDictionary* entitlements = nil;
-    
-    //results
-    NSMutableDictionary* results = nil;
-    
-    //entitlements at bytes
-    unsigned char* entitlementBytes = nil;
-    
-    //entitlements as data
-    NSData* entitlementsData = nil;
-    
-    //entitlements as xml
-    NSString* entitlementsXML = nil;
-    
-    //exec 'codesign'
-    results = execTask(CODE_SIGN, @[@"-d", @"--entitlements", @"-", path]);
-    if(noErr != [results[EXIT_CODE] intValue])
-    {
-        //bail
-        goto bail;
-    }
-    
-    //not entitled?
-    // could just check for nil, but use offset below
-    if([results[STDOUT] length] < 0x10)
-    {
-        //bail
-        goto bail;
-    }
-    
-    //grab bytes
-    entitlementBytes = (unsigned char*)[results[STDOUT] bytes];
-    
-    //codesign has a bug where it returns some (encoding?) bytes first
-    // check for that here, and if found, start string conversion at offset 0x8
-    if(0xFA == entitlementBytes[0])
-    {
-        //convert to string
-        entitlementsXML = [[NSString alloc] initWithData:[results[STDOUT] subdataWithRange:NSMakeRange(0x8, [results[STDOUT] length] - 0x8)] encoding:NSUTF8StringEncoding];
-    }
-    
-    //other just convert as is
-    else
-    {
-        //convert to string
-        entitlementsXML = [[NSString alloc] initWithData:results[STDOUT] encoding:NSUTF8StringEncoding];
-    }
-    
-    //sanity check
-    // make sure conversion to string ok
-    if(0 == [entitlementsXML length])
-    {
-        //bail
-        goto bail;
-    }
-    
-    //convert to data
-    entitlementsData = [entitlementsXML dataUsingEncoding:NSUTF8StringEncoding];
-    if(nil == entitlementsData)
-    {
-        //bail
-        goto bail;
-    }
-    
-    //convert to dictionary
-    entitlements = [NSPropertyListSerialization propertyListWithData:entitlementsData options:NSPropertyListImmutable format:nil error:nil];
-    
-bail:
-    
-    return entitlements;
 }

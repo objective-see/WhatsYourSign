@@ -6,10 +6,9 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import "Consts.h"
+#import "consts.h"
 #import "Configure.h"
-#import "Exception.h"
-#import "Utilities.h"
+#import "utilities.h"
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -29,9 +28,10 @@
     //config object
     Configure* configureObj = nil;
     
+    //TODO: senty?
     //first thing...
     // ->install exception handlers
-    installExceptionHandlers();
+    //installExceptionHandlers();
     
     //alloc/init Config obj
     configureObj = [[Configure alloc] init];

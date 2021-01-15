@@ -6,16 +6,18 @@
 //  Copyright (c) 2018 Objective-See. All rights reserved.
 //
 
-#ifndef Xips_h
-#define Xips_h
+#ifndef Packages_h
+#define Packages_h
 
+//TODO: change to this type
 @import Foundation;
 
 /* FUNCTIONS */
 
-//process a XIP
-NSMutableDictionary* checkXIP(NSString* archive);
+//process a pkg
+NSMutableDictionary* checkPackage(NSString* package);
 
+//TODO:
 //check if a file has a cert that has been revoked
 // exec 'spctl --assess <path to file>' and looks for 'CSSMERR_TP_CERT_REVOKED'
 BOOL isRevoked(NSString* path);

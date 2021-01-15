@@ -9,8 +9,8 @@
 #ifndef main_h
 #define main_h
 
-#import "Consts.h"
-#import "Logging.h"
+@import Foundation;
+#import "consts.h"
 
 #include <pwd.h>
 #include <grp.h>

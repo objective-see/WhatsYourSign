@@ -6,8 +6,8 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CommonCrypto/CommonDigest.h>
+@import Foundation;
+@import CommonCrypto;
 
 #import "InfoWindowController.h"
 

@@ -10,8 +10,9 @@
 #ifndef AppReceipt_h
 #define AppReceipt_h
 
+@import Foundation;
+
 #import <Security/CMSDecoder.h>
-#import <Foundation/Foundation.h>
 #import <Security/SecAsn1Coder.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <Security/SecAsn1Templates.h>
