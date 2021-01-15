@@ -45,17 +45,17 @@
     //set window title
     [self window].title = [NSString stringWithFormat:@"WYS v%@", getAppVersion()];
     
-    //yosemite doesn't support emojis :P
-    if(getVersion(gestaltSystemVersionMinor) <= OS_MINOR_VERSION_YOSEMITE)
-    {
-        //init status msg
-        [self.statusMsg setStringValue:@"Code-signing info via the UI"];
-    }
-    //el capitan+ supports emojis
-    else
+    //emoji support, 10.11+
+    if(@available(macOS 10.11, *))
     {
         //init status msg
         [self.statusMsg setStringValue:@"Code-signing info via the UI 🔏"];
+    }
+    //no emoji support :(
+    else
+    {
+        //init status msg
+        [self.statusMsg setStringValue:@"Code-signing info via the UI."];
     }
     
     //app already installed?
@@ -260,6 +260,9 @@
             
         });
         
+        //ok to re-enable 'x' button
+        [[self.window standardWindowButton:NSWindowCloseButton] setEnabled:YES];
+        
         //bail
         goto bail;
     }
@@ -286,11 +289,11 @@
         self.moreInfoButton.hidden = YES;
         
         //disable 'x' button
-        // ->don't want user killing app during install/upgrade
+        // don't want user killing app during install/upgrade
         [[self.window standardWindowButton:NSWindowCloseButton] setEnabled:NO];
         
         //clear status msg
-        [self.statusMsg setStringValue:@""];
+        self.statusMsg.stringValue = @"";
         
         //force redraw of status msg
         // ->sometime doesn't refresh (e.g. slow VM)
@@ -531,9 +534,6 @@ bail:
         //...and highlighted
         [self.window makeFirstResponder:self.installButton];
     }
-    
-    //ok to re-enable 'x' button
-    [[self.window standardWindowButton:NSWindowCloseButton] setEnabled:YES];
     
     //(re)make window window key
     [self.window makeKeyAndOrderFront:self];

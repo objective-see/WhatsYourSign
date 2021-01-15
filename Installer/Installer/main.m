@@ -8,10 +8,7 @@
 
 #import "main.h"
 
-#import <Cocoa/Cocoa.h>
-
-//TODO: rem
-@import CommonCrypto;
+@import Cocoa;
 
 //main interface
 // ->check if admin, if not, spawn with privs

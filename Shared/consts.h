@@ -81,15 +81,6 @@
 //is notarized?
 #define KEY_SIGNING_IS_NOTARIZED @"notarized"
 
-//OS version x
-#define OS_MAJOR_VERSION_X 10
-
-//OS minor version yosemite
-#define OS_MINOR_VERSION_YOSEMITE 10
-
-//OS minor version el capitan
-#define OS_MINOR_VERSION_EL_CAPITAN 11
-
 //path to file binary
 #define FILE @"/usr/bin/file"
 

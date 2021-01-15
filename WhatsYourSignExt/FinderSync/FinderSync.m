@@ -57,9 +57,6 @@
         goto bail;
     }
     
-    //TODO: ignore /.file? or?
-    
-    
     //alloc/init menu
     menu = [[NSMenu alloc] initWithTitle:@""];
     

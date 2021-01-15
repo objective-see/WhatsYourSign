@@ -6,7 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 #import "AboutWindowController.h"
 #import "ErrorWindowController.h"

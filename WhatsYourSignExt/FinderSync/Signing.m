@@ -7,8 +7,6 @@
 //  License:    Creative Commons Attribution-NonCommercial 4.0 International License
 //
 
-//TODO: keep, cuz notarized!
-
 #import "Consts.h"
 #import "Signing.h"
 #import "Utilities.h"
@@ -212,7 +210,6 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     //(re)save signature status
     signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
     
-    //TODO: notarization
     //if file is signed
     // grab entitlements, signing authorities, notarization status?
     if(noErr == status)
@@ -628,8 +625,6 @@ bail:
     {
         //free
         CFRelease(requirementRef);
-        
-        //unset
         requirementRef = NULL;
     }
     
@@ -638,8 +633,6 @@ bail:
     {
         //free
         CFRelease(staticCode);
-        
-        //unset
         staticCode = NULL;
     }
     

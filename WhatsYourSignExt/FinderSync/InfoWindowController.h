@@ -6,8 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 #import "ClickableTextField.h"
 #import "HashesWindowController.h"

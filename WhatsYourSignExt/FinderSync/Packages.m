@@ -13,8 +13,7 @@
 
 #import <os/log.h>
 
-//TODO: type xar archive compressed -> add (likely .pkg?)
-
+//check signing info for .pkg
 NSMutableDictionary* checkPackage(NSString* package)
 {
     //info dictionary
@@ -242,33 +241,5 @@ bail:
     
     return info;
 }
-
-//TODO: revoked?
-
-
-/*
-//check if a file has a cert that has been revoked
-// exec 'spctl --assess <path to file>' and looks for 'CSSMERR_TP_CERT_REVOKED'
-BOOL isRevoked(NSString* path)
-{
-    //flag
-    BOOL revoked = NO;
-    
-    //results
-    NSMutableDictionary* results = nil;
-    
-    //exec 'spctl --assess <path to file>'
-    results = execTask(SPCTL, @[@"--assess", path]);
-    if(YES == [[[NSString alloc] initWithData:results[STDERR] encoding:NSUTF8StringEncoding] containsString:@"CSSMERR_TP_CERT_REVOKED"])
-    {
-        //revoked
-        revoked = YES;
-    }
-    
-bail:
-    
-    return revoked;
-}
-*/
 
 

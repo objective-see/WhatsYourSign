@@ -7,8 +7,8 @@
 //
 
 
-#import <Cocoa/Cocoa.h>
-#import <FinderSync/FinderSync.h>
+@import Cocoa;
+@import FinderSync;
 
 #import "Item.h"
 #import "InfoWindowController.h"

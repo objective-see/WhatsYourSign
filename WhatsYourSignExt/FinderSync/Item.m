@@ -6,8 +6,6 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
-//TODO: update Signing.m?
-
 #import "Xips.h"
 #import "Item.h"
 #import "consts.h"
@@ -169,10 +167,6 @@ bail:
     
     //set directory flag
     [NSFileManager.defaultManager fileExistsAtPath:self.path isDirectory:&isDirectory];
-    
-    //TODO: API for this, ya?
-    //dmg?
-    //spctl -a -t open --context context:primary-signature -v <pathToDMG>
     
     //for bundles/disk images/packages, etc...
     // ...use NSWorkspace's 'typeOfFile' method as it produces better results

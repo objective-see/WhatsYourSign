@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 Objective-See. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface HashesWindowController : NSWindowController
 
