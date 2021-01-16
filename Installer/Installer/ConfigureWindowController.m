@@ -228,9 +228,6 @@
     // show 'Support Us' view
     else if(ACTION_NEXT_FLAG == action)
     {
-        //unset window title
-        self.window.title = @"";
-        
         //set content view size
         self.window.contentSize = self.supportView.frame.size;
         
@@ -259,9 +256,6 @@
             [self.window makeFirstResponder:self.supportButton];
             
         });
-        
-        //ok to re-enable 'x' button
-        [[self.window standardWindowButton:NSWindowCloseButton] setEnabled:YES];
         
         //bail
         goto bail;
