@@ -215,6 +215,9 @@ NSMutableDictionary* checkPackage(NSString* package)
     //validate
     if(YES != [pkTrust evaluateTrustReturningError:&error])
     {
+        //save error
+        info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:error.code];
+    
         //bail
         goto bail;
     }
@@ -241,5 +244,3 @@ bail:
     
     return info;
 }
-
-

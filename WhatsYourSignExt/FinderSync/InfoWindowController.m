@@ -63,7 +63,7 @@
     self.icon.image = [self.item getIcon];
     
     //set type
-    self.type.stringValue = self.item.type;
+    self.type.stringValue = self.item.type.capitalizedString;
     
     //show spinner
     [self.activityIndicator setHidden:NO];
@@ -216,7 +216,7 @@
             [csSummary appendFormat:@" is not signed"];
             
             //set details
-            csDetails = [NSMutableString stringWithString:@"unsigned ('errSecCSUnsigned')"];
+            csDetails = [NSMutableString stringWithString:@"Unsigned ('errSecCSUnsigned')"];
             
             break;
             
@@ -233,11 +233,11 @@
             csDetails = [NSMutableString string];
             
             //no signing auths
-            // ->usually (always?) adhoc
+            // usually (always?) adhoc
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
-                [csDetails appendString:@"signed, but no signing authorities (adhoc?)"];
+                [csDetails appendString:@"Unavailable, as certificate has been revoked"];
             }
             
             //add each signing auth
@@ -264,7 +264,7 @@
             [csSummary appendFormat:@" has a signing issue"];
             
             //set details
-            csDetails = [NSMutableString stringWithFormat:@"unknown (status/error: %ld)", (long)[self.item.signingInfo[KEY_SIGNATURE_STATUS] integerValue]];
+            csDetails = [NSMutableString stringWithFormat:@"Unknown (status/error: %ld)", (long)[self.item.signingInfo[KEY_SIGNATURE_STATUS] integerValue]];
             
             break;
     }
@@ -288,20 +288,20 @@
             (YES == isDirectory) )
         {
             //set
-            self.hashes.stringValue = @"none (item is a directory)";
+            self.hashes.stringValue = @"None (item is a directory)";
         }
         //generic error msg
         else
         {
             //set
-            self.hashes.stringValue = @"none";
+            self.hashes.stringValue = @"None";
         }
     }
     //create clickable 'show hashes' label
     else
     {
         //create/set attributes string
-        self.hashes.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"view hashes" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.hashes.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Hashes" attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.hashes addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showHashes:)]];
@@ -311,20 +311,20 @@
     if(0 == [self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS] count])
     {
         //set
-        self.entitlements.stringValue = @"none";
+        self.entitlements.stringValue = @"None";
     }
     //create clickable 'show entitlements' label
     else
     {
         //create/set attributes string
-        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Entitlements" attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:11], NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Entitlements" attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.entitlements addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showEntitlements:)]];
     }
     
-    //assign details to outlet
-    self.signingStatus.stringValue = (0 != csDetails.length) ? csDetails: @"none";
+    //set signing statue
+    self.signingStatus.stringValue = (0 != csDetails.length) ? csDetails: @"None";
 
     return;
 }
