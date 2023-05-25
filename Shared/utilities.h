@@ -41,7 +41,7 @@ NSMutableDictionary* execTask(NSString* binaryPath, NSArray* arguments);
 pid_t findProcess(NSString* processName);
 
 //hash a file
-// ->md5/sha1/sha256
+// md5/sha1/sha256
 NSDictionary* hashFile(NSString* filePath);
 
 //restart Finder.app

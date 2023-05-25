@@ -21,7 +21,7 @@
 
 //get app's version
 // ->extracted from Info.plist
-NSString* getAppVersion()
+NSString* getAppVersion(void)
 {
     //read and return 'CFBundleVersion' from bundle
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
@@ -664,7 +664,7 @@ bail:
 }
 
 //restart Finder.app
-void restartFinder()
+void restartFinder(void)
 {
     //relaunch Finder
     // ensures plugin gets loaded, etc
@@ -685,7 +685,7 @@ void restartFinder()
 
 //check if (full) dark mode
 // meaning, Mojave+ and dark mode enabled
-BOOL isDarkMode()
+BOOL isDarkMode(void)
 {
     //flag
     BOOL darkMode = NO;

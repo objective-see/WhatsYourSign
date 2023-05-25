@@ -261,7 +261,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     signingInfo[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
     
     //get cert chain
-    certificateChain = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoCertificates];
+    certificateChain = ((__bridge NSDictionary*)signingDetails)[(__bridge NSString*)kSecCodeInfoCertificates];
     
     //get name of all certs
     // add each cert to list
@@ -469,7 +469,7 @@ bail:
 
 //get GUID (really just computer's MAC address)
 // from Apple's 'Get the GUID in OS X' (see: 'Validating Receipts Locally')
-NSData* getGUID()
+NSData* getGUID(void)
 {
     //status var
     __block kern_return_t kernResult = -1;

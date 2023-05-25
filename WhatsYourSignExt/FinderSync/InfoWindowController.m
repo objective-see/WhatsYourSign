@@ -149,12 +149,20 @@
             }
             
             //disk images/packages
-            // don't have more info about who signed it
+            // don't have much info about who signed it
             if( (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"dmg"]) ||
                 (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"pkg"]) )
             {
+                
                 //set icon to default (signed)
                 csIcon = [NSImage imageNamed:@"signed"];
+                
+                //notarized?
+                if(YES == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] boolValue])
+                {
+                    //append to summary
+                    [csSummary appendFormat:@" & notarized"];
+                }
                 
                 //done
                 break;
@@ -252,6 +260,20 @@
             }
 
             break;
+            
+        //access denied
+        case kPOSIXErrorEACCES:
+            
+            //set image
+            csIcon = [NSImage imageNamed:@"unknown"];
+            
+            //append to summary
+            [csSummary appendFormat:@" could not be accessed"];
+            
+            //details
+            csDetails = [@"" mutableCopy];
+        
+            break;
  
         //everything else
         // other signing errors
@@ -294,7 +316,7 @@
         else
         {
             //set
-            self.hashes.stringValue = @"None";
+            self.hashes.stringValue = @"?";
         }
     }
     //create clickable 'show hashes' label
@@ -310,8 +332,17 @@
     //no entitlements?
     if(0 == [self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS] count])
     {
-        //set
-        self.entitlements.stringValue = @"None";
+        //couldn't access?
+        if(kPOSIXErrorEACCES == [self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+        {
+            self.entitlements.stringValue = @"?";
+        }
+        //none for real
+        else
+        {
+            //set
+            self.entitlements.stringValue = @"None";
+        }
     }
     //create clickable 'show entitlements' label
     else
@@ -323,8 +354,26 @@
         [self.entitlements addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showEntitlements:)]];
     }
     
-    //set signing statue
-    self.signingStatus.stringValue = (0 != csDetails.length) ? csDetails: @"None";
+    //have signing auths?
+    if(0 != csDetails.length)
+    {
+        //set
+        self.signingStatus.stringValue = csDetails;
+    }
+    //none
+    else
+    {
+        //set signing auths
+        if(kPOSIXErrorEACCES == [self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+        {
+            self.signingStatus.stringValue = @"?";
+        }
+        //none for real
+        else
+        {
+            self.signingStatus.stringValue = @"None";
+        }
+    }
 
     return;
 }

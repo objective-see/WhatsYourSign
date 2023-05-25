@@ -152,7 +152,7 @@
 #define KEY_ERROR_SHOULD_EXIT @"shouldExit"
 
 //general error URL
-#define FATAL_ERROR_URL @"https://objective-see.com/errors.html"
+#define FATAL_ERROR_URL @"https://objective-see.org/errors.html"
 
 //support us button tag
 #define BUTTON_SUPPORT_US 100

@@ -165,6 +165,16 @@ bail:
     //array of parsed results
     NSArray* parsedResults = nil;
     
+    //couldn't access?
+    if(YES != [NSFileManager.defaultManager isReadableFileAtPath:self.path])
+    {
+        //blank
+        localizedType = @"?";
+        
+        //bail
+        goto bail;
+    }
+    
     //set directory flag
     [NSFileManager.defaultManager fileExistsAtPath:self.path isDirectory:&isDirectory];
     

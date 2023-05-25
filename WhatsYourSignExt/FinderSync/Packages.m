@@ -9,9 +9,9 @@
 #import "consts.h"
 #import "Packages.h"
 #import "utilities.h"
-#import "packageKit.h"
 
 #import <os/log.h>
+#import <CommonCrypto/CommonDigest.h>
 
 //check signing info for .pkg
 NSMutableDictionary* checkPackage(NSString* package)
@@ -225,6 +225,9 @@ NSMutableDictionary* checkPackage(NSString* package)
     //happily signed
     info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:noErr];
     
+    //notarized too?
+    info[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithBool:isNotarized(signature)];
+    
     //init auths
     info[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
     
@@ -243,4 +246,67 @@ NSMutableDictionary* checkPackage(NSString* package)
 bail:
     
     return info;
+}
+
+//check if pkg is notarized
+BOOL isNotarized(PKArchiveSignature* signature)
+{
+    //flag
+    BOOL isItemNotarized = NO;
+
+    //date
+    double notarizationDate = 0;
+
+    //hash
+    NSData* hash = nil;
+    
+    //algo type
+    SecCSDigestAlgorithm hashType = 0;
+    
+    //get hash
+    hash = [signature signedDataReturningAlgorithm:0x0];
+    if(0 == hash.length)
+    {
+        //bail
+        goto bail;
+    }
+        
+    //SHA1 hash
+    if(CC_SHA1_DIGEST_LENGTH == hash.length)
+    {
+        //SHA1
+        hashType = kSecCodeSignatureHashSHA1;
+    }
+    //SHA256 hash
+    else if(CC_SHA256_DIGEST_LENGTH == hash.length)
+    {
+        //SHA256
+        hashType = kSecCodeSignatureHashSHA256;
+    }
+    
+    //sanity check
+    if(0 == hashType)
+    {
+        //bail
+        goto bail;
+    }
+    
+    //1st notarization check
+    // via kSecAssessmentTicketFlagDefault
+    if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagDefault, &notarizationDate, NULL))
+    {
+        //set
+        isItemNotarized = YES;
+    }
+    //2nd notarization check
+    // via kSecAssessmentTicketFlagForceOnlineCheck
+    else if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, &notarizationDate, NULL))
+    {
+        //set
+        isItemNotarized = YES;
+    }
+    
+bail:
+
+    return isItemNotarized;
 }

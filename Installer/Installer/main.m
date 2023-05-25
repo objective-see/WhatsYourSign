@@ -60,7 +60,7 @@ bail:
 
 //check if app should be run with permissions
 // ->basically if user is not an admin, or was installed via admin
-BOOL shouldPrompt4Perms()
+BOOL shouldPrompt4Perms(void)
 {
     //flag
     BOOL shouldPrompt = YES;
@@ -110,7 +110,7 @@ bail:
 
 //checks if user has admin privs
 // ->based off http://stackoverflow.com/questions/30000443/asking-for-admin-privileges-for-only-standard-accounts
-BOOL hasAdminPrivileges()
+BOOL hasAdminPrivileges(void)
 {
     //flag
     BOOL isAdmin = NO;
