@@ -13,6 +13,17 @@
 @import AppKit;
 @import Foundation;
 
+//type def for 'SecAssessmentTicketFlags'
+typedef uint64_t SecAssessmentTicketFlags;
+enum {
+    kSecAssessmentTicketFlagDefault = 0,
+    kSecAssessmentTicketFlagForceOnlineCheck = 1 << 0,
+    kSecAssessmentTicketFlagLegacyListCheck = 1 << 1,
+};
+
+//function def for 'SecAssessmentTicketLookup'
+Boolean SecAssessmentTicketLookup(CFDataRef hash, SecCSDigestAlgorithm hashType, SecAssessmentTicketFlags flags, double *date, CFErrorRef *errors);
+
 /* FUNCTIONS */
 
 //check if file is (likely) fat binary

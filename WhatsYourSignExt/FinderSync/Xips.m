@@ -137,11 +137,11 @@ NSMutableDictionary* checkXIP(NSString* archive)
     }
     
     //error
-    // ->not signed, or something else, just bail
+    // not signed, or something else, just bail
     else
     {
         //signed
-        signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSInternalError];
+        signingStatus[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecCSInternalError];
         
         //bail
         goto bail;

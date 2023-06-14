@@ -7,6 +7,7 @@
 //
 
 #import "consts.h"
+#import "Signing.h"
 #import "Packages.h"
 #import "utilities.h"
 
@@ -57,7 +58,7 @@ NSMutableDictionary* checkPackage(NSString* package)
     
     //default
     // covers error cases
-    info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSInternalError];
+    info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecCSInternalError];
     
     //load packagekit framework
     if(YES != [packageKit = [NSBundle bundleWithPath:PACKAGE_KIT] load])
@@ -123,7 +124,7 @@ NSMutableDictionary* checkPackage(NSString* package)
         os_log(OS_LOG_DEFAULT, "WYS: package has no signatures (unsigned)");
         
         //unsigned!
-        info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSUnsigned];
+        info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecCSUnsigned];
         
         //bail
         goto bail;
@@ -223,10 +224,10 @@ NSMutableDictionary* checkPackage(NSString* package)
     }
     
     //happily signed
-    info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:noErr];
+    info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecSuccess];
     
     //notarized too?
-    info[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithBool:isNotarized(signature)];
+    info[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:isNotarized(signature)];
     
     //init auths
     info[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
@@ -249,13 +250,13 @@ bail:
 }
 
 //check if pkg is notarized
-BOOL isNotarized(PKArchiveSignature* signature)
+OSStatus isNotarized(PKArchiveSignature* signature)
 {
     //flag
-    BOOL isItemNotarized = NO;
+    OSStatus isItemNotarized = errSecCSUnsigned;
 
-    //date
-    double notarizationDate = 0;
+    //error
+    CFErrorRef error = nil;
 
     //hash
     NSData* hash = nil;
@@ -291,19 +292,23 @@ BOOL isNotarized(PKArchiveSignature* signature)
         goto bail;
     }
     
-    //1st notarization check
-    // via kSecAssessmentTicketFlagDefault
-    if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagDefault, &notarizationDate, NULL))
+    //notarization check
+    // do online, as we want to also detect revocations
+    if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
     {
         //set
-        isItemNotarized = YES;
+        isItemNotarized = errSecSuccess;
     }
-    //2nd notarization check
-    // via kSecAssessmentTicketFlagForceOnlineCheck
-    else if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, &notarizationDate, NULL))
+    //error
+    // but maybe cuz revoked?
+    else
     {
-        //set
-        isItemNotarized = YES;
+        //means revoked
+        if(EACCES == CFErrorGetCode(error))
+        {
+            //set
+            isItemNotarized = errSecCSRevokedNotarization;
+        }
     }
     
 bail:

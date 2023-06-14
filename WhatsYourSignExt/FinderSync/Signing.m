@@ -183,7 +183,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     if(nil == path)
     {
         //set err
-        signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:errSecCSObjectRequired];
+        signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecCSObjectRequired];
         
         //bail
         goto bail;
@@ -197,8 +197,8 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     status = SecStaticCodeCreateWithPathAndAttributes((__bridge CFURLRef)([NSURL fileURLWithPath:path]), kSecCSDefaultFlags, (__bridge CFDictionaryRef)@{(__bridge NSString *)kSecCodeAttributeUniversalFileOffset : [NSNumber numberWithUnsignedInt:offset]}, &staticCode);
     
     //save signature status
-    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
-    if(noErr != status)
+    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:status];
+    if(errSecSuccess != status)
     {
         //bail
         goto bail;
@@ -208,15 +208,15 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     status = SecStaticCodeCheckValidity(staticCode, flags, NULL);
     
     //(re)save signature status
-    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInt:status];
+    signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:status];
     
     //if file is signed
     // grab entitlements, signing authorities, notarization status?
-    if(noErr == status)
+    if(errSecSuccess == status)
     {
         //grab signing authorities
         status = SecCodeCopySigningInformation(staticCode, kSecCSSigningInformation, &signingDetails);
-        if(noErr != status)
+        if(errSecSuccess != status)
         {
             //bail
             goto bail;
@@ -274,7 +274,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         status = SecCertificateCopyCommonName(certificate, &commonName);
         
         //add (valid ones)
-        if( (noErr == status) &&
+        if( (errSecSuccess == status) &&
             (NULL != commonName) )
         {
             //save
@@ -291,10 +291,69 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
             commonName = NULL;
         }
     }
-    
-    //set notarization status
-    // note: SecStaticCodeCheckValidity returns 0 on success, hence the `!`
-    signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInt:!SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized)];
+    //check notarization status
+    if(YES == SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized))
+    {
+        //notarized
+        signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:errSecSuccess];
+    }
+    //failed
+    // but maybe cuz it's revoked?
+    else
+    {
+        //check hashes
+        for(NSData* hash in [((__bridge NSDictionary*)signingDetails)[@"cdhashes-full"] allObjects])
+        {
+            //error
+            CFErrorRef error = nil;
+            
+            //truncated hash
+            // this is what Apple uses
+            NSData* truncatedHash = nil;
+            
+            //hash type
+            SecCSDigestAlgorithm hashType = 0;
+            
+            //sanity check
+            if(YES != [hash isKindOfClass:[NSData class]])
+            {
+                //skip
+                continue;
+            }
+            
+            //SHA1?
+            if(CC_SHA1_DIGEST_LENGTH == hash.length)
+            {
+                //SHA1
+                hashType = kSecCodeSignatureHashSHA1;
+                
+                //use as is
+                truncatedHash = hash;
+            }
+            //SHA256 hash
+            else if(CC_SHA256_DIGEST_LENGTH == hash.length)
+            {
+                //SHA256
+                hashType = kSecCodeSignatureHashSHA256;
+                
+                //truncate, first 20 bytes
+                // this the piece the notarization ticket checks for
+                truncatedHash = [hash subdataWithRange:NSMakeRange(0, CC_SHA1_DIGEST_LENGTH)];
+            }
+            
+            //notarization check
+            // do online, as we want to also detect revocations
+            if(YES != SecAssessmentTicketLookup((__bridge CFDataRef)(truncatedHash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
+            {
+                //means revoked
+                if(EACCES == CFErrorGetCode(error))
+                {
+                    //set
+                    signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:errSecCSRevokedNotarization];
+                }
+            }
+        }
+    }
     
 bail:
     
@@ -338,7 +397,7 @@ BOOL isApple(NSString* path, SecCSFlags flags)
     
     //create static code
     status = SecStaticCodeCreateWithPath((__bridge CFURLRef)([NSURL fileURLWithPath:path]), kSecCSDefaultFlags, &staticCode);
-    if(noErr != status)
+    if(errSecSuccess != status)
     {
         //bail
         goto bail;
@@ -347,7 +406,7 @@ BOOL isApple(NSString* path, SecCSFlags flags)
     //create req string w/ 'anchor apple'
     // (3rd party: 'anchor apple generic')
     status = SecRequirementCreateWithString(CFSTR("anchor apple"), kSecCSDefaultFlags, &requirementRef);
-    if( (noErr != status) ||
+    if( (errSecSuccess != status) ||
         (requirementRef == NULL) )
     {
         //bail
@@ -357,7 +416,7 @@ BOOL isApple(NSString* path, SecCSFlags flags)
     //check if file is signed by apple by checking if it conforms to req string
     // note: ignore 'errSecCSBadResource' as lots of signed apple files return this issue :/
     status = SecStaticCodeCheckValidity(staticCode, flags, requirementRef);
-    if( (noErr != status) &&
+    if( (errSecSuccess != status) &&
         (errSecCSBadResource != status) )
     {
         //bail
@@ -590,7 +649,7 @@ BOOL isSignedDevID(NSString* path, SecCSFlags flags)
     
     //create static code
     status = SecStaticCodeCreateWithPath((__bridge CFURLRef)([NSURL fileURLWithPath:path]), kSecCSDefaultFlags, &staticCode);
-    if(noErr != status)
+    if(errSecSuccess != status)
     {
         //bail
         goto bail;
@@ -598,7 +657,7 @@ BOOL isSignedDevID(NSString* path, SecCSFlags flags)
     
     //create req string w/ 'anchor apple generic'
     status = SecRequirementCreateWithString(CFSTR("anchor apple generic"), kSecCSDefaultFlags, &requirementRef);
-    if( (noErr != status) ||
+    if( (errSecSuccess != status) ||
         (requirementRef == NULL) )
     {
         //bail
@@ -607,7 +666,7 @@ BOOL isSignedDevID(NSString* path, SecCSFlags flags)
     
     //check if file is signed w/ apple dev id by checking if it conforms to req string
     status = SecStaticCodeCheckValidity(staticCode, flags, requirementRef);
-    if(noErr != status)
+    if(errSecSuccess != status)
     {
         //bail
         // just means app isn't signed by apple dev id

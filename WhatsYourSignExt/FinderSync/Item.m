@@ -116,7 +116,7 @@ bail:
     }
     
     //already, any code-signing errors?
-    if(noErr != [self.signingInfo[KEY_SIGNATURE_STATUS] intValue])
+    if(errSecSuccess != [self.signingInfo[KEY_SIGNATURE_STATUS] intValue])
     {
         //bail
         goto bail;
@@ -416,7 +416,7 @@ bail:
     
     //error?
     // use binary's signing info
-    if(noErr != [binarySigningInfo[KEY_SIGNATURE_STATUS] intValue])
+    if(errSecSuccess != [binarySigningInfo[KEY_SIGNATURE_STATUS] intValue])
     {
         //dbg msg
         //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"%@ has a signing error (%@)", binaryPath, binarySigningInfo[KEY_SIGNATURE_STATUS]]);

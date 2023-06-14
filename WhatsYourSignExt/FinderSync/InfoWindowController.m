@@ -121,7 +121,7 @@
     switch([self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
     {
         //happily signed
-        case noErr:
+        case errSecSuccess:
             
             //init string for details
             csDetails = [NSMutableString string];
@@ -153,15 +153,20 @@
             if( (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"dmg"]) ||
                 (NSOrderedSame == [self.item.path.pathExtension caseInsensitiveCompare:@"pkg"]) )
             {
-                
                 //set icon to default (signed)
                 csIcon = [NSImage imageNamed:@"signed"];
                 
-                //notarized?
-                if(YES == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] boolValue])
+                //notarized ok
+                if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                 {
                     //append to summary
                     [csSummary appendFormat:@" & notarized"];
+                }
+                //notarization revoked
+                else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                {
+                    //append to summary
+                    [csSummary appendFormat:@", but notarization has been revoked!"];
                 }
                 
                 //done
@@ -190,16 +195,26 @@
                     self.summaryDetails.stringValue = @"(Signer: Mac App Store)";
                 }
                 //developer id?
-                // ->but not from app store
+                // but not from app store
                 else if(YES == [self.item.signingInfo[KEY_SIGNING_IS_APPLE_DEV_ID] boolValue])
                 {
-                    //notarized?
-                    if(YES == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] boolValue])
+                    //is/was notarized?
+                    if(nil != self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED])
                     {
-                        //append to summary
-                        [csSummary appendFormat:@" & notarized"];
+                        //notarized ok
+                        if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                        {
+                            //append to summary
+                            [csSummary appendFormat:@" & notarized"];
+                        }
+                        //notarization revoked
+                        else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                        {
+                            //append to summary
+                            [csSummary appendFormat:@", but notarization has been revoked!"];
+                        }
                     }
-                    
+        
                     //set summary details
                     self.summaryDetails.stringValue = @"(Signer: Apple Dev-ID)";
                 }
