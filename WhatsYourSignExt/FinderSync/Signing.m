@@ -337,15 +337,23 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
                 hashType = kSecCodeSignatureHashSHA256;
                 
                 //truncate, first 20 bytes
-                // this the piece the notarization ticket checks for
+                // this is what the notarization checks requires
                 truncatedHash = [hash subdataWithRange:NSMakeRange(0, CC_SHA1_DIGEST_LENGTH)];
             }
+            //unknown
+            // just ignore for now
+            else
+            {
+                //skip
+                continue;
+            }
+            
             
             //notarization check
-            // do online, as we want to also detect revocations
+            // do online ('kSecAssessmentTicketFlagForceOnlineCheck') to detect revocations
             if(YES != SecAssessmentTicketLookup((__bridge CFDataRef)(truncatedHash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
             {
-                //means revoked
+                //EACCES: means revoked
                 if(EACCES == CFErrorGetCode(error))
                 {
                     //set

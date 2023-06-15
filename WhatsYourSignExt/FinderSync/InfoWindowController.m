@@ -166,7 +166,7 @@
                 else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                 {
                     //append to summary
-                    [csSummary appendFormat:@", but notarization has been revoked!"];
+                    [csSummary appendFormat:@", but notarization revoked!"];
                 }
                 
                 //done
@@ -211,7 +211,7 @@
                         else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                         {
                             //append to summary
-                            [csSummary appendFormat:@", but notarization has been revoked!"];
+                            [csSummary appendFormat:@", but notarization revoked!"];
                         }
                     }
         
@@ -250,7 +250,7 @@
             csIcon = [NSImage imageNamed:@"unsigned"];
             
             //append to summary
-            [csSummary appendFormat:@" signed, but certificate has been revoked!"];
+            [csSummary appendFormat:@" signed, but certificate revoked!"];
             
             //init string for details
             csDetails = [NSMutableString string];

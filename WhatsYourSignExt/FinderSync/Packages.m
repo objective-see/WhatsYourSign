@@ -232,8 +232,7 @@ NSMutableDictionary* checkPackage(NSString* package)
     //init auths
     info[KEY_SIGNING_AUTHORITIES] = [NSMutableArray array];
     
-    //ok happily validated
-    // extract signature name(s)
+    //extract signature name(s)
     for(id certificate in signature.certificateRefs)
     {
         //extract name

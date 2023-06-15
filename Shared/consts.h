@@ -93,9 +93,6 @@
 //path to spctl
 #define SPCTL @"/usr/sbin/spctl"
 
-//path to codesign
-#define CODE_SIGN @"/usr/bin/codesign"
-
 //path to xattr
 #define XATTR @"/usr/bin/xattr"
 
