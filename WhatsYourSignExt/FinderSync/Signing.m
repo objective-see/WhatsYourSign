@@ -292,7 +292,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         }
     }
     //check notarization status
-    if(YES == SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized))
+    if(errSecSuccess == SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, isNotarized))
     {
         //notarized
         signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:errSecSuccess];

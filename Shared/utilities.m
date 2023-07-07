@@ -675,7 +675,7 @@ void restartFinder(void)
     
     //tell Finder to activate
     // otherwise it's fully background'd when app exits for some reason!?
-    //system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
+    system("osascript -e \"tell application \\\"Finder\\\" to activate\"");
     
     //dbg msg
     //logMsg(LOG_DEBUG, @"relaunched Finder.app");
