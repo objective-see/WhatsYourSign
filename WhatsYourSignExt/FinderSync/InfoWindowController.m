@@ -389,6 +389,36 @@
             self.signingStatus.stringValue = @"None";
         }
     }
+    
+    //runtime
+    NSNumber* signFlags = self.item.signingInfo[KEY_SIGNING_FLAGS];
+    BOOL hardened = (signFlags != nil) &&
+		((signFlags.integerValue & kSecCodeSignatureRuntime) != 0);
+	NSDictionary* entitlements = self.item.signingInfo[KEY_SIGNING_ENTITLEMENTS];
+	BOOL sandboxed = (entitlements != nil) &&
+		[entitlements[@"com.apple.security.app-sandbox"] boolValue];
+	if (sandboxed)
+	{
+		if (hardened)
+		{
+			self.runtime.stringValue = @"Sandboxed, Hardened";
+		}
+		else
+		{
+			self.runtime.stringValue = @"Sandboxed";
+		}
+	}
+	else
+	{
+		if (hardened)
+		{
+			self.runtime.stringValue = @"Hardened";
+		}
+		else
+		{
+			self.runtime.stringValue = @"None";
+		}
+	}
 
     return;
 }
