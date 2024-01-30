@@ -156,17 +156,21 @@
                 //set icon to default (signed)
                 csIcon = [NSImage imageNamed:@"signed"];
                 
-                //notarized ok
-                if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                //is/was notarized?
+                if(nil != self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED])
                 {
-                    //append to summary
-                    [csSummary appendFormat:@" & notarized"];
-                }
-                //notarization revoked
-                else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
-                {
-                    //append to summary
-                    [csSummary appendFormat:@", but notarization revoked!"];
+                    //notarized ok
+                    if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                    {
+                        //append to summary
+                        [csSummary appendFormat:@" & notarized"];
+                    }
+                    //notarization revoked
+                    else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                    {
+                        //append to summary
+                        [csSummary appendFormat:@", but notarization revoked!"];
+                    }
                 }
                 
                 //done
