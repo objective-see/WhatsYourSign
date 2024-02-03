@@ -81,6 +81,9 @@
 //is notarized?
 #define KEY_SIGNING_IS_NOTARIZED @"notarized"
 
+//flags
+#define KEY_SIGNING_FLAGS @"flags"
+
 //path to file binary
 #define FILE @"/usr/bin/file"
 

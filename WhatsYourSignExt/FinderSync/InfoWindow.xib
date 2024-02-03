@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,7 @@
                 <outlet property="icon" destination="vF4-bf-unv" id="1XP-Mg-qD2"/>
                 <outlet property="name" destination="4eH-pP-5MZ" id="acq-Zf-9RZ"/>
                 <outlet property="path" destination="0P3-FI-m6a" id="eT2-cZ-eAT"/>
+                <outlet property="runtime" destination="sNL-3q-70a" id="pwa-cJ-AIi"/>
                 <outlet property="signingIcon" destination="g4g-UB-MZA" id="QKg-Ri-LUT"/>
                 <outlet property="signingStatus" destination="qL0-wG-M4v" id="KoA-7t-CCN"/>
                 <outlet property="summary" destination="vK1-2V-W7T" id="AiR-oe-1QP"/>
@@ -27,22 +28,22 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" texturedBackground="YES"/>
-            <rect key="contentRect" x="196" y="240" width="692" height="353"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
-            <value key="minSize" type="size" width="692" height="353"/>
-            <value key="maxSize" type="size" width="1000" height="353"/>
+            <rect key="contentRect" x="196" y="240" width="692" height="372"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+            <value key="minSize" type="size" width="692" height="372"/>
+            <value key="maxSize" type="size" width="1000" height="372"/>
             <view key="contentView" verticalHuggingPriority="750" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="692" height="353"/>
+                <rect key="frame" x="0.0" y="0.0" width="692" height="372"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <userGuides>
                     <userLayoutGuide location="93" affinity="minX"/>
                 </userGuides>
                 <subviews>
                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="900-VP-ZHi">
-                        <rect key="frame" x="20" y="246" width="652" height="5"/>
+                        <rect key="frame" x="20" y="265" width="652" height="5"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="0P3-FI-m6a">
-                        <rect key="frame" x="91" y="188" width="583" height="13"/>
+                        <rect key="frame" x="91" y="207" width="583" height="13"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Item Path" usesSingleLineMode="YES" id="hum-eq-Yxi">
                             <font key="font" metaFont="fixedUser" size="11"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -50,7 +51,7 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vF4-bf-unv">
-                        <rect key="frame" x="28" y="180" width="48" height="48"/>
+                        <rect key="frame" x="28" y="199" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="Lys-Jc-aW1"/>
                             <constraint firstAttribute="height" constant="48" id="PZQ-gu-x7Q"/>
@@ -58,7 +59,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="xgu-za-SUw"/>
                     </imageView>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-UB-MZA">
-                        <rect key="frame" x="20" y="269" width="64" height="64"/>
+                        <rect key="frame" x="20" y="288" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="Y4w-2D-FOS"/>
                             <constraint firstAttribute="height" constant="64" id="wb5-yE-tv6"/>
@@ -66,7 +67,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="unknown" id="gYX-aR-3r6"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="579" translatesAutoresizingMaskIntoConstraints="NO" id="4eH-pP-5MZ">
-                        <rect key="frame" x="91" y="207" width="583" height="24"/>
+                        <rect key="frame" x="91" y="226" width="583" height="24"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Item name" id="Nq1-or-9xy">
                             <font key="font" size="20" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +75,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="485" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-wG-M4v">
-                        <rect key="frame" x="91" y="62" width="583" height="54"/>
+                        <rect key="frame" x="91" y="61" width="583" height="54"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining..." id="DvU-6L-vdr">
                             <font key="font" metaFont="fixedUser" size="11"/>
@@ -83,7 +84,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="550" translatesAutoresizingMaskIntoConstraints="NO" id="haA-3P-bt8">
-                        <rect key="frame" x="91" y="153" width="554" height="18"/>
+                        <rect key="frame" x="91" y="173" width="554" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining..." usesSingleLineMode="YES" id="VPL-kH-iPX">
                             <font key="font" metaFont="fixedUser" size="11"/>
@@ -92,7 +93,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-Zc-teg">
-                        <rect key="frame" x="15" y="154" width="71" height="18"/>
+                        <rect key="frame" x="15" y="173" width="71" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Item Type:" id="E6C-qM-nrz">
                             <font key="font" size="11" name="Menlo-Bold"/>
@@ -101,7 +102,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="550" translatesAutoresizingMaskIntoConstraints="NO" id="6Vp-Ef-4Fb" customClass="ClickableTextField">
-                        <rect key="frame" x="91" y="135" width="554" height="18"/>
+                        <rect key="frame" x="91" y="154" width="554" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining..." usesSingleLineMode="YES" id="9P7-Rd-qZX">
                             <font key="font" metaFont="fixedUser" size="11"/>
@@ -110,7 +111,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgk-YN-shC">
-                        <rect key="frame" x="15" y="135" width="71" height="18"/>
+                        <rect key="frame" x="15" y="154" width="71" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hashes:" id="1fX-KD-o40">
                             <font key="font" size="11" name="Menlo-Bold"/>
@@ -119,7 +120,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Czu-0e-8Gq">
-                        <rect key="frame" x="9" y="98" width="77" height="18"/>
+                        <rect key="frame" x="9" y="97" width="77" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sign Auths:" id="6Wb-UH-XWG">
                             <font key="font" size="11" name="Menlo-Bold"/>
@@ -128,7 +129,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26D-C2-Ebp">
-                        <rect key="frame" x="91" y="258" width="583" height="28"/>
+                        <rect key="frame" x="91" y="277" width="583" height="28"/>
                         <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" id="HZs-Ex-mLD">
                             <font key="font" size="12" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -150,7 +151,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="550" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-YQ-0Xi" customClass="ClickableTextField">
-                        <rect key="frame" x="91" y="115" width="554" height="18"/>
+                        <rect key="frame" x="91" y="135" width="554" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining..." usesSingleLineMode="YES" id="ZLx-0X-cqC">
                             <font key="font" metaFont="fixedUser" size="11"/>
@@ -158,8 +159,17 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="550" translatesAutoresizingMaskIntoConstraints="NO" id="sNL-3q-70a" customClass="ClickableTextField">
+                        <rect key="frame" x="91" y="116" width="554" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="determining..." usesSingleLineMode="YES" id="GHV-wa-6Ea">
+                            <font key="font" metaFont="fixedUser" size="11"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q3R-Qz-AGW">
-                        <rect key="frame" x="-5" y="116" width="91" height="18"/>
+                        <rect key="frame" x="-5" y="135" width="91" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Entitled:" id="vIZ-Ud-shu">
                             <font key="font" size="11" name="Menlo-Bold"/>
@@ -167,8 +177,17 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rx-wV-1Gk">
+                        <rect key="frame" x="-5" y="116" width="91" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Runtime:" id="NGJ-Xw-Hm1">
+                            <font key="font" size="11" name="Menlo-Bold"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-2V-W7T">
-                        <rect key="frame" x="91" y="285" width="583" height="31"/>
+                        <rect key="frame" x="91" y="304" width="583" height="31"/>
                         <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Determining signing status..." id="BJc-I7-Awh">
                             <font key="font" size="20" name="Menlo-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
