@@ -230,6 +230,13 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
                 signingInfo[KEY_SIGNING_ENTITLEMENTS] = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoEntitlementsDict];
         }
         
+        //add flags
+		NSNumber* sigFlags = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoFlags];
+		if (sigFlags != nil)
+		{
+			signingInfo[KEY_SIGNING_FLAGS] = sigFlags;
+		}
+        
         //determine if binary is signed by Apple
         signingInfo[KEY_SIGNING_IS_APPLE] = [NSNumber numberWithBool:isApple(path, flags)];
         

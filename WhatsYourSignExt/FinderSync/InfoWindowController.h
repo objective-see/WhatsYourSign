@@ -51,6 +51,9 @@
 //entitlements
 @property (weak) IBOutlet ClickableTextField *entitlements;
 
+//runtime
+@property (weak) IBOutlet NSTextField *runtime;
+
 //signing status
 @property (weak) IBOutlet NSTextField *signingStatus;
 
