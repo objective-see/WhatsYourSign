@@ -130,9 +130,6 @@ bail:
         //center window
         [[infoWindowController window] center];
         
-        //make front/visible
-        [[infoWindowController window] setLevel:NSPopUpMenuWindowLevel];
-        
         //show it
         [infoWindowController showWindow:self];
         

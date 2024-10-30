@@ -95,9 +95,15 @@
     //make it key window
     [self.window makeKeyAndOrderFront:self];
     
-    //make window front
-    [NSApp activateIgnoringOtherApps:YES];
-    
+    //activate
+    if(@available(macOS 14.0, *)) {
+        [NSApp activate];
+    }
+    else
+    {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
+        
     //not in dark mode?
     // make window white
     if(YES != isDarkMode())
@@ -117,11 +123,6 @@
     
     //uninstall flag
     __block BOOL uninstalled = NO;
-    
-    //dbg msg
-    //#ifdef DEBUG
-    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"handling action click: %@", ((NSButton*)sender).title]);
-    //#endif
     
     //grab tag
     action = ((NSButton*)sender).tag;
@@ -215,6 +216,14 @@
                 //update button title
                 self.installButton.title = ACTION_NEXT;
                 
+                if(@available(macOS 14.0, *)) {
+                    [NSApp activate];
+                }
+                else
+                {
+                    [NSApp activateIgnoringOtherApps:YES];
+                }
+                
                 //and make it first responder
                 [self.window makeFirstResponder:self.installButton];
             }
@@ -262,7 +271,7 @@
     }
     
     //'yes'?'
-    // load supprt in URL
+    // load support in URL
     else if(ACTION_SUPPORT_FLAG == action)
     {
         //open URL
@@ -497,7 +506,7 @@ bail:
     self.statusMsg.stringValue = resultMsg;
     
     //update button
-    // no errors, change button to 'Restart'
+    // no errors, change button to 'Restart Finder'
     if(YES == success)
     {
         //update button title
@@ -511,6 +520,10 @@ bail:
         
         //and make it first responder
         [self.window makeFirstResponder:self.installButton];
+        
+        //make us 'modal'
+        // ensures we have focus after Finder restart
+        [self.window setLevel:NSPopUpMenuWindowLevel];
     }
     //update button
     // on error, change button to 'Close'
@@ -532,8 +545,14 @@ bail:
     //(re)make window window key
     [self.window makeKeyAndOrderFront:self];
     
-    //(re)make window front
-    [NSApp activateIgnoringOtherApps:YES];
+    //activate
+    if(@available(macOS 14.0, *)) {
+        [NSApp activate];
+    }
+    else
+    {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
     
     return;
 }

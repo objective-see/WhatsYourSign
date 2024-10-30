@@ -36,7 +36,6 @@
 }
 
 //automatically invoked when window is loaded
-// ->set to white
 -(void)windowDidLoad
 {
     //super
@@ -70,20 +69,29 @@
     
     //start spinner
     [self.activityIndicator startAnimation:nil];
+
+    //activate
+    if(@available(macOS 14.0, *)) {
+        [NSApp activate];
+    }
+    else
+    {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
+    
+    //make modal-ish
+    [self.window setLevel:NSPopUpMenuWindowLevel];
     
     //make it key window
     [self.window makeKeyAndOrderFront:self];
     
-    //make window front
-    [NSApp activateIgnoringOtherApps:YES];
-    
     //make 'close' first responder
     // calling this without a timeout sometimes fails :/
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         
         //and make it first responder
         [self.window makeFirstResponder:self.closeButton];
-        
+    
     });
     
     return;

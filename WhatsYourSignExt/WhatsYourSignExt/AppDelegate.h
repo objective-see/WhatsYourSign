@@ -13,7 +13,7 @@
 /* PROPERTIES */
 
 //close button
-@property (weak) IBOutlet NSButton *closeButton;
+@property (weak) IBOutlet NSButton* closeButton;
 
 /* METHODS */
 

@@ -80,8 +80,14 @@
     //make it key window
     [self.window makeKeyAndOrderFront:self];
     
-    //make window front
-    [NSApp activateIgnoringOtherApps:YES];
+    //activate
+    if(@available(macOS 14.0, *)) {
+        [NSApp activate];
+    }
+    else
+    {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
     
     //make 'close' have focus
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
