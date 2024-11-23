@@ -3,26 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7D1EAB201D2E12310052ACE2 /* ConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB1C1D2E12310052ACE2 /* ConfigureWindowController.m */; };
 		7D1EAB211D2E12310052ACE2 /* Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB1D1D2E12310052ACE2 /* Configure.m */; };
-		7D1EAB281D2E12D30052ACE2 /* ConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB231D2E12D30052ACE2 /* ConfigureWindowController.xib */; };
 		7D1EAB291D2E12D30052ACE2 /* ErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB241D2E12D30052ACE2 /* ErrorWindowController.m */; };
-		7D1EAB2A1D2E12D30052ACE2 /* ErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB251D2E12D30052ACE2 /* ErrorWindowController.xib */; };
 		7D1EAB381D2E148B0052ACE2 /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB371D2E148B0052ACE2 /* utilities.m */; };
 		7D24C86A1D2CDEA7009932EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C8691D2CDEA7009932EE /* AppDelegate.m */; };
 		7D24C86D1D2CDEA7009932EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C86C1D2CDEA7009932EE /* main.m */; };
 		7D24C86F1D2CDEA7009932EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D24C86E1D2CDEA7009932EE /* Assets.xcassets */; };
-		7D24C8721D2CDEA7009932EE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D24C8701D2CDEA7009932EE /* MainMenu.xib */; };
 		7D3AD3931FEA262E00AEEE31 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3AD3911FEA262E00AEEE31 /* AboutWindowController.m */; };
-		7D3AD3941FEA262E00AEEE31 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3AD3921FEA262E00AEEE31 /* AboutWindow.xib */; };
 		7D3AD3971FEA28BC00AEEE31 /* patrons.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D3AD3961FEA28BC00AEEE31 /* patrons.txt */; };
 		7D4B34CA1D9885820069E4DE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C81D9885820069E4DE /* icon.png */; };
 		7D4B34CB1D9885820069E4DE /* whatsYourSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C91D9885820069E4DE /* whatsYourSign.png */; };
 		7D5CACC21FE9EEC1002A367A /* objectiveSee.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CACC11FE9EE0B002A367A /* objectiveSee.png */; };
+		CDE70BE52CF285AA00251553 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BE42CF285AA00251553 /* AboutWindow.xib */; };
+		CDE70BE92CF285B400251553 /* ConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BE82CF285B400251553 /* ConfigureWindowController.xib */; };
+		CDE70BED2CF285B900251553 /* ErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BEC2CF285B900251553 /* ErrorWindowController.xib */; };
+		CDE70BF12CF285E800251553 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BF02CF285E800251553 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +30,7 @@
 		7D1EAB1D1D2E12310052ACE2 /* Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configure.m; sourceTree = "<group>"; };
 		7D1EAB1E1D2E12310052ACE2 /* Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configure.h; sourceTree = "<group>"; };
 		7D1EAB1F1D2E12310052ACE2 /* ConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureWindowController.h; sourceTree = "<group>"; };
-		7D1EAB231D2E12D30052ACE2 /* ConfigureWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindowController.xib; sourceTree = "<group>"; };
 		7D1EAB241D2E12D30052ACE2 /* ErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorWindowController.m; sourceTree = "<group>"; };
-		7D1EAB251D2E12D30052ACE2 /* ErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorWindowController.xib; sourceTree = "<group>"; };
 		7D1EAB261D2E12D30052ACE2 /* ErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorWindowController.h; sourceTree = "<group>"; };
 		7D1EAB321D2E14160052ACE2 /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../../Shared/consts.h; sourceTree = "<group>"; };
 		7D1EAB361D2E148B0052ACE2 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilities.h; path = ../../Shared/utilities.h; sourceTree = "<group>"; };
@@ -42,17 +40,23 @@
 		7D24C8691D2CDEA7009932EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7D24C86C1D2CDEA7009932EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7D24C86E1D2CDEA7009932EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7D24C8711D2CDEA7009932EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7D24C8731D2CDEA7009932EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D3AD3901FEA262E00AEEE31 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		7D3AD3911FEA262E00AEEE31 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
-		7D3AD3921FEA262E00AEEE31 /* AboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindow.xib; sourceTree = "<group>"; };
 		7D3AD3961FEA28BC00AEEE31 /* patrons.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = patrons.txt; sourceTree = "<group>"; };
 		7D3B524E1D9F695E006568D9 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		7D4B34C81D9885820069E4DE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Shared/icon.png; sourceTree = "<group>"; };
 		7D4B34C91D9885820069E4DE /* whatsYourSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whatsYourSign.png; path = ../../Shared/whatsYourSign.png; sourceTree = "<group>"; };
 		7D5CACC11FE9EE0B002A367A /* objectiveSee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = objectiveSee.png; sourceTree = "<group>"; };
 		CDE22E23247B5A7800C88F5C /* WhatsYourSign Installer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WhatsYourSign Installer.entitlements"; sourceTree = "<group>"; };
+		CDE70BE32CF285AA00251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindow.xib; sourceTree = "<group>"; };
+		CDE70BE62CF285AA00251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/AboutWindow.xcstrings; sourceTree = "<group>"; };
+		CDE70BE72CF285B400251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ConfigureWindowController.xib; sourceTree = "<group>"; };
+		CDE70BEA2CF285B400251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ConfigureWindowController.xcstrings; sourceTree = "<group>"; };
+		CDE70BEB2CF285B900251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ErrorWindowController.xib; sourceTree = "<group>"; };
+		CDE70BEE2CF285BA00251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ErrorWindowController.xcstrings; sourceTree = "<group>"; };
+		CDE70BEF2CF285E800251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CDE70BF22CF285E800251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +104,7 @@
 				7D1EAB261D2E12D30052ACE2 /* ErrorWindowController.h */,
 				7D1EAB241D2E12D30052ACE2 /* ErrorWindowController.m */,
 				7D24C86E1D2CDEA7009932EE /* Assets.xcassets */,
-				7D24C8701D2CDEA7009932EE /* MainMenu.xib */,
+				CDE70BF02CF285E800251553 /* MainMenu.xib */,
 				7D24C86B1D2CDEA7009932EE /* Supporting Files */,
 			);
 			path = Installer;
@@ -140,9 +144,9 @@
 		7D7335451FEA30ED002A186A /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				7D3AD3921FEA262E00AEEE31 /* AboutWindow.xib */,
-				7D1EAB231D2E12D30052ACE2 /* ConfigureWindowController.xib */,
-				7D1EAB251D2E12D30052ACE2 /* ErrorWindowController.xib */,
+				CDE70BE42CF285AA00251553 /* AboutWindow.xib */,
+				CDE70BE82CF285B400251553 /* ConfigureWindowController.xib */,
+				CDE70BEC2CF285B900251553 /* ErrorWindowController.xib */,
 			);
 			name = xibs;
 			sourceTree = "<group>";
@@ -192,6 +196,7 @@
 				English,
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 7D24C85C1D2CDEA7009932EE;
 			productRefGroup = 7D24C8661D2CDEA7009932EE /* Products */;
@@ -209,14 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D5CACC21FE9EEC1002A367A /* objectiveSee.png in Resources */,
-				7D1EAB281D2E12D30052ACE2 /* ConfigureWindowController.xib in Resources */,
+				CDE70BE92CF285B400251553 /* ConfigureWindowController.xib in Resources */,
 				7D3AD3971FEA28BC00AEEE31 /* patrons.txt in Resources */,
 				7D4B34CA1D9885820069E4DE /* icon.png in Resources */,
-				7D3AD3941FEA262E00AEEE31 /* AboutWindow.xib in Resources */,
-				7D1EAB2A1D2E12D30052ACE2 /* ErrorWindowController.xib in Resources */,
+				CDE70BE52CF285AA00251553 /* AboutWindow.xib in Resources */,
+				CDE70BED2CF285B900251553 /* ErrorWindowController.xib in Resources */,
 				7D4B34CB1D9885820069E4DE /* whatsYourSign.png in Resources */,
 				7D24C86F1D2CDEA7009932EE /* Assets.xcassets in Resources */,
-				7D24C8721D2CDEA7009932EE /* MainMenu.xib in Resources */,
+				CDE70BF12CF285E800251553 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,10 +261,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7D24C8701D2CDEA7009932EE /* MainMenu.xib */ = {
+		CDE70BE42CF285AA00251553 /* AboutWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7D24C8711D2CDEA7009932EE /* Base */,
+				CDE70BE32CF285AA00251553 /* Base */,
+				CDE70BE62CF285AA00251553 /* mul */,
+			);
+			name = AboutWindow.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BE82CF285B400251553 /* ConfigureWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BE72CF285B400251553 /* Base */,
+				CDE70BEA2CF285B400251553 /* mul */,
+			);
+			name = ConfigureWindowController.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BEC2CF285B900251553 /* ErrorWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BEB2CF285B900251553 /* Base */,
+				CDE70BEE2CF285BA00251553 /* mul */,
+			);
+			name = ErrorWindowController.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BF02CF285E800251553 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BEF2CF285E800251553 /* Base */,
+				CDE70BF22CF285E800251553 /* mul */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -381,7 +414,10 @@
 				);
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Installer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
@@ -402,7 +438,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_INSTALLER_APP=1";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Installer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";

@@ -222,6 +222,13 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
             goto bail;
         }
         
+        //grab flags
+        if( (nil != [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoFlags]) )
+        {
+            //extract/save
+            signingInfo[KEY_SIGNING_FLAGS] = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoFlags];
+        }
+        
         //add entitlements?
         if( (YES == entitlements) &&
             (nil != [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoEntitlementsDict]) )

@@ -54,7 +54,7 @@
     if(YES == self.shouldExit)
     {
         //change title
-        self.closeButton.title = @"Exit";
+        self.closeButton.title = NSLocalizedString(@"Exit", @"Exit");
     }
     
     //for fatal errors
@@ -62,7 +62,7 @@
     if(YES == [[self.errorURL absoluteString] isEqualToString:FATAL_ERROR_URL])
     {
         //change title
-        self.infoButton.title = @"Help Fix";
+        self.infoButton.title = NSLocalizedString(@"Help Fix", @"Help Fix");
     }
     
     //set delegate

@@ -98,7 +98,7 @@
 }
 
 //process item's code signing info
-// ->sets code signing icon, summary, and formats signing auths
+// sets code signing icon, summary, and formats signing auths
 -(void)processCodeSigningInfo
 {
     //signing icon
@@ -135,14 +135,14 @@
             csDetails = [NSMutableString string];
             
             //append to summary
-            [csSummary appendFormat:@" is validly signed"];
-            
+            [csSummary appendFormat:NSLocalizedString(@" is validly signed", @" is validly signed")];
+             
             //no signing auths
             // usually (always?) adhoc
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
-                [csDetails appendString:@"signed, but no signing authorities (adhoc?)"];
+                [csDetails appendString:NSLocalizedString(@"no signing authorities", @"no signing authorities")];
             }
             
             //add each signing auth
@@ -171,13 +171,13 @@
                     if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                     {
                         //append to summary
-                        [csSummary appendFormat:@" & notarized"];
+                        [csSummary appendFormat:NSLocalizedString(@" & notarized", @" & notarized")];
                     }
                     //notarization revoked
                     else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                     {
                         //append to summary
-                        [csSummary appendFormat:@", but notarization revoked!"];
+                        [csSummary appendFormat:NSLocalizedString(@", but notarization revoked!", @", but notarization revoked!")];
                     }
                 }
                 
@@ -192,7 +192,7 @@
                 csIcon = [NSImage imageNamed:@"signedApple"];
                 
                 //set summary details
-                self.summaryDetails.stringValue = @"(Signer: Apple)";
+                self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Apple)", @"(Signer: Apple)");
             }
             //item signed, third party/ad hoc, etc
             else
@@ -204,7 +204,7 @@
                 if(YES == [self.item.signingInfo[KEY_SIGNING_IS_APP_STORE] boolValue])
                 {
                     //set summary details
-                    self.summaryDetails.stringValue = @"(Signer: Mac App Store)";
+                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Mac App Store)", @"(Signer: Mac App Store)");
                 }
                 //developer id?
                 // but not from app store
@@ -217,25 +217,33 @@
                         if(errSecSuccess == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                         {
                             //append to summary
-                            [csSummary appendFormat:@" & notarized"];
+                            [csSummary appendFormat:NSLocalizedString(@" & notarized", @" & notarized")];
                         }
                         //notarization revoked
                         else if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
                         {
                             //append to summary
-                            [csSummary appendFormat:@", but notarization revoked!"];
+                            [csSummary appendFormat:NSLocalizedString(@", but notarization revoked!", @", but notarization revoked!")];
                         }
                     }
         
                     //set summary details
-                    self.summaryDetails.stringValue = @"(Signer: Apple Dev-ID)";
+                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Apple Dev-ID)", @"(Signer: Apple Dev-ID)");
                 }
+                
+                //ad-hoc?
+                else if(CS_ADHOC & [self.item.signingInfo[KEY_SIGNING_FLAGS] unsignedIntValue])
+                {
+                    //append to details
+                    [csDetails appendString:NSLocalizedString(@"(Signature is ad-hoc)", @"(Signature is ad-hoc)")];
+                }
+                   
                 //something else
-                // ad hoc? 3rd-party?
+                // ...3rd-party?
                 else
                 {
                     //set summary details
-                    self.summaryDetails.stringValue = @"(Signer 3rd-party (adhoc?))";
+                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer 3rd-party)", @"(Signer 3rd-party)");
                 }
             }
             
@@ -248,10 +256,10 @@
             csIcon = [NSImage imageNamed:@"unsigned"];
             
             //append to summary
-            [csSummary appendFormat:@" is not signed"];
+            [csSummary appendFormat:NSLocalizedString(@" is not signed", @" is not signed")];
             
             //set details
-            csDetails = [NSMutableString stringWithString:@"Unsigned ('errSecCSUnsigned')"];
+            csDetails = [NSMutableString stringWithString:NSLocalizedString(@"Unsigned ('errSecCSUnsigned')", @"Unsigned ('errSecCSUnsigned')")];
             
             break;
             
@@ -262,7 +270,7 @@
             csIcon = [NSImage imageNamed:@"unsigned"];
             
             //append to summary
-            [csSummary appendFormat:@" signed, but certificate revoked!"];
+            [csSummary appendFormat:NSLocalizedString(@" signed, but certificate revoked!", @" signed, but certificate revoked!")];
             
             //init string for details
             csDetails = [NSMutableString string];
@@ -272,7 +280,7 @@
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
-                [csDetails appendString:@"Unavailable, as certificate has been revoked"];
+                [csDetails appendString:NSLocalizedString(@"Unavailable, as certificate has been revoked", @"Unavailable, as certificate has been revoked")];
             }
             
             //add each signing auth
@@ -295,7 +303,7 @@
             csIcon = [NSImage imageNamed:@"unknown"];
             
             //append to summary
-            [csSummary appendFormat:@" could not be accessed"];
+            [csSummary appendFormat:NSLocalizedString(@" could not be accessed", @" could not be accessed")];
             
             //details
             csDetails = [@"" mutableCopy];
@@ -310,10 +318,10 @@
             csIcon = [NSImage imageNamed:@"unknown"];
             
             //append to summary
-            [csSummary appendFormat:@" has a signing issue"];
+            [csSummary appendFormat:NSLocalizedString(@" has a signing issue", @" has a signing issue")];
             
             //set details
-            csDetails = [NSMutableString stringWithFormat:@"Unknown (status/error: %ld)", (long)[self.item.signingInfo[KEY_SIGNATURE_STATUS] integerValue]];
+            csDetails = [NSMutableString stringWithFormat:NSLocalizedString(@"Unknown (status/error: %ld)", @"Unknown (status/error: %ld)"), (long)[self.item.signingInfo[KEY_SIGNATURE_STATUS] integerValue]];
             
             break;
     }
@@ -337,20 +345,20 @@
             (YES == isDirectory) )
         {
             //set
-            self.hashes.stringValue = @"None (item is a directory)";
+            self.hashes.stringValue = NSLocalizedString(@"None (item is a directory)", @"None (item is a directory)");
         }
         //generic error msg
         else
         {
             //set
-            self.hashes.stringValue = @"?";
+            self.hashes.stringValue = NSLocalizedString(@"?", @"?");
         }
     }
     //create clickable 'show hashes' label
     else
     {
         //create/set attributes string
-        self.hashes.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Hashes" attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.hashes.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"View Hashes", @"View Hashes") attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.hashes addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showHashes:)]];
@@ -362,20 +370,20 @@
         //couldn't access?
         if(kPOSIXErrorEACCES == [self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
         {
-            self.entitlements.stringValue = @"?";
+            self.entitlements.stringValue = NSLocalizedString(@"?", @"?");
         }
         //none for real
         else
         {
             //set
-            self.entitlements.stringValue = @"None";
+            self.entitlements.stringValue = NSLocalizedString(@"None", @"None");
         }
     }
     //create clickable 'show entitlements' label
     else
     {
         //create/set attributes string
-        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:@"View Entitlements" attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
+        self.entitlements.attributedStringValue = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"View Entitlements", @"View Entitlements") attributes:@{NSLinkAttributeName:[NSURL URLWithString:@"#"], NSForegroundColorAttributeName:[NSColor blueColor], NSUnderlineStyleAttributeName:[NSNumber numberWithInt:NSSingleUnderlineStyle]}];
         
         //add click event handler
         [self.entitlements addGestureRecognizer:[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(showEntitlements:)]];
@@ -393,12 +401,12 @@
         //set signing auths
         if(kPOSIXErrorEACCES == [self.item.signingInfo[KEY_SIGNATURE_STATUS] intValue])
         {
-            self.signingStatus.stringValue = @"?";
+            self.signingStatus.stringValue = NSLocalizedString(@"?", @"?");
         }
         //none for real
         else
         {
-            self.signingStatus.stringValue = @"None";
+            self.signingStatus.stringValue = NSLocalizedString(@"None", @"None");
         }
     }
 

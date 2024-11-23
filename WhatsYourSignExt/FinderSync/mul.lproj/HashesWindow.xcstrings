@@ -1,0 +1,30 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "1Dc-km-Bwx.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Close\"; ObjectID = \"1Dc-km-Bwx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "iny-wp-VI1.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Hashes\"; ObjectID = \"iny-wp-VI1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hashes"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

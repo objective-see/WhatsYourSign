@@ -8,6 +8,8 @@
 
 @import Cocoa;
 
+#define CS_ADHOC 0x00020000
+
 #import "ClickableTextField.h"
 #import "HashesWindowController.h"
 #import "EntitlementsWindowController.h"

@@ -34,9 +34,6 @@
             <view key="contentView" verticalHuggingPriority="750" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="692" height="353"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <userGuides>
-                    <userLayoutGuide location="93" affinity="minX"/>
-                </userGuides>
                 <subviews>
                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="900-VP-ZHi">
                         <rect key="frame" x="20" y="246" width="652" height="5"/>

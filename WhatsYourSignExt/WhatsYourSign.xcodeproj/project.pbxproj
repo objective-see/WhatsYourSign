@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D173EC31D2CE6A100FEED93 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D173EBA1D2CE6A100FEED93 /* InfoWindow.xib */; };
 		7D173EC51D2CE6A100FEED93 /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D173EBE1D2CE6A100FEED93 /* InfoWindowController.m */; };
 		7D173EC71D2CE6A100FEED93 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D173EC01D2CE6A100FEED93 /* Item.m */; };
 		7D1EAB131D2CED220052ACE2 /* unsigned.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1EAB0F1D2CED220052ACE2 /* unsigned.png */; };
@@ -23,18 +22,19 @@
 		7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34D51D9889B40069E4DE /* whatsYourSign.png */; };
 		7D5CACB91FE9A9F8002A367A /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */; };
 		7D5CACBF1FE9CC8B002A367A /* EntitlementsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */; };
-		7D5CACC01FE9CEC1002A367A /* EntitlementsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */; };
 		7D61ED751D984BA6007FE979 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61ED741D984BA6007FE979 /* AppDelegate.m */; };
 		7D61ED781D984BA6007FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61ED771D984BA6007FE979 /* main.m */; };
-		7D61ED7D1D984BA6007FE979 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D61ED7B1D984BA6007FE979 /* MainMenu.xib */; };
 		7D61ED821D984BB6007FE979 /* WhatsYourSign.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D24C89A1D2CDEF9009932EE /* WhatsYourSign.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D7335491FEA31E5002A186A /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1EAB341D2E147B0052ACE2 /* utilities.m */; };
-		7D8810A11FECD363002F34F4 /* HashesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8810A01FECD363002F34F4 /* HashesWindow.xib */; };
 		7D8810A41FECD37E002F34F4 /* HashesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8810A21FECD37E002F34F4 /* HashesWindowController.m */; };
 		7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */; };
 		CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6CAC7120A0E65F00188B0A /* Xips.m */; };
 		CDCC763D258CA1A400F471D3 /* Packages.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC763B258CA1A300F471D3 /* Packages.m */; };
 		CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */; };
+		CDE70BD12CF284B200251553 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD02CF284B200251553 /* InfoWindow.xib */; };
+		CDE70BD52CF284EC00251553 /* HashesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD42CF284EC00251553 /* HashesWindow.xib */; };
+		CDE70BD92CF284F000251553 /* EntitlementsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD82CF284F000251553 /* EntitlementsWindow.xib */; };
+		CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BDE2CF2850900251553 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7D173EBA1D2CE6A100FEED93 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		7D173EBE1D2CE6A100FEED93 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
 		7D173EC01D2CE6A100FEED93 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7D173EC11D2CE6A100FEED93 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
@@ -90,14 +89,11 @@
 		7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableTextField.m; sourceTree = "<group>"; };
 		7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntitlementsWindowController.m; sourceTree = "<group>"; };
 		7D5CACBD1FE9CC8B002A367A /* EntitlementsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntitlementsWindowController.h; sourceTree = "<group>"; };
-		7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntitlementsWindow.xib; sourceTree = "<group>"; };
 		7D61ED711D984BA6007FE979 /* WhatsYourSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsYourSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D61ED731D984BA6007FE979 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7D61ED741D984BA6007FE979 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7D61ED771D984BA6007FE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7D61ED7C1D984BA6007FE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7D61ED7E1D984BA6007FE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D8810A01FECD363002F34F4 /* HashesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HashesWindow.xib; sourceTree = "<group>"; };
 		7D8810A21FECD37E002F34F4 /* HashesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashesWindowController.m; sourceTree = "<group>"; };
 		7D8810A31FECD37E002F34F4 /* HashesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashesWindowController.h; sourceTree = "<group>"; };
 		7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSApplicationKeyEvents.m; sourceTree = "<group>"; };
@@ -109,6 +105,14 @@
 		CDCC7644258CA59F00F471D3 /* packageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packageKit.h; sourceTree = "<group>"; };
 		CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppIcon.iconset; sourceTree = "<group>"; };
 		CDE22E24247B5A8700C88F5C /* WhatsYourSign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsYourSign.entitlements; sourceTree = "<group>"; };
+		CDE70BCF2CF284B200251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/InfoWindow.xib; sourceTree = "<group>"; };
+		CDE70BD22CF284B200251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/InfoWindow.xcstrings; sourceTree = "<group>"; };
+		CDE70BD32CF284EC00251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HashesWindow.xib; sourceTree = "<group>"; };
+		CDE70BD62CF284EC00251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/HashesWindow.xcstrings; sourceTree = "<group>"; };
+		CDE70BD72CF284F000251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EntitlementsWindow.xib; sourceTree = "<group>"; };
+		CDE70BDA2CF284F000251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/EntitlementsWindow.xcstrings; sourceTree = "<group>"; };
+		CDE70BDD2CF2850900251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CDE70BE02CF2850900251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +233,7 @@
 				7D4B34CC1D98858F0069E4DE /* Images */,
 				7D61ED731D984BA6007FE979 /* AppDelegate.h */,
 				7D61ED741D984BA6007FE979 /* AppDelegate.m */,
-				7D61ED7B1D984BA6007FE979 /* MainMenu.xib */,
+				CDE70BDE2CF2850900251553 /* MainMenu.xib */,
 				7D61ED7E1D984BA6007FE979 /* Info.plist */,
 				7D61ED761D984BA6007FE979 /* Supporting Files */,
 			);
@@ -248,9 +252,9 @@
 		7D7335441FEA2FC5002A186A /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				7D8810A01FECD363002F34F4 /* HashesWindow.xib */,
-				7D5CACBE1FE9CC8B002A367A /* EntitlementsWindow.xib */,
-				7D173EBA1D2CE6A100FEED93 /* InfoWindow.xib */,
+				CDE70BD42CF284EC00251553 /* HashesWindow.xib */,
+				CDE70BD82CF284F000251553 /* EntitlementsWindow.xib */,
+				CDE70BD02CF284B200251553 /* InfoWindow.xib */,
 			);
 			name = xibs;
 			sourceTree = "<group>";
@@ -321,6 +325,7 @@
 				English,
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 7D24C8791D2CDEC6009932EE;
 			productRefGroup = 7D24C8831D2CDEC6009932EE /* Products */;
@@ -338,13 +343,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D8810A11FECD363002F34F4 /* HashesWindow.xib in Resources */,
-				7D5CACC01FE9CEC1002A367A /* EntitlementsWindow.xib in Resources */,
+				CDE70BD52CF284EC00251553 /* HashesWindow.xib in Resources */,
+				CDE70BD92CF284F000251553 /* EntitlementsWindow.xib in Resources */,
 				7D1EAB131D2CED220052ACE2 /* unsigned.png in Resources */,
 				7D1EAB161D2CED220052ACE2 /* unknown.png in Resources */,
 				7D1EAB141D2CED220052ACE2 /* signed.png in Resources */,
 				7D1EAB151D2CED220052ACE2 /* signedApple.png in Resources */,
-				7D173EC31D2CE6A100FEED93 /* InfoWindow.xib in Resources */,
+				CDE70BD12CF284B200251553 /* InfoWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +361,7 @@
 				CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */,
 				7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */,
 				7D4B34C71D9884120069E4DE /* rightClick.png in Resources */,
-				7D61ED7D1D984BA6007FE979 /* MainMenu.xib in Resources */,
+				CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +408,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7D61ED7B1D984BA6007FE979 /* MainMenu.xib */ = {
+		CDE70BD02CF284B200251553 /* InfoWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7D61ED7C1D984BA6007FE979 /* Base */,
+				CDE70BCF2CF284B200251553 /* Base */,
+				CDE70BD22CF284B200251553 /* mul */,
+			);
+			name = InfoWindow.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BD42CF284EC00251553 /* HashesWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BD32CF284EC00251553 /* Base */,
+				CDE70BD62CF284EC00251553 /* mul */,
+			);
+			name = HashesWindow.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BD82CF284F000251553 /* EntitlementsWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BD72CF284F000251553 /* Base */,
+				CDE70BDA2CF284F000251553 /* mul */,
+			);
+			name = EntitlementsWindow.xib;
+			sourceTree = "<group>";
+		};
+		CDE70BDE2CF2850900251553 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE70BDD2CF2850900251553 /* Base */,
+				CDE70BE02CF2850900251553 /* mul */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -534,7 +567,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = FinderSync/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
@@ -558,7 +595,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = FinderSync/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
@@ -583,7 +624,10 @@
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
@@ -607,7 +651,10 @@
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";

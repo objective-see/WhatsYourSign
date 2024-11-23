@@ -46,8 +46,4 @@ BOOL fromAppStore(NSString* path);
 // from Apple's 'Get the GUID in OS X' (see: 'Validating Receipts Locally')
 NSData* getGUID(void);
 
-//extact entitlements
-// note: execs apple's 'codesign' binary
-NSDictionary* extractEntitlements(NSString* path);
-
 #endif

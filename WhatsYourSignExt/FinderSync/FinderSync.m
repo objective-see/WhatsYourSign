@@ -61,7 +61,7 @@
     menu = [[NSMenu alloc] initWithTitle:@""];
     
     //add 'Signing Info'
-    [menu addItemWithTitle:@"Signing Info" action:@selector(showSigningInfo:) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Signing Info", @"Signing Info") action:@selector(showSigningInfo:) keyEquivalent:@""];
     
 bail:
 

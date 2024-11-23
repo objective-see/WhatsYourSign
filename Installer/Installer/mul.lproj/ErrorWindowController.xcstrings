@@ -1,0 +1,66 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "F0z-JX-Cv5.title" : {
+      "comment" : "Class = \"NSWindow\"; title = \"WhatsYourSign\"; ObjectID = \"F0z-JX-Cv5\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "WhatsYourSign"
+          }
+        }
+      }
+    },
+    "L1w-RB-EC4.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Info\"; ObjectID = \"L1w-RB-EC4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Info"
+          }
+        }
+      }
+    },
+    "Pjp-Se-SfK.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Close\"; ObjectID = \"Pjp-Se-SfK\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "sk0-EF-ZfG.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Label\"; ObjectID = \"sk0-EF-ZfG\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "VCu-zh-Vcs.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"ERROR msg\"; ObjectID = \"VCu-zh-Vcs\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "ERROR msg"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

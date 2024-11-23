@@ -14,7 +14,7 @@
 - (void)resetCursorRects
 {
     //skip if nothing to show
-    if(YES == [self.stringValue hasPrefix:@"none"])
+    if(YES == [self.stringValue hasPrefix:NSLocalizedString(@"none", @"none")])
     {
         //bail
         goto bail;

@@ -1,0 +1,150 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "1fX-KD-o40.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Hashes:\"; ObjectID = \"1fX-KD-o40\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hashes:"
+          }
+        }
+      }
+    },
+    "6Wb-UH-XWG.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Sign Auths:\"; ObjectID = \"6Wb-UH-XWG\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign Auths:"
+          }
+        }
+      }
+    },
+    "9P7-Rd-qZX.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"determining...\"; ObjectID = \"9P7-Rd-qZX\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "determining..."
+          }
+        }
+      }
+    },
+    "BJc-I7-Awh.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Determining signing status...\"; ObjectID = \"BJc-I7-Awh\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Determining signing status..."
+          }
+        }
+      }
+    },
+    "DvU-6L-vdr.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"determining...\"; ObjectID = \"DvU-6L-vdr\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "determining..."
+          }
+        }
+      }
+    },
+    "E6C-qM-nrz.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Item Type:\"; ObjectID = \"E6C-qM-nrz\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item Type:"
+          }
+        }
+      }
+    },
+    "hum-eq-Yxi.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Item Path\"; ObjectID = \"hum-eq-Yxi\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item Path"
+          }
+        }
+      }
+    },
+    "Nq1-or-9xy.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Item name\"; ObjectID = \"Nq1-or-9xy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item name"
+          }
+        }
+      }
+    },
+    "vIZ-Ud-shu.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Entitled:\"; ObjectID = \"vIZ-Ud-shu\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Entitled:"
+          }
+        }
+      }
+    },
+    "VPL-kH-iPX.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"determining...\"; ObjectID = \"VPL-kH-iPX\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "determining..."
+          }
+        }
+      }
+    },
+    "wzG-lX-DQI.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Close\"; ObjectID = \"wzG-lX-DQI\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "ZLx-0X-cqC.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"determining...\"; ObjectID = \"ZLx-0X-cqC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "determining..."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

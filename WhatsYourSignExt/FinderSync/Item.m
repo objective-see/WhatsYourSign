@@ -169,7 +169,7 @@ bail:
     if(YES != [NSFileManager.defaultManager isReadableFileAtPath:self.path])
     {
         //blank
-        localizedType = @"?";
+        localizedType = NSLocalizedString(@"?",@"?");
         
         //bail
         goto bail;
@@ -200,7 +200,7 @@ bail:
             (YES == [self.path hasSuffix:@".kext"]) )
         {
                 //set
-                localizedType = @"kernel extension (bundle)";
+                localizedType = NSLocalizedString(@"kernel extension (bundle)", @"kernel extension (bundle)");
         }
     }
     //not a directory
@@ -239,7 +239,7 @@ bail:
     if(nil == localizedType)
     {
         //set
-        localizedType = @"unknown type";
+        localizedType = NSLocalizedString(@"unknown type", @"unknown type");
     }
     
     //set type
