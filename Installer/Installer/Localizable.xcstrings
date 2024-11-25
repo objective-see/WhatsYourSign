@@ -1,0 +1,51 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "...now exiting, goodbye!" : {
+      "comment" : "...now exiting, goodbye!"
+    },
+    "...restarting Finder.app" : {
+      "comment" : "...restarting Finder.app"
+    },
+    "Code-signing info via the UI 🔏" : {
+      "comment" : "Code-signing info via the UI 🔏"
+    },
+    "Code-signing info via the UI." : {
+      "comment" : "Code-signing info via the UI."
+    },
+    "Error: install failed." : {
+      "comment" : "Error: install failed."
+    },
+    "Error: uninstall failed." : {
+      "comment" : "Error: uninstall failed."
+    },
+    "Exit" : {
+      "comment" : "Exit"
+    },
+    "Help Fix" : {
+      "comment" : "Help Fix"
+    },
+    "Installing..." : {
+      "comment" : "Installing..."
+    },
+    "uninstall" : {
+      "comment" : "uninstall"
+    },
+    "Uninstalling..." : {
+      "comment" : "Uninstalling..."
+    },
+    "Version: %@" : {
+      "comment" : "Version: %@"
+    },
+    "WhatsYourSign installed!" : {
+      "comment" : "WhatsYourSign installed!"
+    },
+    "WhatsYourSign installed!\nRestart 'Finder.app' to complete." : {
+      "comment" : "WhatsYourSign installed!\nRestart 'Finder.app' to complete."
+    },
+    "WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete." : {
+      "comment" : "WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete."
+    }
+  },
+  "version" : "1.0"
+}

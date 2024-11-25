@@ -1,0 +1,81 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    " & notarized" : {
+      "comment" : " & notarized"
+    },
+    " could not be accessed" : {
+      "comment" : " could not be accessed"
+    },
+    " has a signing issue" : {
+      "comment" : " has a signing issue"
+    },
+    " is not signed" : {
+      "comment" : " is not signed"
+    },
+    " is validly signed" : {
+      "comment" : " is validly signed"
+    },
+    " signed, but certificate revoked!" : {
+      "comment" : " signed, but certificate revoked!"
+    },
+    ", but notarization revoked!" : {
+      "comment" : ", but notarization revoked!"
+    },
+    "?" : {
+      "comment" : "?"
+    },
+    "(Signature is ad-hoc)" : {
+      "comment" : "(Signature is ad-hoc)"
+    },
+    "(Signer 3rd-party)" : {
+      "comment" : "(Signer 3rd-party)"
+    },
+    "(Signer: Apple Dev-ID)" : {
+      "comment" : "(Signer: Apple Dev-ID)"
+    },
+    "(Signer: Apple)" : {
+      "comment" : "(Signer: Apple)"
+    },
+    "(Signer: Mac App Store)" : {
+      "comment" : "(Signer: Mac App Store)"
+    },
+    "kernel extension (bundle)" : {
+      "comment" : "kernel extension (bundle)"
+    },
+    "no signing authorities" : {
+      "comment" : "no signing authorities"
+    },
+    "none" : {
+      "comment" : "none"
+    },
+    "None" : {
+      "comment" : "None"
+    },
+    "None (item is a directory)" : {
+      "comment" : "None (item is a directory)"
+    },
+    "Signing Info" : {
+      "comment" : "Signing Info"
+    },
+    "Unavailable, as certificate has been revoked" : {
+      "comment" : "Unavailable, as certificate has been revoked"
+    },
+    "Unknown (status/error: %ld)" : {
+      "comment" : "Unknown (status/error: %ld)"
+    },
+    "unknown type" : {
+      "comment" : "unknown type"
+    },
+    "Unsigned ('errSecCSUnsigned')" : {
+      "comment" : "Unsigned ('errSecCSUnsigned')"
+    },
+    "View Entitlements" : {
+      "comment" : "View Entitlements"
+    },
+    "View Hashes" : {
+      "comment" : "View Hashes"
+    }
+  },
+  "version" : "1.0"
+}

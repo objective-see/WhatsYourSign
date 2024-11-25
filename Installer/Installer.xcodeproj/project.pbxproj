@@ -23,6 +23,7 @@
 		CDE70BE92CF285B400251553 /* ConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BE82CF285B400251553 /* ConfigureWindowController.xib */; };
 		CDE70BED2CF285B900251553 /* ErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BEC2CF285B900251553 /* ErrorWindowController.xib */; };
 		CDE70BF12CF285E800251553 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BF02CF285E800251553 /* MainMenu.xib */; };
+		CDE70C1C2CF5415C00251553 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C1B2CF5415C00251553 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		CDE70BEE2CF285BA00251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ErrorWindowController.xcstrings; sourceTree = "<group>"; };
 		CDE70BEF2CF285E800251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CDE70BF22CF285E800251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
+		CDE70C1B2CF5415C00251553 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = Installer/Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		7D24C85C1D2CDEA7009932EE = {
 			isa = PBXGroup;
 			children = (
+				CDE70C1B2CF5415C00251553 /* Localizable.xcstrings */,
 				7D24C8671D2CDEA7009932EE /* Installer */,
 				7D24C8661D2CDEA7009932EE /* Products */,
 			);
@@ -219,6 +222,7 @@
 				7D4B34CA1D9885820069E4DE /* icon.png in Resources */,
 				CDE70BE52CF285AA00251553 /* AboutWindow.xib in Resources */,
 				CDE70BED2CF285B900251553 /* ErrorWindowController.xib in Resources */,
+				CDE70C1C2CF5415C00251553 /* Localizable.xcstrings in Resources */,
 				7D4B34CB1D9885820069E4DE /* whatsYourSign.png in Resources */,
 				7D24C86F1D2CDEA7009932EE /* Assets.xcassets in Resources */,
 				CDE70BF12CF285E800251553 /* MainMenu.xib in Resources */,
@@ -349,6 +353,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
 		};
@@ -394,6 +399,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};

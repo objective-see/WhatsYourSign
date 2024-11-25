@@ -35,6 +35,8 @@
 		CDE70BD52CF284EC00251553 /* HashesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD42CF284EC00251553 /* HashesWindow.xib */; };
 		CDE70BD92CF284F000251553 /* EntitlementsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD82CF284F000251553 /* EntitlementsWindow.xib */; };
 		CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BDE2CF2850900251553 /* MainMenu.xib */; };
+		CDE70C132CF540CB00251553 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C122CF540CB00251553 /* Localizable.xcstrings */; };
+		CDE70C182CF5412000251553 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C172CF5412000251553 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		CDE70BDA2CF284F000251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/EntitlementsWindow.xcstrings; sourceTree = "<group>"; };
 		CDE70BDD2CF2850900251553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CDE70BE02CF2850900251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
+		CDE70C122CF540CB00251553 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CDE70C172CF5412000251553 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,7 @@
 				7D7335441FEA2FC5002A186A /* xibs */,
 				CD6CAC7320A0E67500188B0A /* Xips.h */,
 				CD6CAC7120A0E65F00188B0A /* Xips.m */,
+				CDE70C122CF540CB00251553 /* Localizable.xcstrings */,
 			);
 			path = FinderSync;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				CDE70BDE2CF2850900251553 /* MainMenu.xib */,
 				7D61ED7E1D984BA6007FE979 /* Info.plist */,
 				7D61ED761D984BA6007FE979 /* Supporting Files */,
+				CDE70C172CF5412000251553 /* Localizable.xcstrings */,
 			);
 			name = Application;
 			path = WhatsYourSignExt;
@@ -319,10 +325,9 @@
 			};
 			buildConfigurationList = 7D24C87D1D2CDEC6009932EE /* Build configuration list for PBXProject "WhatsYourSign" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				es,
@@ -345,6 +350,7 @@
 			files = (
 				CDE70BD52CF284EC00251553 /* HashesWindow.xib in Resources */,
 				CDE70BD92CF284F000251553 /* EntitlementsWindow.xib in Resources */,
+				CDE70C132CF540CB00251553 /* Localizable.xcstrings in Resources */,
 				7D1EAB131D2CED220052ACE2 /* unsigned.png in Resources */,
 				7D1EAB161D2CED220052ACE2 /* unknown.png in Resources */,
 				7D1EAB141D2CED220052ACE2 /* signed.png in Resources */,
@@ -359,6 +365,7 @@
 			files = (
 				7D4B34D81D9889C50069E4DE /* icon.png in Resources */,
 				CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */,
+				CDE70C182CF5412000251553 /* Localizable.xcstrings in Resources */,
 				7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */,
 				7D4B34C71D9884120069E4DE /* rightClick.png in Resources */,
 				CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */,
@@ -501,6 +508,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
 		};
@@ -551,6 +559,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
