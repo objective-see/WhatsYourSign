@@ -138,7 +138,6 @@
             [csSummary appendFormat:NSLocalizedString(@" is validly signed", @" is validly signed")];
              
             //no signing auths
-            // usually (always?) adhoc
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
@@ -231,19 +230,11 @@
                     self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Apple Dev-ID)", @"(Signer: Apple Dev-ID)");
                 }
                 
-                //ad-hoc?
-                else if(CS_ADHOC & [self.item.signingInfo[KEY_SIGNING_FLAGS] unsignedIntValue])
-                {
-                    //append to details
-                    [csDetails appendString:NSLocalizedString(@"(Signature is ad-hoc)", @"(Signature is ad-hoc)")];
-                }
-                   
-                //something else
-                // ...3rd-party?
+                //ad-hoc
                 else
                 {
                     //set summary details
-                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer 3rd-party)", @"(Signer 3rd-party)");
+                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signature is ad-hoc)", @"(Signature is ad-hoc)");
                 }
             }
             

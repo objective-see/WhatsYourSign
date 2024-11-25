@@ -28,9 +28,6 @@
     "(Signature is ad-hoc)" : {
       "comment" : "(Signature is ad-hoc)"
     },
-    "(Signer 3rd-party)" : {
-      "comment" : "(Signer 3rd-party)"
-    },
     "(Signer: Apple Dev-ID)" : {
       "comment" : "(Signer: Apple Dev-ID)"
     },
