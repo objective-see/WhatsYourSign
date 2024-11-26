@@ -39,19 +39,25 @@
         </menu>
         <window title="WhatsYourSign" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="1438" y="533" width="480" height="360"/>
+            <rect key="contentRect" x="1438" y="533" width="480" height="384"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="384"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-WA-eMM">
-                        <rect key="frame" x="72" y="103" width="337" height="198"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhr-EK-ews">
+                        <rect key="frame" x="342" y="13" width="125" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightClick" id="YxP-GW-FUt"/>
-                    </imageView>
+                        <buttonCell key="cell" type="push" title="OK!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="srP-zm-Xde">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Menlo-Bold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="close:" target="Voe-Tx-rLC" id="tD5-wD-TTd"/>
+                        </connections>
+                    </button>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qST-Wc-3cj">
-                        <rect key="frame" x="119" y="285" width="243" height="67"/>
+                        <rect key="frame" x="119" y="309" width="243" height="67"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="whatsYourSign" id="4Bf-7o-tQG"/>
                     </imageView>
@@ -64,24 +70,18 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhr-EK-ews">
-                        <rect key="frame" x="342" y="13" width="125" height="32"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-WA-eMM">
+                        <rect key="frame" x="47" y="104" width="386" height="216"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="OK!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="srP-zm-Xde">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="13" name="Menlo-Bold"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="close:" target="Voe-Tx-rLC" id="tD5-wD-TTd"/>
-                        </connections>
-                    </button>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightClick" id="YxP-GW-FUt"/>
+                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="141" y="421"/>
+            <point key="canvasLocation" x="141" y="433"/>
         </window>
     </objects>
     <resources>
-        <image name="RightClick" width="626" height="271"/>
+        <image name="RightClick" width="392" height="249"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>
     </resources>
 </document>
