@@ -46,12 +46,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-WA-eMM">
-                        <rect key="frame" x="84" y="140" width="313" height="135"/>
+                        <rect key="frame" x="72" y="103" width="337" height="198"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rightClick" id="YxP-GW-FUt"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightClick" id="YxP-GW-FUt"/>
                     </imageView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qST-Wc-3cj">
+                        <rect key="frame" x="119" y="285" width="243" height="67"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="whatsYourSign" id="4Bf-7o-tQG"/>
+                    </imageView>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVo-bA-1ea">
+                        <rect key="frame" x="18" y="48" width="444" height="47"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Simply right + click, or ctl + click on any file to view its signing information." id="xlC-wv-VjN">
+                            <font key="font" size="13" name="Menlo-Bold"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhr-EK-ews">
-                        <rect key="frame" x="387" y="13" width="64" height="32"/>
+                        <rect key="frame" x="342" y="13" width="125" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="srP-zm-Xde">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -61,27 +75,13 @@
                             <action selector="close:" target="Voe-Tx-rLC" id="tD5-wD-TTd"/>
                         </connections>
                     </button>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qST-Wc-3cj">
-                        <rect key="frame" x="119" y="285" width="243" height="67"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="whatsYourSign" id="4Bf-7o-tQG"/>
-                    </imageView>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVo-bA-1ea">
-                        <rect key="frame" x="58" y="69" width="364" height="57"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Simply right + click, or ctl + click on any file to view its signing information." id="xlC-wv-VjN">
-                            <font key="font" size="13" name="Menlo-Bold"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="141" y="421"/>
         </window>
     </objects>
     <resources>
-        <image name="rightClick" width="626" height="271"/>
+        <image name="RightClick" width="626" height="271"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>
     </resources>
 </document>

@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "WhatsYourSign"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsYourSign"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información"
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "new",
             "value" : "Close"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
         }
       }
     },
@@ -46,6 +64,12 @@
             "state" : "new",
             "value" : "Label"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiqueta"
+          }
         }
       }
     },
@@ -56,6 +80,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "ERROR msg"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "ERROR msg"
           }
         }

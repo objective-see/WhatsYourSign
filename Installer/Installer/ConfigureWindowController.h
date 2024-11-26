@@ -14,7 +14,7 @@
 }
 
 /* PROPERTIES */
-
+@property BOOL isUninstalling;
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
 @property (weak) IBOutlet NSTextField *statusMsg;
 @property (weak) IBOutlet NSButton *installButton;

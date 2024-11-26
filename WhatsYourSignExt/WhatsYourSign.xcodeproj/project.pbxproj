@@ -17,7 +17,6 @@
 		7D24C8A01D2CDEF9009932EE /* FinderSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C89F1D2CDEF9009932EE /* FinderSync.m */; };
 		7D2E2D231D5FCE3600D009E0 /* Signing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E2D1F1D5FCE3600D009E0 /* Signing.m */; };
 		7D2E2D241D5FCE3600D009E0 /* AppReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E2D221D5FCE3600D009E0 /* AppReceipt.m */; };
-		7D4B34C71D9884120069E4DE /* rightClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34C51D9883940069E4DE /* rightClick.png */; };
 		7D4B34D81D9889C50069E4DE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34D41D9889B40069E4DE /* icon.png */; };
 		7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4B34D51D9889B40069E4DE /* whatsYourSign.png */; };
 		7D5CACB91FE9A9F8002A367A /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CACB81FE9A9F8002A367A /* ClickableTextField.m */; };
@@ -37,6 +36,7 @@
 		CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BDE2CF2850900251553 /* MainMenu.xib */; };
 		CDE70C132CF540CB00251553 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C122CF540CB00251553 /* Localizable.xcstrings */; };
 		CDE70C182CF5412000251553 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C172CF5412000251553 /* Localizable.xcstrings */; };
+		CDE70C202CF5785100251553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE70C1F2CF5785100251553 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,6 @@
 		7D2E2D201D5FCE3600D009E0 /* Signing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signing.h; sourceTree = "<group>"; };
 		7D2E2D211D5FCE3600D009E0 /* AppReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppReceipt.h; sourceTree = "<group>"; };
 		7D2E2D221D5FCE3600D009E0 /* AppReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppReceipt.m; sourceTree = "<group>"; };
-		7D4B34C51D9883940069E4DE /* rightClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightClick.png; sourceTree = "<group>"; };
 		7D4B34D41D9889B40069E4DE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Shared/icon.png; sourceTree = "<group>"; };
 		7D4B34D51D9889B40069E4DE /* whatsYourSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whatsYourSign.png; path = ../../Shared/whatsYourSign.png; sourceTree = "<group>"; };
 		7D5CACB71FE9A9F8002A367A /* ClickableTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableTextField.h; sourceTree = "<group>"; };
@@ -117,6 +116,7 @@
 		CDE70BE02CF2850900251553 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 		CDE70C122CF540CB00251553 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CDE70C172CF5412000251553 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CDE70C1F2CF5785100251553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +178,6 @@
 				7D5CACBD1FE9CC8B002A367A /* EntitlementsWindowController.h */,
 				7D5CACBC1FE9CC8B002A367A /* EntitlementsWindowController.m */,
 				7D24C89E1D2CDEF9009932EE /* FinderSync.h */,
-				CDCC7644258CA59F00F471D3 /* packageKit.h */,
 				7D24C89F1D2CDEF9009932EE /* FinderSync.m */,
 				7D8810A31FECD37E002F34F4 /* HashesWindowController.h */,
 				7D8810A21FECD37E002F34F4 /* HashesWindowController.m */,
@@ -188,8 +187,10 @@
 				7D173EBE1D2CE6A100FEED93 /* InfoWindowController.m */,
 				7D173EC11D2CE6A100FEED93 /* Item.h */,
 				7D173EC01D2CE6A100FEED93 /* Item.m */,
+				CDE70C122CF540CB00251553 /* Localizable.xcstrings */,
 				7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */,
 				7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */,
+				CDCC7644258CA59F00F471D3 /* packageKit.h */,
 				CDCC763C258CA1A300F471D3 /* Packages.h */,
 				CDCC763B258CA1A300F471D3 /* Packages.m */,
 				7D2E2D201D5FCE3600D009E0 /* Signing.h */,
@@ -198,7 +199,6 @@
 				7D7335441FEA2FC5002A186A /* xibs */,
 				CD6CAC7320A0E67500188B0A /* Xips.h */,
 				CD6CAC7120A0E65F00188B0A /* Xips.m */,
-				CDE70C122CF540CB00251553 /* Localizable.xcstrings */,
 			);
 			path = FinderSync;
 			sourceTree = "<group>";
@@ -216,7 +216,6 @@
 			children = (
 				7D4B34D41D9889B40069E4DE /* icon.png */,
 				7D4B34D51D9889B40069E4DE /* whatsYourSign.png */,
-				7D4B34C51D9883940069E4DE /* rightClick.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -234,14 +233,15 @@
 		7D61ED721D984BA6007FE979 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */,
-				7D4B34CC1D98858F0069E4DE /* Images */,
 				7D61ED731D984BA6007FE979 /* AppDelegate.h */,
 				7D61ED741D984BA6007FE979 /* AppDelegate.m */,
-				CDE70BDE2CF2850900251553 /* MainMenu.xib */,
+				CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */,
+				CDE70C1F2CF5785100251553 /* Assets.xcassets */,
+				7D4B34CC1D98858F0069E4DE /* Images */,
 				7D61ED7E1D984BA6007FE979 /* Info.plist */,
-				7D61ED761D984BA6007FE979 /* Supporting Files */,
 				CDE70C172CF5412000251553 /* Localizable.xcstrings */,
+				CDE70BDE2CF2850900251553 /* MainMenu.xib */,
+				7D61ED761D984BA6007FE979 /* Supporting Files */,
 			);
 			name = Application;
 			path = WhatsYourSignExt;
@@ -367,7 +367,7 @@
 				CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */,
 				CDE70C182CF5412000251553 /* Localizable.xcstrings in Resources */,
 				7D4B34D91D9889C50069E4DE /* whatsYourSign.png in Resources */,
-				7D4B34C71D9884120069E4DE /* rightClick.png in Resources */,
+				CDE70C202CF5785100251553 /* Assets.xcassets in Resources */,
 				CDE70BDF2CF2850900251553 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +571,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
@@ -582,7 +582,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
@@ -599,7 +599,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
@@ -610,7 +610,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSignExt.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
@@ -629,7 +629,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
@@ -638,7 +638,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -656,7 +656,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = WhatsYourSignExt/Info.plist;
@@ -665,7 +665,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

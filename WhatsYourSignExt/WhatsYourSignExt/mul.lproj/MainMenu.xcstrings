@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "WhatsYourSign"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsYourSign"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Quit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salir"
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "new",
             "value" : "Main Menu"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú Principal"
+          }
         }
       }
     },
@@ -44,6 +62,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "WhatsYourSign"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "WhatsYourSign"
           }
         }
@@ -58,6 +82,12 @@
             "state" : "new",
             "value" : "OK!"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡De acuerdo!"
+          }
         }
       }
     },
@@ -68,6 +98,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "WhatsYourSign"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "WhatsYourSign"
           }
         }
@@ -81,6 +117,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Simply right + click, or ctl + click on any file to view its signing information."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simplemente haz clic derecho o ctrl + clic en cualquier archivo para ver su información de firma."
           }
         }
       }

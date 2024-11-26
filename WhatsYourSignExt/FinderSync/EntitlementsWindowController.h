@@ -13,12 +13,12 @@
 /* PROPERTIES */
 
 //close button
-@property (weak) IBOutlet NSButton *closeButton;
+@property (weak) IBOutlet NSButton* closeButton;
 
 //signing info
 @property(nonatomic, retain)NSDictionary* signingInfo;
 
 //entitlements
-@property (unsafe_unretained) IBOutlet NSTextView *entitlements;
+@property (unsafe_unretained) IBOutlet NSTextView* entitlements;
 
 @end

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "rightClick.png",
+      "idiom" : "mac"
+    },
+    {
+      "filename" : "rightClick_es.png",
+      "idiom" : "mac",
+      "locale" : "es"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true,
+    "preserves-vector-representation" : true
+  }
+}

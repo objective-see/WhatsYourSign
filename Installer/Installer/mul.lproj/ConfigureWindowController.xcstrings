@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "Install"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "It's free, open-source, and written by a single (Mac-loving) coder!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin cargo, open-source y desarrollado por un único programador (amante de Mac)!  "
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "new",
             "value" : "Yes!"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Sí!"
+          }
         }
       }
     },
@@ -45,6 +63,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Uninstall"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desinstalar"
           }
         }
       }
@@ -58,6 +82,12 @@
             "state" : "new",
             "value" : "Show some love? "
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Nos das tu apoyo?"
+          }
         }
       }
     },
@@ -68,6 +98,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "No"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "No"
           }
         }
@@ -82,6 +118,12 @@
             "state" : "new",
             "value" : "Mahalo to the \"Friends Objective-See\""
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahalo a los “Friends de Objective-See”"
+          }
         }
       }
     },
@@ -93,6 +135,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Support \"What's Your Sign\"?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoyas \"What’s Your Sign?”"
           }
         }
       }

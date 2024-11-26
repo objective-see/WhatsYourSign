@@ -23,18 +23,18 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="460" height="176"/>
+            <rect key="contentRect" x="196" y="240" width="460" height="194"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="460" height="176"/>
+                <rect key="frame" x="0.0" y="0.0" width="460" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="b1w-5W-ayX">
-                        <rect key="frame" x="144" y="31" width="32" height="32"/>
+                        <rect key="frame" x="144" y="49" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrB-7g-xya">
-                        <rect key="frame" x="138" y="76" width="150" height="32"/>
+                        <rect key="frame" x="138" y="94" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Uninstall" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G7H-Q1-04P">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -45,12 +45,12 @@
                         </connections>
                     </button>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgM-lv-GeJ">
-                        <rect key="frame" x="13" y="43" width="114" height="123"/>
+                        <rect key="frame" x="13" y="61" width="114" height="123"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon" id="bCU-0f-ff8"/>
                     </imageView>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="293" translatesAutoresizingMaskIntoConstraints="NO" id="SpB-Xc-WlB">
-                        <rect key="frame" x="142" y="10" width="297" height="47"/>
+                        <rect key="frame" x="142" y="10" width="297" height="65"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" id="Rib-WU-Syl">
                             <font key="font" size="13" name="Menlo-Regular"/>
@@ -59,12 +59,12 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K52-9g-sjn">
-                        <rect key="frame" x="138" y="109" width="243" height="67"/>
+                        <rect key="frame" x="138" y="127" width="243" height="67"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="whatsYourSign" id="WRg-I2-vkK"/>
                     </imageView>
                     <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWu-qZ-Za2">
-                        <rect key="frame" x="414" y="33" width="25" height="25"/>
+                        <rect key="frame" x="414" y="51" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v1Z-aX-Wlm">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -75,7 +75,7 @@
                         </connections>
                     </button>
                     <button tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="553-2y-kvm">
-                        <rect key="frame" x="296" y="76" width="150" height="32"/>
+                        <rect key="frame" x="296" y="94" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1hy-8F-qxt">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -90,7 +90,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="185" y="-256"/>
+            <point key="canvasLocation" x="185" y="-247"/>
         </window>
         <customView id="WPO-ie-Hix" userLabel="Support">
             <rect key="frame" x="0.0" y="0.0" width="832" height="454"/>

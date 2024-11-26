@@ -429,7 +429,7 @@
 }
 
 //invoked when user clicks 'show hashes'
-// display hashe window pane w/ dictionary
+// display hash window pane w/ dictionary
 - (void)showEntitlements:(id)sender
 {
     //dbg msg

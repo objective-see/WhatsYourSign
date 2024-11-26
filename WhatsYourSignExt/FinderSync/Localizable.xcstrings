@@ -2,76 +2,268 @@
   "sourceLanguage" : "en",
   "strings" : {
     " & notarized" : {
-      "comment" : " & notarized"
+      "comment" : " & notarized",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "& notarizado"
+          }
+        }
+      }
     },
     " could not be accessed" : {
-      "comment" : " could not be accessed"
+      "comment" : " could not be accessed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no se pudo acceder"
+          }
+        }
+      }
     },
     " has a signing issue" : {
-      "comment" : " has a signing issue"
+      "comment" : " has a signing issue",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tiene un problema de firma"
+          }
+        }
+      }
     },
     " is not signed" : {
-      "comment" : " is not signed"
+      "comment" : " is not signed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no está firmado"
+          }
+        }
+      }
     },
     " is validly signed" : {
-      "comment" : " is validly signed"
+      "comment" : " is validly signed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "está firmado válidamente"
+          }
+        }
+      }
     },
     " signed, but certificate revoked!" : {
-      "comment" : " signed, but certificate revoked!"
+      "comment" : " signed, but certificate revoked!",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "firmado, pero el certificado ha sido revocado."
+          }
+        }
+      }
     },
     ", but notarization revoked!" : {
-      "comment" : ", but notarization revoked!"
+      "comment" : ", but notarization revoked!",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", pero la notarización ha sido revocada."
+          }
+        }
+      }
     },
     "?" : {
-      "comment" : "?"
+      "comment" : "?",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?"
+          }
+        }
+      }
     },
     "(Signature is ad-hoc)" : {
-      "comment" : "(Signature is ad-hoc)"
+      "comment" : "(Signature is ad-hoc)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(La Firma es ad-hoc)"
+          }
+        }
+      }
     },
     "(Signer: Apple Dev-ID)" : {
-      "comment" : "(Signer: Apple Dev-ID)"
+      "comment" : "(Signer: Apple Dev-ID)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Firmante: Apple Dev-ID)"
+          }
+        }
+      }
     },
     "(Signer: Apple)" : {
-      "comment" : "(Signer: Apple)"
+      "comment" : "(Signer: Apple)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Firmante: Apple)"
+          }
+        }
+      }
     },
     "(Signer: Mac App Store)" : {
-      "comment" : "(Signer: Mac App Store)"
+      "comment" : "(Signer: Mac App Store)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Firmante: Mac App Store)"
+          }
+        }
+      }
     },
     "kernel extension (bundle)" : {
-      "comment" : "kernel extension (bundle)"
+      "comment" : "kernel extension (bundle)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "extension de kernel (bundle)"
+          }
+        }
+      }
     },
     "no signing authorities" : {
-      "comment" : "no signing authorities"
+      "comment" : "no signing authorities",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sin autoridades de firma"
+          }
+        }
+      }
     },
     "none" : {
-      "comment" : "none"
+      "comment" : "none",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ninguno"
+          }
+        }
+      }
     },
     "None" : {
-      "comment" : "None"
+      "comment" : "None",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ninguno"
+          }
+        }
+      }
     },
     "None (item is a directory)" : {
-      "comment" : "None (item is a directory)"
+      "comment" : "None (item is a directory)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ninguno (el ítem es un directorio)"
+          }
+        }
+      }
     },
     "Signing Info" : {
-      "comment" : "Signing Info"
+      "comment" : "Signing Info",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de Firma"
+          }
+        }
+      }
     },
     "Unavailable, as certificate has been revoked" : {
-      "comment" : "Unavailable, as certificate has been revoked"
+      "comment" : "Unavailable, as certificate has been revoked",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No disponible, ya que el certificado ha sido revocado"
+          }
+        }
+      }
     },
     "Unknown (status/error: %ld)" : {
-      "comment" : "Unknown (status/error: %ld)"
+      "comment" : "Unknown (status/error: %ld)",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconocido (estado/error: %ld)"
+          }
+        }
+      }
     },
     "unknown type" : {
-      "comment" : "unknown type"
+      "comment" : "unknown type",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tipo desconocido"
+          }
+        }
+      }
     },
     "Unsigned ('errSecCSUnsigned')" : {
-      "comment" : "Unsigned ('errSecCSUnsigned')"
+      "comment" : "Unsigned ('errSecCSUnsigned')",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin firmar ('errSecCSUnsigned')"
+          }
+        }
+      }
     },
     "View Entitlements" : {
-      "comment" : "View Entitlements"
+      "comment" : "View Entitlements",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver Permisos"
+          }
+        }
+      }
     },
     "View Hashes" : {
-      "comment" : "View Hashes"
+      "comment" : "View Hashes",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver Hashes"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

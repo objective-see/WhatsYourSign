@@ -410,7 +410,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Installer/WhatsYourSign Installer.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -425,7 +425,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "WhatsYourSign Installer";
 			};
@@ -438,7 +438,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Installer/WhatsYourSign Installer.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.3;
+				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_INSTALLER_APP=1";
@@ -449,7 +449,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WhatsYourSign";
 				PRODUCT_NAME = "WhatsYourSign Installer";
 			};

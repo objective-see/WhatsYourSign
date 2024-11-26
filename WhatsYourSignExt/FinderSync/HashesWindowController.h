@@ -16,4 +16,7 @@
 //hash text view
 @property (unsafe_unretained) IBOutlet NSTextView *hashList;
 
+//close button
+@property (weak) IBOutlet NSButton *closeButton;
+
 @end

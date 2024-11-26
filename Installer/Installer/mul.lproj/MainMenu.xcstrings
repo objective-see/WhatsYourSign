@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "WhatsYourSign"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsYourSign"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Quit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salir"
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "new",
             "value" : "About"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acerca de"
+          }
         }
       }
     },
@@ -46,6 +64,12 @@
             "state" : "new",
             "value" : "Main Menu"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú Principal"
+          }
         }
       }
     },
@@ -56,6 +80,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "WhatsYourSign"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "WhatsYourSign"
           }
         }

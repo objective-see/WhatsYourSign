@@ -2,49 +2,202 @@
   "sourceLanguage" : "en",
   "strings" : {
     "...now exiting, goodbye!" : {
-      "comment" : "...now exiting, goodbye!"
+      "comment" : "...now exiting, goodbye!",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "..saliendo ahora, ¡adiós!"
+          }
+        }
+      }
     },
     "...restarting Finder.app" : {
-      "comment" : "...restarting Finder.app"
+      "comment" : "...restarting Finder.app",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "…reiniciando Finder.app"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "comment" : "Close",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        }
+      }
     },
     "Code-signing info via the UI 🔏" : {
-      "comment" : "Code-signing info via the UI 🔏"
+      "comment" : "Code-signing info via the UI 🔏",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de firma de código a través de la interfaz de usuario 🔏"
+          }
+        }
+      }
     },
     "Code-signing info via the UI." : {
-      "comment" : "Code-signing info via the UI."
+      "comment" : "Code-signing info via the UI.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de firma de código a través de la interfaz de usuario."
+          }
+        }
+      }
     },
     "Error: install failed." : {
-      "comment" : "Error: install failed."
+      "comment" : "Error: install failed.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: la instalación falló."
+          }
+        }
+      }
     },
     "Error: uninstall failed." : {
-      "comment" : "Error: uninstall failed."
+      "comment" : "Error: uninstall failed.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: la desinstalación falló."
+          }
+        }
+      }
     },
     "Exit" : {
-      "comment" : "Exit"
+      "comment" : "Exit",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salir"
+          }
+        }
+      }
     },
     "Help Fix" : {
-      "comment" : "Help Fix"
+      "comment" : "Help Fix",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda a Corregir"
+          }
+        }
+      }
     },
     "Installing..." : {
-      "comment" : "Installing..."
+      "comment" : "Installing...",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalando…"
+          }
+        }
+      }
     },
-    "uninstall" : {
-      "comment" : "uninstall"
+    "Next »" : {
+      "comment" : "Next »",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Próximo »"
+          }
+        }
+      }
+    },
+    "Restart Finder" : {
+      "comment" : "Restart Finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinicia Finder"
+          }
+        }
+      }
     },
     "Uninstalling..." : {
-      "comment" : "Uninstalling..."
+      "comment" : "Uninstalling...",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desinstalando…"
+          }
+        }
+      }
+    },
+    "Upgrade" : {
+      "comment" : "Upgrade",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar"
+          }
+        }
+      }
     },
     "Version: %@" : {
-      "comment" : "Version: %@"
+      "comment" : "Version: %@",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión: %@"
+          }
+        }
+      }
     },
     "WhatsYourSign installed!" : {
-      "comment" : "WhatsYourSign installed!"
+      "comment" : "WhatsYourSign installed!",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsYourSign instalada!"
+          }
+        }
+      }
     },
     "WhatsYourSign installed!\nRestart 'Finder.app' to complete." : {
-      "comment" : "WhatsYourSign installed!\nRestart 'Finder.app' to complete."
+      "comment" : "WhatsYourSign installed!\nRestart 'Finder.app' to complete.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡WhatsYourSign instalada! Reinicia 'Finder.app' para completar. "
+          }
+        }
+      }
     },
     "WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete." : {
-      "comment" : "WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete."
+      "comment" : "WhatsYourSign uninstalled!\nRestart 'Finder.app' to complete.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡WhatsYourSign desinstalada!\nReinicia 'Finder.app' para completar."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

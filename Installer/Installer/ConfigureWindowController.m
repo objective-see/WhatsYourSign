@@ -14,6 +14,7 @@
 @implementation ConfigureWindowController
 
 @synthesize statusMsg;
+@synthesize isUninstalling;
 @synthesize moreInfoButton;
 
 //automatically called when nib is loaded
@@ -67,7 +68,7 @@
         self.uninstallButton.enabled = YES;
         
         //set to 'upgrade'
-        self.installButton.title = ACTION_UPGRADE;
+        self.installButton.title = NSLocalizedString(@"Upgrade", @"Upgrade");
     }
     //otherwise disable
     else
@@ -120,10 +121,7 @@
 {
     //action
     NSUInteger action = 0;
-    
-    //uninstall flag
-    __block BOOL uninstalled = NO;
-    
+        
     //grab tag
     action = ((NSButton*)sender).tag;
     
@@ -149,10 +147,6 @@
             restartFinder();
         });
         
-        //set flag
-        // need to know if user uninstalled (to exit app now)
-        uninstalled = [self.statusMsg.stringValue containsString:NSLocalizedString(@"uninstall", @"uninstall")];
-        
         //update button tag
         self.installButton.enabled = NO;
         
@@ -175,13 +169,13 @@
             
             //check if we're here cuz of an uninstall
             // and if so, close the app
-            if(YES == uninstalled)
+            if(YES == self.isUninstalling)
             {
                 //set message
                 self.statusMsg.stringValue = NSLocalizedString(@"...now exiting, goodbye!", @"...now exiting, goodbye!");
                 
                 //close app after 1 second
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     
                     //close app
                     [NSApp terminate:self];
@@ -214,7 +208,7 @@
                 self.installButton.tag = ACTION_NEXT_FLAG;
                 
                 //update button title
-                self.installButton.title = ACTION_NEXT;
+                self.installButton.title = NSLocalizedString(@"Next »", @"Next »");
                 
                 if(@available(macOS 14.0, *)) {
                     [NSApp activate];
@@ -288,6 +282,9 @@
     //install/uninstall logic handlers
     else
     {
+        //set flag
+        self.isUninstalling = (ACTION_UNINSTALL_FLAG == action);
+        
         //hide 'get more info' button
         self.moreInfoButton.hidden = YES;
         
@@ -510,7 +507,7 @@ bail:
     if(YES == success)
     {
         //update button title
-        self.installButton.title = ACTION_RESTART;
+        self.installButton.title = NSLocalizedString(@"Restart Finder", @"Restart Finder");
         
         //update button tag
         self.installButton.tag = ACTION_RESTART_FLAG;
@@ -530,7 +527,7 @@ bail:
     else
     {
         //set button title
-        self.installButton.title = ACTION_CLOSE;
+        self.installButton.title = NSLocalizedString(@"Close", @"Close");
         
         //update button tag
         self.installButton.tag = ACTION_CLOSE_FLAG;
