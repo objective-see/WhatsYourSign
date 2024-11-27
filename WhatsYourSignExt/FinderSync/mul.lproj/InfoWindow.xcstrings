@@ -92,19 +92,19 @@
       }
     },
     "E6C-qM-nrz.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Item Type:\"; ObjectID = \"E6C-qM-nrz\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Type:\"; ObjectID = \"E6C-qM-nrz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Item Type:"
+            "value" : "Type:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipo de Ítem:"
+            "value" : "Tipo:"
           }
         }
       }
