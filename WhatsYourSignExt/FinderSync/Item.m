@@ -366,7 +366,7 @@ bail:
     {
         //extract
         // pass 'YES' to also generate entitlements
-        self.signingInfo = extractSigningInfo(self.path, kSecCSDefaultFlags | kSecCSCheckNestedCode | kSecCSCheckAllArchitectures | kSecCSEnforceRevocationChecks, YES);
+        self.signingInfo = extractSigningInfo(self.path, kSecCSCheckNestedCode | kSecCSEnforceRevocationChecks, YES);
         
         //if item is app bundle
         // generate hashes of app's executable!
