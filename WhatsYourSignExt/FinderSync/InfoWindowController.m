@@ -141,7 +141,7 @@
             if(0 == [self.item.signingInfo[KEY_SIGNING_AUTHORITIES] count])
             {
                 //append to details
-                [csDetails appendString:NSLocalizedString(@"no signing authorities", @"no signing authorities")];
+                [csDetails appendString:NSLocalizedString(@"No signing authorities", @"No signing authorities")];
             }
             
             //add each signing auth
@@ -231,8 +231,15 @@
                 }
                 
                 //ad-hoc
+                // note: can have a revoked notarizion!
                 else
                 {
+                    if(errSecCSRevokedNotarization == [self.item.signingInfo[KEY_SIGNING_IS_NOTARIZED] integerValue])
+                        {
+                            //append to summary
+                            [csSummary appendFormat:NSLocalizedString(@", but notarization revoked!", @", but notarization revoked!")];
+                        }
+                   
                     //set summary details
                     self.summaryDetails.stringValue = NSLocalizedString(@"(Signature is ad-hoc)", @"(Signature is ad-hoc)");
                 }
@@ -414,7 +421,11 @@
     //alloc sheet
     self.hashesWindowController = [[HashesWindowController alloc] initWithWindowNibName:@"HashesWindow"];
     
-    //save signing info into iVar
+    //save cd hash into iVar
+    self.hashesWindowController.cdHash = self.item.signingInfo[KEY_SIGNING_CDHASH_SHA1];
+    self.hashesWindowController.cdHashFull = self.item.signingInfo[KEY_SIGNING_CDHASH_SHA256];
+    
+    //save hashes into iVar
     self.hashesWindowController.hashes = self.item.hashes;
     
     //show hashes

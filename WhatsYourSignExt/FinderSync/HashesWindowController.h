@@ -10,6 +10,10 @@
 
 @interface HashesWindowController : NSWindowController
 
+//cd hashes
+@property(nonatomic, retain)NSData* cdHash;
+@property(nonatomic, retain)NSData* cdHashFull;
+
 //hashes
 @property(nonatomic, retain)NSDictionary* hashes;
 

@@ -18,6 +18,7 @@
 
 #import <sys/sysctl.h>
 
+@import OSLog;
 @import Security;
 @import CommonCrypto;
 @import SystemConfiguration;
@@ -153,7 +154,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     
     //cert chain
     NSArray* certificateChain = nil;
-    
+ 
     //index
     NSUInteger index = 0;
     
@@ -169,6 +170,9 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     //is notarized requirement
     static SecRequirementRef isNotarized = nil;
     
+    //dbg msg
+    os_log(OS_LOG_DEFAULT, "WYS: extracting code signing information for: %{public}@", path);
+    
     //only once
     // init notarization requirements
     dispatch_once(&onceToken, ^{
@@ -180,6 +184,8 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     
     //init signing status
     signingInfo = [NSMutableDictionary dictionary];
+    
+    //sanity check
     if(nil == path)
     {
         //set err
@@ -211,10 +217,10 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:status];
     
     //if file is signed
-    // grab entitlements, signing authorities, notarization status?
+    // grab entitlements, signing authorities, notarization status, etc.
     if(errSecSuccess == status)
     {
-        //grab signing authorities
+        //grab signing informaation
         status = SecCodeCopySigningInformation(staticCode, kSecCSSigningInformation, &signingDetails);
         if(errSecSuccess != status)
         {
@@ -227,6 +233,34 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         {
             //extract/save
             signingInfo[KEY_SIGNING_FLAGS] = [(__bridge NSDictionary*)signingDetails objectForKey:(__bridge NSString*)kSecCodeInfoFlags];
+        }
+        
+        //extract cd hashes
+        for(NSData* hash in [((__bridge NSDictionary*)signingDetails)[@"cdhashes-full"] allObjects])
+        {
+            //sanity check
+            if([hash isKindOfClass:[NSData class]])
+            {
+                //SHA1?
+                if(CC_SHA1_DIGEST_LENGTH == hash.length)
+                {
+                    signingInfo[KEY_SIGNING_CDHASH_SHA1] = hash;
+                }
+                //SHA256 hash
+                else if(CC_SHA256_DIGEST_LENGTH == hash.length)
+                {
+                    signingInfo[KEY_SIGNING_CDHASH_SHA256] = hash;
+                }
+            }
+        }
+        
+        //also try 'kSecCodeInfoUnique' for cd hash
+        if(!signingInfo[KEY_SIGNING_CDHASH_SHA1] && !signingInfo[KEY_SIGNING_CDHASH_SHA256])
+        {
+            NSData* hash = ((__bridge NSDictionary*)signingDetails)[(__bridge NSString *)kSecCodeInfoUnique];
+            if ([hash isKindOfClass:[NSData class]] && hash.length == CC_SHA1_DIGEST_LENGTH) {
+                signingInfo[KEY_SIGNING_CDHASH_SHA1] = hash;
+            }
         }
         
         //add entitlements?
@@ -298,6 +332,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
             commonName = NULL;
         }
     }
+    
     //check notarization status
     // note: force online checks (revocation)
     if(errSecSuccess == SecStaticCodeCheckValidity(staticCode, kSecCSEnforceRevocationChecks, isNotarized))
@@ -355,7 +390,6 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
                 //skip
                 continue;
             }
-            
             
             //notarization check
             // do online ('kSecAssessmentTicketFlagForceOnlineCheck') to detect revocations

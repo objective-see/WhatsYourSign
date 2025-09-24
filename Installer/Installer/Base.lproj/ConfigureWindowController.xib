@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24127" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24127"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +24,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="460" height="194"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1470" height="922"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="460" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -170,59 +170,59 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="3Zp-An-nu0">
-                    <rect key="frame" x="364" y="92" width="96" height="34"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.90000000000000002" id="z3T-16-D60">
+                    <rect key="frame" x="254" y="52" width="138" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FriendsKandji" id="0qP-6V-ba2"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsMacPaw" id="eBM-vn-1Qy"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="b3O-mf-iNn">
-                    <rect key="frame" x="9" y="58" width="77" height="23"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.90000000000000002" id="B1N-1a-aaG">
+                    <rect key="frame" x="118" y="54" width="119" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsJamf" id="GPR-w0-dxz"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsPANW" id="DlL-YC-Ngd"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="ceZ-ob-Ecv">
-                    <rect key="frame" x="229" y="54" width="138" height="31"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="hHg-6h-zOh">
+                    <rect key="frame" x="567" y="50" width="142" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsMacPaw" id="HXS-XW-phN"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsHuntress" id="yph-on-ETm"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="fEu-mo-EId">
-                    <rect key="frame" x="95" y="57" width="119" height="24"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="Y5e-2N-hGS">
+                    <rect key="frame" x="715" y="54" width="73" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsPANW" id="KjS-Hs-AlG"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsiVerify" id="wIV-b9-BAN"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="ykk-3q-de3">
-                    <rect key="frame" x="506" y="57" width="122" height="26"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="bZ7-ir-GIE">
+                    <rect key="frame" x="295" y="88" width="102" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsHuntress" id="rdp-cq-JLc"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsKandji" id="xSJ-c1-Xvq"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="sZr-xx-eaj">
-                    <rect key="frame" x="765" y="60" width="57" height="18"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.90000000000000002" id="wkA-Oa-Mbz">
+                    <rect key="frame" x="431" y="95" width="89" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsiVerify" id="GOj-Pc-BLJ"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsFleet" id="6Ln-Ax-ggy"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="AXY-fI-6Yd">
-                    <rect key="frame" x="629" y="47" width="128" height="44"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.90000000000000002" id="bZc-nF-ysT">
+                    <rect key="frame" x="19" y="54" width="77" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsMalwarebytes" id="5Kv-Na-dyy"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsJamf" id="woR-UQ-63I"/>
                 </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="V8a-ZN-1fA">
-                    <rect key="frame" x="380" y="58" width="119" height="24"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.80000000000000004" id="xbQ-Zc-rw0">
+                    <rect key="frame" x="402" y="46" width="157" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Friends1Password" id="hht-0I-Ifj"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsSophos" id="LR7-Pu-I5O"/>
                 </imageView>
             </subviews>
             <point key="canvasLocation" x="639" y="1303"/>
         </customView>
     </objects>
     <resources>
-        <image name="Friends1Password" width="272" height="52"/>
+        <image name="FriendsFleet" width="236" height="96"/>
         <image name="FriendsHuntress" width="800" height="198"/>
-        <image name="FriendsJamf" width="328" height="114"/>
+        <image name="FriendsJamf" width="162" height="56"/>
         <image name="FriendsKandji" width="1944" height="494"/>
-        <image name="FriendsMacPaw" width="2034" height="335"/>
-        <image name="FriendsMalwarebytes" width="2500" height="403"/>
+        <image name="FriendsMacPaw" width="145" height="20"/>
         <image name="FriendsPANW" width="1312" height="240"/>
-        <image name="FriendsiVerify" width="500" height="180"/>
+        <image name="FriendsSophos" width="1201" height="131"/>
+        <image name="FriendsiVerify" width="736" height="268"/>
         <image name="Support" width="256" height="256"/>
         <image name="icon" width="256" height="256"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>

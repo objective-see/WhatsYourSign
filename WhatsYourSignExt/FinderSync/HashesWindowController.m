@@ -53,6 +53,29 @@
         [formattedHashes appendString:[NSString stringWithFormat:@"%@: %@\n", KEY_HASH_SHA512, self.hashes[KEY_HASH_SHA512]]];
     }
     
+    
+    //add cdhash
+    if(nil != self.cdHash)
+    {
+        NSMutableString* cdHashString = [NSMutableString string];
+        for (NSUInteger i = 0; i < self.cdHash.length; i++) {
+            [cdHashString appendFormat:@"%02X", ((unsigned char*)self.cdHash.bytes)[i]];
+        }
+        
+        [formattedHashes appendString:[NSString stringWithFormat:@"\nCode Directory Hash (SHA-1): %@\n", cdHashString]];
+    }
+    
+    //add (full) cd hash
+    if(nil != self.cdHashFull)
+    {
+        NSMutableString* cdHashString = [NSMutableString string];
+        for (NSUInteger i = 0; i < self.cdHashFull.length; i++) {
+            [cdHashString appendFormat:@"%02X", ((unsigned char*)self.cdHashFull.bytes)[i]];
+        }
+        
+        [formattedHashes appendString:[NSString stringWithFormat:@"\nCode Directory Hash (SHA-256): %@\n", cdHashString]];
+    }
+    
     //add hashes
     self.hashList.string = formattedHashes;
     

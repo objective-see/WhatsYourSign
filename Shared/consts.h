@@ -69,6 +69,10 @@
 //signing auths
 #define KEY_SIGNING_AUTHORITIES @"signingAuthorities"
 
+//cd hashes
+#define KEY_SIGNING_CDHASH_SHA1     @"cdhash_sha1"
+#define KEY_SIGNING_CDHASH_SHA256   @"cdhash_sha256"
+
 //entitlements
 #define KEY_SIGNING_ENTITLEMENTS @"entitlements"
 

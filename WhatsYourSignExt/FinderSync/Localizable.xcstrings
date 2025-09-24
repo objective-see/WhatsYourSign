@@ -144,13 +144,13 @@
         }
       }
     },
-    "no signing authorities" : {
-      "comment" : "no signing authorities",
+    "No signing authorities" : {
+      "comment" : "No signing authorities",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "sin autoridades de firma"
+            "value" : "Sin autoridades de firma"
           }
         }
       }
