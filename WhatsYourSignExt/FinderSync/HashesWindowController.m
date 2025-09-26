@@ -57,11 +57,13 @@
     //add SHA-1 cdhash
     if(self.cdHash)
     {
+        //format
         NSMutableString* cdHashString = [NSMutableString string];
         for (NSUInteger i = 0; i < self.cdHash.length; i++) {
             [cdHashString appendFormat:@"%02X", ((unsigned char*)self.cdHash.bytes)[i]];
         }
         
+        //add
         [formattedHashes appendString:[NSString stringWithFormat:@"\n Code Directory Hash (SHA-1): %@\n", cdHashString]];
     }
     
@@ -73,11 +75,13 @@
             [formattedHashes appendString:@"\n"];
         }
         
+        //format
         NSMutableString* cdHashString = [NSMutableString string];
         for (NSUInteger i = 0; i < self.cdHashFull.length; i++) {
             [cdHashString appendFormat:@"%02X", ((unsigned char*)self.cdHashFull.bytes)[i]];
         }
         
+        //add
         [formattedHashes appendString:[NSString stringWithFormat:@" Code Directory Hash (SHA-256): %@\n", cdHashString]];
     }
     

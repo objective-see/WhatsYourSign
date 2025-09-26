@@ -74,19 +74,19 @@
       }
     },
     "srP-zm-Xde.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"OK!\"; ObjectID = \"srP-zm-Xde\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"OK\"; ObjectID = \"srP-zm-Xde\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "OK!"
+            "value" : "OK"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡De acuerdo!"
+            "value" : "De acuerdo"
           }
         }
       }
