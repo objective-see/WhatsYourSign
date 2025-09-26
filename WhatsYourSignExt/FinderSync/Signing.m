@@ -215,10 +215,11 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     
     //(re)save signature status
     signingInfo[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:status];
-    
-    //if file is signed
+
+    //if file is validly signed (or was signed, but revoked)
     // grab entitlements, signing authorities, notarization status, etc.
-    if(errSecSuccess == status)
+    if( (errSecSuccess == status) ||
+        (CSSMERR_TP_CERT_REVOKED == status) )
     {
         //grab signing informaation
         status = SecCodeCopySigningInformation(staticCode, kSecCSSigningInformation, &signingDetails);

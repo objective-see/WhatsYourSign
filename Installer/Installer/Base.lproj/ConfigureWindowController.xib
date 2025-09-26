@@ -171,7 +171,7 @@
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.90000000000000002" id="z3T-16-D60">
-                    <rect key="frame" x="254" y="52" width="138" height="31"/>
+                    <rect key="frame" x="252" y="53" width="138" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FriendsMacPaw" id="eBM-vn-1Qy"/>
                 </imageView>
@@ -219,7 +219,7 @@
         <image name="FriendsHuntress" width="800" height="198"/>
         <image name="FriendsJamf" width="162" height="56"/>
         <image name="FriendsKandji" width="1944" height="494"/>
-        <image name="FriendsMacPaw" width="145" height="20"/>
+        <image name="FriendsMacPaw" width="1541" height="181"/>
         <image name="FriendsPANW" width="1312" height="240"/>
         <image name="FriendsSophos" width="1201" height="131"/>
         <image name="FriendsiVerify" width="736" height="268"/>
