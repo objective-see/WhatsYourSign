@@ -13,24 +13,25 @@
 @synthesize directories;
 
 //init
+// watch all the things, though logic is a bit nuances due to a badging issue on macOS (impacting external drives)
 -(instancetype)init
 {
     self = [super init];
     if(nil != self)
     {
-        //init
-        directories = [NSMutableSet set];
+        //init directories set
+        self.directories = [NSMutableSet set];
+
+        //get all mounted volumes
+        NSArray *volumes = [NSFileManager.defaultManager mountedVolumeURLsIncludingResourceValuesForKeys:@[NSURLVolumeIsRootFileSystemKey] options:NSVolumeEnumerationSkipHiddenVolumes];
         
-        //dbg msg
-        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"extension (%@) off and running", [[NSBundle mainBundle] bundlePath]]);
-        
-        //set dirs
-        self.directories = [NSMutableSet setWithArray: [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:@[] options:NSVolumeEnumerationSkipHiddenVolumes]];
-        
-        //dbg msg
-        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"initializing 'watch' directories with: %@", self.directories]);
-        
-        //set directories
+        //for each volume
+        // add to watched directories
+        for(NSURL *volume in volumes) {
+            [self monitorVolume:volume];
+        }
+
+        //now set directories
         [FIFinderSyncController defaultController].directoryURLs = self.directories;
     
         //register for volume mount
@@ -41,6 +42,90 @@
     }
     
     return self;
+}
+
+// monitor volume
+// internal drives: adds the root itself
+// external drives: adds all items at root (avoids badging)
+-(void)monitorVolume:(NSURL *)volume
+{
+    NSNumber *isRootVolume = nil;
+    
+    //get 'is root' key
+    [volume getResourceValue:&isRootVolume forKey:NSURLVolumeIsRootFileSystemKey error:nil];
+
+    //root?
+    // can just watch entire volume
+    if([isRootVolume boolValue]) {
+        
+        //dbg msg
+        NSLog(@"WYS: monitoring root volume: %@", volume);
+        
+        //add
+        [self.directories addObject:volume];
+    }
+    //external drive?
+    // add subdirectories AND files at root (avoids badging)
+    else
+    {
+        //contents
+        NSArray* contents = [NSFileManager.defaultManager contentsOfDirectoryAtURL:volume includingPropertiesForKeys:@[NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+        
+        //add each item
+        for(NSURL* item in contents) {
+            
+            //dbg msg
+            NSLog(@"WYS: monitoring non-root item: %@", item);
+            
+            //add
+            [self.directories addObject:item];
+        }
+    }
+    
+    //update watched directories
+    [FIFinderSyncController defaultController].directoryURLs = self.directories;
+    
+    return;
+}
+
+//unmonitor
+-(void)unmonitorVolume:(NSURL *)volume
+{
+    NSNumber *isRootVolume = nil;
+    
+    //get 'is root' key
+    [volume getResourceValue:&isRootVolume forKey:NSURLVolumeIsRootFileSystemKey error:nil];
+
+    //root?
+    // can just remove volume
+    if([isRootVolume boolValue]) {
+        
+        //dbg msg
+        NSLog(@"WYS: unmonitoring root volume: %@", volume);
+        
+        //remove
+        [self.directories removeObject:volume];
+    }
+    //external drive?
+    // remove subdirectories AND files at root (avoids badging)
+    else
+    {
+        //dbg msg
+        NSLog(@"WYS: unmonitoring non-root volume: %@", volume.path);
+        
+        //find all directories that start with this volume's path
+        NSSet* unwatch = [self.directories objectsPassingTest:^BOOL(NSURL *url, BOOL *stop) {
+            return [url.path hasPrefix:volume.path];
+        }];
+        
+        //remove
+        [self.directories minusSet:unwatch];
+    }
+    
+    //update watched directories
+    [FIFinderSyncController defaultController].directoryURLs = self.directories;
+    
+    return;
 }
 
 //automatically invoked
@@ -61,7 +146,7 @@
     menu = [[NSMenu alloc] initWithTitle:@""];
     
     //add 'Signing Info'
-    [menu addItemWithTitle:NSLocalizedString(@"Signing Info", @"Signing Info") action:@selector(showSigningInfo:) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Code Signing Info", @"Code Signing Info") action:@selector(showSigningInfo:) keyEquivalent:@""];
     
 bail:
 
@@ -72,32 +157,23 @@ bail:
 -(void)volumeEvent:(NSNotification*)notification
 {
     //dbg msg
-    //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"volume notification: %@", notification]);
+    NSLog(@"WYS: volume notification: %@", notification);
     
     //mount?
-    // add volume
+    // monitor volume
     if(YES == [notification.name isEqualToString:NSWorkspaceDidMountNotification])
     {
-        //dbg
-        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"adding %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
-        
-        //add to set
-        [self.directories addObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+        //monitor
+        [self monitorVolume:notification.userInfo[NSWorkspaceVolumeURLKey]];
     }
     
     //unmount?
-    // remove volume
+    // unmonitor volume
     else if(YES == [notification.name isEqualToString:NSWorkspaceDidUnmountNotification])
     {
-        //dbg
-        //logMsg(LOG_DEBUG, [NSString stringWithFormat:@"removing %@", [notification.userInfo[NSWorkspaceVolumeURLKey] path]]);
-        
-        //remove from set
-        [self.directories removeObject:notification.userInfo[NSWorkspaceVolumeURLKey]];
+        //unmonitor
+        [self unmonitorVolume:notification.userInfo[NSWorkspaceVolumeURLKey]];
     }
-    
-    //update watched directories
-    [FIFinderSyncController defaultController].directoryURLs = self.directories;
     
     return;
 }

@@ -227,7 +227,7 @@
                     }
         
                     //set summary details
-                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Apple Dev-ID)", @"(Signer: Apple Dev-ID)");
+                    self.summaryDetails.stringValue = NSLocalizedString(@"(Signer: Apple Developer ID)", @"(Signer: Apple Developer ID)");
                 }
                 
                 //ad-hoc

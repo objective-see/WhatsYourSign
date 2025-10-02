@@ -100,13 +100,13 @@
         }
       }
     },
-    "(Signer: Apple Dev-ID)" : {
-      "comment" : "(Signer: Apple Dev-ID)",
+    "(Signer: Apple Developer ID)" : {
+      "comment" : "(Signer: Apple Developer ID)",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Firmante: Apple Dev-ID)"
+            "value" : "(Firmante: Apple Developer ID)"
           }
         }
       }
@@ -129,6 +129,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "(Firmante: Mac App Store)"
+          }
+        }
+      }
+    },
+    "Code Signing Info" : {
+      "comment" : "Code Signing Info",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de Firma"
           }
         }
       }
@@ -184,17 +195,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ninguno (el ítem es un directorio)"
-          }
-        }
-      }
-    },
-    "Signing Info" : {
-      "comment" : "Signing Info",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Información de Firma"
           }
         }
       }

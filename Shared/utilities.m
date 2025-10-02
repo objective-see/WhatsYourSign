@@ -476,9 +476,6 @@ NSDictionary* hashFile(NSString* filePath)
     //file hashes
     NSDictionary* hashes = nil;
     
-    //directory flag
-    BOOL isDirectory = NO;
-    
     //bundle
     NSBundle* bundle = nil;
     
@@ -551,11 +548,10 @@ NSDictionary* hashFile(NSString* filePath)
     // might be updated if app bundle
     path = filePath;
     
-    //directory?
-    // try see if its a bundle with an executable
-    if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory]) &&
-        (YES == isDirectory) )
-    {
+    //is bundle?
+    // update path with main executable
+    if(YES == [[NSWorkspace sharedWorkspace] isFilePackageAtPath:filePath]) {
+        
         //load bundle
         bundle = [NSBundle bundleWithPath:filePath];
         
