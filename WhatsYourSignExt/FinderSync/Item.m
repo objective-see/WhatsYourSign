@@ -368,26 +368,8 @@ bail:
         // pass 'YES' to also generate entitlements
         self.signingInfo = extractSigningInfo(self.path, kSecCSCheckNestedCode | kSecCSEnforceRevocationChecks, YES);
         
-        //if item is app bundle
-        // generate hashes of app's executable!
-        if(YES == [self.path hasSuffix:@".app"])
-        {
-            //get app binary
-            binaryPath = self.bundle.executablePath;
-            if(nil != binaryPath)
-            {
-                //add app's binary hashes
-                self.hashes = hashFile(self.path);
-            }
-        }
-        
-        //don't hash directories
-        if( (YES == [[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:&isDirectory]) &&
-            (YES != isDirectory) )
-        {
-            //add hashes
-            self.hashes = hashFile(self.path);
-        }
+        //add hashes
+        self.hashes = hashFile(self.path);
     }
     
     return;

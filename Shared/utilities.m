@@ -471,10 +471,13 @@ bail:
 
 //hash a file
 // md5/sha1/sha256
-NSDictionary* hashFile(NSString* filePath)
+NSDictionary* hashFile(NSString* itemPath)
 {
     //file hashes
     NSDictionary* hashes = nil;
+    
+    //flag
+    BOOL isDirectory = NO;
     
     //bundle
     NSBundle* bundle = nil;
@@ -546,31 +549,48 @@ NSDictionary* hashFile(NSString* filePath)
     
     //init path
     // might be updated if app bundle
-    path = filePath;
+    path = itemPath;
     
-    //is bundle?
-    // update path with main executable
-    if(YES == [[NSWorkspace sharedWorkspace] isFilePackageAtPath:filePath]) {
+    //set directory flag
+    [NSFileManager.defaultManager fileExistsAtPath:itemPath isDirectory:&isDirectory];
+    
+    //directories might be bundles
+    // in that case get main binary to hash
+    if(isDirectory) {
         
-        //load bundle
-        bundle = [NSBundle bundleWithPath:filePath];
-        
-        //sanity check
-        // bundle w/ executable path?
-        if( (nil == bundle) ||
-            (nil == bundle.executablePath) )
-        {
-            //bail
-            goto bail;
+        //is bundle?
+        if([NSWorkspace.sharedWorkspace isFilePackageAtPath:itemPath]) {
+            
+            //load bundle
+            bundle = [NSBundle bundleWithPath:itemPath];
+            
+            //sanity check
+            // bundle w/ executable path?
+            if( (nil == bundle) ||
+                (nil == bundle.executablePath) )
+            {
+                //bail
+                goto bail;
+            }
+            
+            //update path
+            path = bundle.executablePath;
         }
         
-        //update path
-        path = bundle.executablePath;
+        //not bundle
+        // can't hash a directory, so bail
+        else
+        {
+            goto bail;
+        }
     }
     
     //open handle to file
     handle = [NSFileHandle fileHandleForReadingAtPath:path];
-    if(nil == handle) goto bail;
+    if(nil == handle)
+    {
+        goto bail;
+    }
     
     //init hash contexts
     CC_MD5_Init(&md5Context);
