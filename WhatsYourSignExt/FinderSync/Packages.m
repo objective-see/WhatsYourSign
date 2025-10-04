@@ -51,7 +51,7 @@ NSMutableDictionary* checkPackage(NSString* package)
     CFStringRef certificateName = NULL;
     
     //dbg msg
-    os_log(OS_LOG_DEFAULT, "WYS: checking package (.pkg)...");
+    os_log_debug(OS_LOG_DEFAULT, "WYS: checking package (.pkg)...");
     
     //init
     info = [NSMutableDictionary dictionary];
@@ -114,14 +114,14 @@ NSMutableDictionary* checkPackage(NSString* package)
     }
     
     //dbg msg
-    os_log(OS_LOG_DEFAULT, "WYS: extracting signatures...");
+    os_log_debug(OS_LOG_DEFAULT, "WYS: extracting signatures...");
     
     //extract signatures
     signatures = archive.archiveSignatures;
     if(0 == signatures.count)
     {
         //dbg msg
-        os_log(OS_LOG_DEFAULT, "WYS: package has no signatures (unsigned)");
+        os_log_debug(OS_LOG_DEFAULT, "WYS: package has no signatures (unsigned)");
         
         //unsigned!
         info[KEY_SIGNATURE_STATUS] = [NSNumber numberWithInteger:errSecCSUnsigned];

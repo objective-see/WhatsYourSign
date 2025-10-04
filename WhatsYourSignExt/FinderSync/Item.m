@@ -334,14 +334,8 @@ bail:
 // call in the background
 -(void)generateSigningInfo
 {
-    //app binary
-    NSString* binaryPath = nil;
-    
-    //directory flag
-    BOOL isDirectory = NO;
-    
     //dbg msg
-    os_log(OS_LOG_DEFAULT, "WYS: generating signing information for %{public}@", self.path);
+    os_log_debug(OS_LOG_DEFAULT, "WYS: generating signing information for %{public}@", self.path);
     
     //xip's are special
     // signing info is appended differently

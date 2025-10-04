@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
+#import <os/log.h>
 #import "FinderSync.h"
 
 @implementation FinderSync
@@ -59,14 +60,14 @@
     if([isRootVolume boolValue]) {
         
         //dbg msg
-        NSLog(@"WYS: monitoring root volume: %@", volume);
+        //os_log_debug(OS_LOG_DEFAULT, "WYS: monitoring root volume: %@", volume);
         
         //add
         [self.directories addObject:volume];
     }
     //external drive?
     // add subdirectories AND files at root (avoids badging)
-    // but also need logic to manually find / add contents of bundles :\
+    // but also need logic to manually find / add contents of bundles
     else
     {
         //get top-level contents
@@ -77,7 +78,10 @@
         
         //add each top-level item
         for(NSURL* item in contents) {
-            NSLog(@"WYS: adding top-level item: %@", item);
+            
+            //dbg msg
+            //os_log_debug(OS_LOG_DEFAULT, "WYS: adding top-level item: %{public}@", item);
+            
             [self.directories addObject:item];
         }
         
@@ -103,6 +107,7 @@
     
     for (NSURL* item in enumerator) {
         
+        //add bundles
         NSNumber* isPackage;
         [item getResourceValue:&isPackage forKey:NSURLIsPackageKey error:nil];
         
@@ -114,6 +119,7 @@
     }
 }
 
+//add bundle's items
 - (void)addBundle:(NSURL*)bundle {
 
     //add
@@ -129,7 +135,7 @@
     for (NSURL* item in contents) {
         
         //dbg msg
-        NSLog(@"WYS: adding top-level package item: %@", item);
+        //os_log_debug(OS_LOG_DEFAULT, "WYS: adding top-level package item: %{public}@", item);
         
         //add
         [self.directories addObject:item];
@@ -150,7 +156,7 @@
     if([isRootVolume boolValue]) {
         
         //dbg msg
-        NSLog(@"WYS: unmonitoring root volume: %@", volume);
+        //os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring root volume: %{public}@", volume);
         
         //remove
         [self.directories removeObject:volume];
@@ -160,7 +166,7 @@
     else
     {
         //dbg msg
-        NSLog(@"WYS: unmonitoring non-root volume: %@", volume.path);
+        //os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring non-root volume: %{public}@", volume.path);
         
         //find all directories that start with this volume's path
         NSSet* unwatch = [self.directories objectsPassingTest:^BOOL(NSURL *url, BOOL *stop) {
@@ -206,7 +212,7 @@ bail:
 -(void)volumeEvent:(NSNotification*)notification
 {
     //dbg msg
-    NSLog(@"WYS: volume notification: %@", notification);
+    os_log_debug(OS_LOG_DEFAULT, "WYS: volume notification: %{public}@", notification);
     
     //mount?
     // monitor volume

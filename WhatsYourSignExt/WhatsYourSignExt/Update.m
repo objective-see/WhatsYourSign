@@ -12,6 +12,8 @@
 #import "utilities.h"
 #import "AppDelegate.h"
 
+#import <os/log.h>
+
 /* GLOBALS */
 
 @implementation Update
@@ -75,7 +77,7 @@
                     if(YES != [NSProcessInfo.processInfo isOperatingSystemAtLeastVersion:supportedOS])
                     {
                         //dbg mdg
-                        NSLog(@"WYS: Latest version requires macOS %ld.%ld, but current macOS is %@", supportedOS.majorVersion, supportedOS.minorVersion, NSProcessInfo.processInfo.operatingSystemVersionString);
+                        os_log_debug(OS_LOG_DEFAULT, "WYS: Latest version requires macOS %ld.%ld, but current macOS is %@", supportedOS.majorVersion, supportedOS.minorVersion, NSProcessInfo.processInfo.operatingSystemVersionString);
                         
                         //not supported
                         result = Update_NotSupported;
@@ -87,7 +89,7 @@
         else
         {
             //err msg
-            NSLog(@"WYS: ERROR: Failed to retrieve product info (for update check) from %@", PRODUCT_VERSIONS_URL);
+            os_log_debug(OS_LOG_DEFAULT, "WYS: ERROR: Failed to retrieve product info (for update check) from %{public}@", PRODUCT_VERSIONS_URL);
             
             result = Update_Error;
         }
@@ -121,7 +123,7 @@
         if(nil == json)
         {
             //err msg
-            NSLog(@"WYS: ERROR: failed to download product info from %@", PRODUCT_VERSIONS_URL);
+            os_log_debug(OS_LOG_DEFAULT, "WYS: ERROR: failed to download product info from %{public}@", PRODUCT_VERSIONS_URL);
             goto bail;
         }
         
@@ -130,7 +132,7 @@
         if(nil != error)
         {
             //err msg
-            NSLog(@"WYS: ERROR: Failed to convert 'products' to JSON (error: %@)", error);
+            os_log_debug(OS_LOG_DEFAULT, "WYS: ERROR: Failed to convert 'products' to JSON (error: %{public}@)", error);
             goto bail;
         }
         
@@ -144,7 +146,7 @@
     @catch(NSException* exception)
     {
         //err msg
-        NSLog(@"WYS: ERROR: Failed to convert 'products' to JSON (exception: %@)", exception);
+        os_log_debug(OS_LOG_DEFAULT, "WYS: ERROR: Failed to convert 'products' to JSON (exception: %{public}@)", exception);
     }
 
 bail:

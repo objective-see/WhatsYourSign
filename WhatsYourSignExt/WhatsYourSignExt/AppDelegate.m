@@ -151,7 +151,6 @@
                 [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:PRODUCT_PAGE]];
             }
             
-            
             break;
         }
     }

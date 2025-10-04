@@ -171,7 +171,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
     static SecRequirementRef isNotarized = nil;
     
     //dbg msg
-    os_log(OS_LOG_DEFAULT, "WYS: extracting code signing information for: %{public}@", path);
+    os_log_debug(OS_LOG_DEFAULT, "WYS: extracting code signing information for: %{public}@", path);
     
     //only once
     // init notarization requirements

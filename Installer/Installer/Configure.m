@@ -26,14 +26,14 @@
     if(ACTION_INSTALL_FLAG == parameter)
     {
         //dbg msg
-        os_log(OS_LOG_DEFAULT, "WYS: installing...");
+        os_log_debug(OS_LOG_DEFAULT, "WYS: installing...");
         
         //already installed?
         // uninstall everything first
         if(YES == [self isInstalled])
         {
             //dbg msg
-            os_log(OS_LOG_DEFAULT, "WYS: already installed, so uninstalling...");
+            os_log_debug(OS_LOG_DEFAULT, "WYS: already installed, so uninstalling...");
             
             //uninstall
             if(YES != [self uninstall])
@@ -43,7 +43,7 @@
             }
             
             //dbg msg
-            os_log(OS_LOG_DEFAULT, "WYS: uninstalled");
+            os_log_debug(OS_LOG_DEFAULT, "WYS: uninstalled");
         }
         
         //install
@@ -54,7 +54,7 @@
         }
         
         //dbg msg
-        os_log(OS_LOG_DEFAULT, "WYS: installed!");
+        os_log_debug(OS_LOG_DEFAULT, "WYS: installed!");
         
         //launch main app
         // waits until done...
