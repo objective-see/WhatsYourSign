@@ -16,6 +16,8 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="closeButton" destination="rhr-EK-ews" id="Jix-22-SdF"/>
+                <outlet property="updateButton" destination="YWy-Jq-mhO" id="Esr-i3-rgn"/>
+                <outlet property="updateIndicator" destination="gCd-st-n0k" id="Kfx-BZ-ngS"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -40,7 +42,7 @@
         <window title="WhatsYourSign" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <rect key="contentRect" x="1438" y="533" width="480" height="384"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1470" height="922"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="769"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="384"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -57,6 +59,20 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="close:" target="Voe-Tx-rLC" id="tD5-wD-TTd"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWy-Jq-mhO">
+                        <rect key="frame" x="20" y="13" width="182" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Check for Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v61-cq-BEH">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Menlo-Bold"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="checkForUpdate:" target="Voe-Tx-rLC" id="6fD-AI-itN"/>
                         </connections>
                     </button>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qST-Wc-3cj">
@@ -76,15 +92,19 @@ DQ
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-WA-eMM">
                         <rect key="frame" x="47" y="104" width="386" height="216"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightClick" id="YxP-GW-FUt"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rightClick" id="YxP-GW-FUt"/>
                     </imageView>
+                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="gCd-st-n0k">
+                        <rect key="frame" x="218" y="13" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
             <point key="canvasLocation" x="141" y="433"/>
         </window>
     </objects>
     <resources>
-        <image name="RightClick" width="392" height="249"/>
+        <image name="rightClick" width="664" height="522"/>
         <image name="whatsYourSign" width="536.4000244140625" height="85.919998168945312"/>
     </resources>
 </document>

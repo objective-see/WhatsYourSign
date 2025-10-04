@@ -28,6 +28,7 @@
 		7D8810A41FECD37E002F34F4 /* HashesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8810A21FECD37E002F34F4 /* HashesWindowController.m */; };
 		7DBAFA561DF2A34C0083B68C /* NSApplicationKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBAFA541DF2A34C0083B68C /* NSApplicationKeyEvents.m */; };
 		CD6CAC7220A0E65F00188B0A /* Xips.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6CAC7120A0E65F00188B0A /* Xips.m */; };
+		CD86251C2E9133D900893189 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = CD86251B2E9133D900893189 /* Update.m */; };
 		CDCC763D258CA1A400F471D3 /* Packages.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC763B258CA1A300F471D3 /* Packages.m */; };
 		CDE22E22247B4BCA00C88F5C /* AppIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */; };
 		CDE70BD12CF284B200251553 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE70BD02CF284B200251553 /* InfoWindow.xib */; };
@@ -101,6 +102,8 @@
 		7DBAFA551DF2A34C0083B68C /* NSApplicationKeyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSApplicationKeyEvents.h; sourceTree = "<group>"; };
 		CD6CAC7120A0E65F00188B0A /* Xips.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Xips.m; sourceTree = "<group>"; };
 		CD6CAC7320A0E67500188B0A /* Xips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xips.h; sourceTree = "<group>"; };
+		CD86251A2E9133D900893189 /* Update.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		CD86251B2E9133D900893189 /* Update.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		CDCC763B258CA1A300F471D3 /* Packages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packages.m; sourceTree = "<group>"; };
 		CDCC763C258CA1A300F471D3 /* Packages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packages.h; sourceTree = "<group>"; };
 		CDCC7644258CA59F00F471D3 /* packageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packageKit.h; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 			children = (
 				7D61ED731D984BA6007FE979 /* AppDelegate.h */,
 				7D61ED741D984BA6007FE979 /* AppDelegate.m */,
+				CD86251A2E9133D900893189 /* Update.h */,
+				CD86251B2E9133D900893189 /* Update.m */,
 				CDE22E21247B4BCA00C88F5C /* AppIcon.iconset */,
 				CDE70C1F2CF5785100251553 /* Assets.xcassets */,
 				7D4B34CC1D98858F0069E4DE /* Images */,
@@ -400,6 +405,7 @@
 			files = (
 				7D7335491FEA31E5002A186A /* utilities.m in Sources */,
 				7D61ED781D984BA6007FE979 /* main.m in Sources */,
+				CD86251C2E9133D900893189 /* Update.m in Sources */,
 				7D61ED751D984BA6007FE979 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

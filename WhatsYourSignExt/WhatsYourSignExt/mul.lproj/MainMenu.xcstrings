@@ -109,6 +109,18 @@
         }
       }
     },
+    "v61-cq-BEH.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Check for Update\"; ObjectID = \"v61-cq-BEH\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Check for Update"
+          }
+        }
+      }
+    },
     "xlC-wv-VjN.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Simply right + click, or ctl + click on any file to view its signing information.\"; ObjectID = \"xlC-wv-VjN\";",
       "extractionState" : "extracted_with_value",

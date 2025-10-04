@@ -66,20 +66,24 @@
     }
     //external drive?
     // add subdirectories AND files at root (avoids badging)
+    // but also need logic to manually find / add contents of bundles :\
     else
     {
-        //contents
-        NSArray* contents = [NSFileManager.defaultManager contentsOfDirectoryAtURL:volume includingPropertiesForKeys:@[NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+        //get top-level contents
+        NSArray* contents = [NSFileManager.defaultManager contentsOfDirectoryAtURL:volume
+                             includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLIsPackageKey]
+                             options:NSDirectoryEnumerationSkipsHiddenFiles
+                             error:nil];
         
-        //add each item
+        //add each top-level item
         for(NSURL* item in contents) {
-            
-            //dbg msg
-            NSLog(@"WYS: monitoring non-root item: %@", item);
-            
-            //add
+            NSLog(@"WYS: adding top-level item: %@", item);
             [self.directories addObject:item];
         }
+        
+        //recursively find all bundles
+        // and add their contents, cuz for some reason this isn't done by default
+        [self addBundles:volume];
     }
     
     //update watched directories
@@ -87,6 +91,51 @@
     
     return;
 }
+
+//find/add bundles
+- (void)addBundles:(NSURL*)directoryURL {
+    
+    NSDirectoryEnumerator* enumerator = [NSFileManager.defaultManager
+        enumeratorAtURL:directoryURL
+        includingPropertiesForKeys:@[NSURLIsPackageKey]
+        options:NSDirectoryEnumerationSkipsHiddenFiles
+        errorHandler:nil];
+    
+    for (NSURL* item in enumerator) {
+        
+        NSNumber* isPackage;
+        [item getResourceValue:&isPackage forKey:NSURLIsPackageKey error:nil];
+        
+        if (isPackage.boolValue) {
+            
+            //add bundle's (top-level) items
+            [self addBundle:item];
+        }
+    }
+}
+
+- (void)addBundle:(NSURL*)bundle {
+
+    //add
+    [self.directories addObject:bundle];
+    
+    //add only top-level items inside the package (non-recursive)
+    NSArray* contents = [NSFileManager.defaultManager
+        contentsOfDirectoryAtURL:bundle
+        includingPropertiesForKeys:@[NSURLIsDirectoryKey]
+        options:0
+        error:nil];
+    
+    for (NSURL* item in contents) {
+        
+        //dbg msg
+        NSLog(@"WYS: adding top-level package item: %@", item);
+        
+        //add
+        [self.directories addObject:item];
+    }
+}
+
 
 //unmonitor
 -(void)unmonitorVolume:(NSURL *)volume

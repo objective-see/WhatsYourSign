@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
 
+#import "Update.h"
 #import "Utilities.h"
 #import "AppDelegate.h"
 
@@ -38,6 +39,18 @@
 // also make it key window and in forefront
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    //install launch?
+    // don't show 'check for update' button
+    if([NSProcessInfo.processInfo.arguments containsObject:@"install"]) {
+        self.updateButton.hidden = YES;
+    }
+    //user launched
+    // show 'check for update' button
+    else
+    {
+        self.updateButton.hidden = NO;
+    }
+    
     //center
     [self.window center];
     
@@ -63,6 +76,134 @@
     });
     
     return;
+}
+- (IBAction)checkForUpdate:(id)sender {
+    
+    //update obj
+    Update* update = nil;
+    
+    //disable update button
+    self.updateButton.enabled = NO;
+    
+    //show/start spinner
+    [self.updateIndicator startAnimation:self];
+    
+    //init update obj
+    update = [[Update alloc] init];
+    
+    //check for update
+    [update checkForUpdate:^(NSUInteger result, NSString* newVersion) {
+            
+        //process response
+        [self updateResponse:result newVersion:newVersion];
+            
+    }];
+
+    return;
+}
+
+//process update response
+// error, no update, update/new version
+-(void)updateResponse:(NSInteger)result newVersion:(NSString*)newVersion
+{
+    //re-enable button
+    self.updateButton.enabled = YES;
+    
+    //stop/hide spinner
+    [self.updateIndicator stopAnimation:self];
+    
+    switch(result)
+    {
+        //error
+        case Update_Error:
+            
+            //show alert
+            showAlert(NSAlertStyleWarning, NSLocalizedString(@"ERROR: Update Check Failed", @"ERROR: Update Check Failed"), nil, @[NSLocalizedString(@"OK", @"OK")]);
+            
+            break;
+            
+        //no updates
+        case Update_None:
+            
+            //show alert
+            showAlert(NSAlertStyleWarning, NSLocalizedString(@"No Update Available", @"No Update Available"), [NSString stringWithFormat:NSLocalizedString(@"Installed version (%@),\r\nis the latest.", @"Installed version (%@),\r\nis the latest."), getAppVersion()], @[NSLocalizedString(@"OK", @"OK")]);
+    
+            break;
+            
+        //update is not compatible
+        case Update_NotSupported:
+            
+            //show alert
+            showAlert(NSAlertStyleWarning, NSLocalizedString(@"Update Available", @"Update available"), [NSString stringWithFormat:NSLocalizedString(@"...but isn't supported on macOS %ld.%ld", @"...but isn't supported on macOS %ld.%ld"), NSProcessInfo.processInfo.operatingSystemVersion.majorVersion, NSProcessInfo.processInfo.operatingSystemVersion.minorVersion], @[NSLocalizedString(@"OK", @"OK")]);
+
+            break;
+         
+        //new version
+        case Update_Available:
+        {
+            //show alert
+            NSModalResponse response = showAlert(NSAlertStyleWarning, NSLocalizedString(@"Update available!", @"Update available!"), nil, @[NSLocalizedString(@"Update", @"Update"), NSLocalizedString(@"Ignore", @"Ignore")]);
+            
+            //open link to tool page w/ update
+            if(NSAlertFirstButtonReturn == response)
+            {
+                //open
+                [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:PRODUCT_PAGE]];
+            }
+            
+            
+            break;
+        }
+    }
+    
+    return;
+}
+
+//show an alert
+NSModalResponse showAlert(NSAlertStyle style, NSString* messageText, NSString* informativeText, NSArray* buttons)
+{
+    //alert
+    NSAlert* alert = nil;
+    
+    //response
+    NSModalResponse response = 0;
+    
+    //init alert
+    alert = [[NSAlert alloc] init];
+    
+    //set style
+    alert.alertStyle = style;
+    
+    //main text
+    alert.messageText = messageText;
+    
+    //add details
+    if(nil != informativeText)
+    {
+        //details
+        alert.informativeText = informativeText;
+    }
+    
+    //add buttons
+    for(NSString* title in buttons)
+    {
+        //add button
+        [alert addButtonWithTitle:title];
+    }
+
+    //make first button, first responder
+    alert.buttons[0].keyEquivalent = @"\r";
+
+    //make alert window front
+    [alert.window makeKeyAndOrderFront:nil];
+    
+    //center
+    [alert.window center];
+    
+    //show
+    response = [alert runModal];
+    
+    return response;
 }
 
 //automatically close app

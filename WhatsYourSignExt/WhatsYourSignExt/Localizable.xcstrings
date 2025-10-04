@@ -1,7 +1,41 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-
+    "...but isn't supported on macOS %ld.%ld" : {
+      "comment" : "...but isn't supported on macOS %ld.%ld",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "...but isn't supported on macOS %1$ld.%2$ld"
+          }
+        }
+      }
+    },
+    "ERROR: Update Check Failed" : {
+      "comment" : "ERROR: Update Check Failed"
+    },
+    "Ignore" : {
+      "comment" : "Ignore"
+    },
+    "Installed version (%@),\r\nis the latest." : {
+      "comment" : "Installed version (%@),\r\nis the latest."
+    },
+    "No Update Available" : {
+      "comment" : "No Update Available"
+    },
+    "OK" : {
+      "comment" : "OK"
+    },
+    "Update" : {
+      "comment" : "Update"
+    },
+    "Update Available" : {
+      "comment" : "Update available"
+    },
+    "Update available!" : {
+      "comment" : "Update available!"
+    }
   },
   "version" : "1.0"
 }

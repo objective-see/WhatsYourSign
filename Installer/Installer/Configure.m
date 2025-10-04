@@ -58,7 +58,7 @@
         
         //launch main app
         // waits until done...
-        execTask(OPEN, @[@"-n", @"-W", @"-a", APP_LOCATION]);
+        execTask(OPEN, @[@"-n", @"-W", @"-a", APP_LOCATION, @"--args", @"install"]);
     }
     //uninstall extension
     else if(ACTION_UNINSTALL_FLAG == parameter)
