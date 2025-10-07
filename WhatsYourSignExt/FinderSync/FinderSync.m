@@ -14,7 +14,8 @@
 @synthesize directories;
 
 //init
-// watch all the things, though logic is a bit nuances due to a badging issue on macOS (impacting external drives)
+// watch most the things (not network drives)
+// though logic is a bit nuanced due to a badging issue on macOS (impacting external drives)
 -(instancetype)init
 {
     self = [super init];
@@ -22,19 +23,44 @@
     {
         //init directories set
         self.directories = [NSMutableSet set];
-
+        
+        //dbg msg
+        os_log_debug(OS_LOG_DEFAULT, "WYS: initializing");
+        
+        //monitor root volume
+        // do this first, as external drives can be slow
+        [self monitorVolume:[NSURL fileURLWithPath:@"/" isDirectory:YES] isRoot:YES];
+    
         //get all mounted volumes
-        NSArray *volumes = [NSFileManager.defaultManager mountedVolumeURLsIncludingResourceValuesForKeys:@[NSURLVolumeIsRootFileSystemKey] options:NSVolumeEnumerationSkipHiddenVolumes];
+        NSArray *volumes = [NSFileManager.defaultManager mountedVolumeURLsIncludingResourceValuesForKeys:@[NSURLVolumeIsRootFileSystemKey, NSURLVolumeIsLocalKey] options:NSVolumeEnumerationSkipHiddenVolumes];
+        
+        //dbg msg
+        os_log_debug(OS_LOG_DEFAULT, "WYS: volumes: %{public}@", volumes);
         
         //for each volume
         // add to watched directories
+        // note: skip root (already watching) and any network drives
         for(NSURL *volume in volumes) {
-            [self monitorVolume:volume];
+            
+            NSNumber* isRootVolume = nil;
+            [volume getResourceValue:&isRootVolume forKey:NSURLVolumeIsRootFileSystemKey error:nil];
+            
+            //skip root volume (already handled)
+            if(isRootVolume.boolValue) {
+                //skip
+                continue;
+            }
+            
+            //monitor
+            [self monitorVolume:volume isRoot:NO];
         }
-
-        //now set directories
+        
+        //dbg msg
+        os_log_debug(OS_LOG_DEFAULT, "WYS: will monitor %ld locations", self.directories.count);
+        
+        //now, set watched directories
         [FIFinderSyncController defaultController].directoryURLs = self.directories;
-    
+        
         //register for volume mount
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidMountNotification object:nil];
         
@@ -48,19 +74,33 @@
 // monitor volume
 // internal drives: adds the root itself
 // external drives: adds all items at root (avoids badging)
--(void)monitorVolume:(NSURL *)volume
+-(void)monitorVolume:(NSURL *)volume isRoot:(BOOL)isRoot
 {
-    NSNumber *isRootVolume = nil;
+    NSNumber* isLocal = nil;
+    [volume getResourceValue:&isLocal forKey:NSURLVolumeIsLocalKey error:nil];
     
-    //get 'is root' key
-    [volume getResourceValue:&isRootVolume forKey:NSURLVolumeIsRootFileSystemKey error:nil];
+    //skip network drives
+    if(!isLocal.boolValue) {
+        
+        //skip
+        os_log_debug(OS_LOG_DEFAULT, "WYS: skipping network volume: %{public}@", volume.path);
+        return;
+    }
 
+    //skip system update volumes
+    if([volume.path hasPrefix:@"/System/Volumes/"]) {
+        
+        //skip
+        os_log_debug(OS_LOG_DEFAULT, "WYS: skipping system volume: %{public}@", volume.path);
+        return;
+    }
+    
     //root?
     // can just watch entire volume
-    if([isRootVolume boolValue]) {
+    if(isRoot) {
         
         //dbg msg
-        //os_log_debug(OS_LOG_DEFAULT, "WYS: monitoring root volume: %@", volume);
+        os_log_debug(OS_LOG_DEFAULT, "WYS: monitoring root volume: %{public}@", volume);
         
         //add
         [self.directories addObject:volume];
@@ -70,6 +110,9 @@
     // but also need logic to manually find / add contents of bundles
     else
     {
+        //dbg msg
+        os_log_debug(OS_LOG_DEFAULT, "WYS: monitoring non-root volume %{public}@'s items", volume);
+        
         //get top-level contents
         NSArray* contents = [NSFileManager.defaultManager contentsOfDirectoryAtURL:volume
                              includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLIsPackageKey]
@@ -80,7 +123,7 @@
         for(NSURL* item in contents) {
             
             //dbg msg
-            //os_log_debug(OS_LOG_DEFAULT, "WYS: adding top-level item: %{public}@", item);
+            os_log_debug(OS_LOG_DEFAULT, "WYS: adding top-level item: %{public}@", item);
             
             [self.directories addObject:item];
         }
@@ -90,14 +133,11 @@
         [self addBundles:volume];
     }
     
-    //update watched directories
-    [FIFinderSyncController defaultController].directoryURLs = self.directories;
-    
     return;
 }
 
 //find/add bundles
-- (void)addBundles:(NSURL*)directoryURL {
+-(void)addBundles:(NSURL*)directoryURL {
     
     NSDirectoryEnumerator* enumerator = [NSFileManager.defaultManager
         enumeratorAtURL:directoryURL
@@ -120,10 +160,13 @@
 }
 
 //add bundle's items
-- (void)addBundle:(NSURL*)bundle {
+-(void)addBundle:(NSURL*)bundle {
 
     //add
     [self.directories addObject:bundle];
+    
+    //dbg msg
+    os_log_debug(OS_LOG_DEFAULT, "WYS: adding bundle: %{public}@", bundle);
     
     //add only top-level items inside the package (non-recursive)
     NSArray* contents = [NSFileManager.defaultManager
@@ -135,7 +178,8 @@
     for (NSURL* item in contents) {
         
         //dbg msg
-        //os_log_debug(OS_LOG_DEFAULT, "WYS: adding top-level package item: %{public}@", item);
+        os_log_debug(OS_LOG_DEFAULT, "WYS: adding bundle item: %{public}@", item);
+        
         
         //add
         [self.directories addObject:item];
@@ -144,31 +188,31 @@
 
 
 //unmonitor
--(void)unmonitorVolume:(NSURL *)volume
+-(void)unmonitorVolume:(NSURL*)volume
 {
-    NSNumber *isRootVolume = nil;
+    NSNumber* isRootVolume = nil;
     
     //get 'is root' key
     [volume getResourceValue:&isRootVolume forKey:NSURLVolumeIsRootFileSystemKey error:nil];
 
     //root?
     // can just remove volume
-    if([isRootVolume boolValue]) {
+    if(isRootVolume.boolValue) {
         
         //dbg msg
-        //os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring root volume: %{public}@", volume);
+        os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring root volume: %{public}@", volume);
         
         //remove
         [self.directories removeObject:volume];
     }
     //external drive?
-    // remove subdirectories AND files at root (avoids badging)
+    // remove subdirectories AND files at root
     else
     {
         //dbg msg
-        //os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring non-root volume: %{public}@", volume.path);
+        os_log_debug(OS_LOG_DEFAULT, "WYS: unmonitoring non-root volume: %{public}@", volume.path);
         
-        //find all directories that start with this volume's path
+        //find all items that start with this volume's path
         NSSet* unwatch = [self.directories objectsPassingTest:^BOOL(NSURL *url, BOOL *stop) {
             return [url.path hasPrefix:volume.path];
         }];
@@ -219,7 +263,7 @@ bail:
     if(YES == [notification.name isEqualToString:NSWorkspaceDidMountNotification])
     {
         //monitor
-        [self monitorVolume:notification.userInfo[NSWorkspaceVolumeURLKey]];
+        [self monitorVolume:notification.userInfo[NSWorkspaceVolumeURLKey] isRoot:NO];
     }
     
     //unmount?
