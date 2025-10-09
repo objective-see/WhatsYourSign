@@ -30,6 +30,9 @@
         //monitor root volume
         // do this first, as external drives can be slow
         [self monitorVolume:[NSURL fileURLWithPath:@"/" isDirectory:YES] isRoot:YES];
+        
+        //set watched directories
+        [FIFinderSyncController defaultController].directoryURLs = self.directories;
     
         //get all mounted volumes
         NSArray *volumes = [NSFileManager.defaultManager mountedVolumeURLsIncludingResourceValuesForKeys:@[NSURLVolumeIsRootFileSystemKey, NSURLVolumeIsLocalKey] options:NSVolumeEnumerationSkipHiddenVolumes];
@@ -58,7 +61,7 @@
         //dbg msg
         os_log_debug(OS_LOG_DEFAULT, "WYS: will monitor %ld locations", self.directories.count);
         
-        //now, set watched directories
+        //again, set watched directories
         [FIFinderSyncController defaultController].directoryURLs = self.directories;
         
         //register for volume mount
@@ -178,8 +181,7 @@
     for (NSURL* item in contents) {
         
         //dbg msg
-        os_log_debug(OS_LOG_DEFAULT, "WYS: adding bundle item: %{public}@", item);
-        
+        //os_log_debug(OS_LOG_DEFAULT, "WYS: adding bundle item: %{public}@", item);
         
         //add
         [self.directories addObject:item];
