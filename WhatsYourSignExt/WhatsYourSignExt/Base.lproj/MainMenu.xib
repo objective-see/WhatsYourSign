@@ -91,9 +91,9 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5W-W0-fAY">
-                        <rect key="frame" x="24" y="82" width="327" height="49"/>
+                        <rect key="frame" x="24" y="82" width="377" height="49"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Due to a macOS bug, the system may add WYS’s icon to external drives in Finder." id="PxX-ps-xr2">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Note: When enabled, Finder may display WYS’s icon on external or mounted drives (e.g. DMGs)." id="PxX-ps-xr2">
                             <font key="font" size="13" name="Menlo-Regular"/>
                             <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -118,9 +118,9 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mO-I9-sA6">
-                        <rect key="frame" x="26" y="144" width="226" height="16"/>
+                        <rect key="frame" x="26" y="144" width="289" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Enable for External Drives" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5W3-FZ-bi6">
+                        <buttonCell key="cell" type="check" title="Enable for External/Mounted Drives" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5W3-FZ-bi6">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" size="13" name="Menlo-Bold"/>
                         </buttonCell>

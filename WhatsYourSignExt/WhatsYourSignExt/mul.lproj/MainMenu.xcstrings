@@ -38,13 +38,13 @@
       }
     },
     "5W3-FZ-bi6.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Enable for External Drives\"; ObjectID = \"5W3-FZ-bi6\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Enable for External/Mounted Drives\"; ObjectID = \"5W3-FZ-bi6\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Enable for External Drives"
+            "value" : "Enable for External/Mounted Drives"
           }
         }
       }
@@ -80,13 +80,13 @@
       }
     },
     "PxX-ps-xr2.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Due to a macOS bug, the system may add WYS’s icon to external drives in Finder.\"; ObjectID = \"PxX-ps-xr2\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Note: When enabled, Finder may display WYS’s icon on external or mounted drives (e.g. DMGs).\"; ObjectID = \"PxX-ps-xr2\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Due to a macOS bug, the system may add WYS’s icon to external drives in Finder."
+            "value" : "Note: When enabled, Finder may display WYS’s icon on external or mounted drives (e.g. DMGs)."
           }
         }
       }
