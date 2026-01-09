@@ -16,7 +16,7 @@
 #define PRODUCT_URL @"https://objective-see.com/products/whatsyoursign.html"
 
 //bundle ID of finder sync extension
-#define EXTENSION_BUNDLE_ID @"com.objective-see.WhatsYourSignExt.FinderSync"
+#define EXTENSION_BUNDLE_ID @"com.objective-see.WYS.FinderSync"
 
 //extension folder
 // ->for older versions of the app
@@ -159,5 +159,15 @@
 
 //key sha512
 #define KEY_HASH_SHA512 @"SHA512"
+
+//app group
+#define APP_GROUP @"group.com.objective-see.WYS"
+
+//prefs changed notification
+#define PREFS_CHANGED_NOTIFICATION @"com.objective-see.WhatsYourSign.PrefsChanged"
+
+//pref
+// enable on external drive
+#define PREF_ENABLE_ON_EXTERNAL_DRIVES @"enableExternalDrives"
 
 #endif

@@ -12,6 +12,10 @@
 
 /* PROPERTIES */
 
+//settings
+// enable external drives button
+@property (weak) IBOutlet NSButton *enableExtDrivesButton;
+
 //update button
 @property (weak) IBOutlet NSButton *updateButton;
 
@@ -25,5 +29,6 @@
 
 @end
 
+//show an alert
 NSModalResponse showAlert(NSAlertStyle style, NSString* messageText, NSString* informativeText, NSArray* buttons);
 

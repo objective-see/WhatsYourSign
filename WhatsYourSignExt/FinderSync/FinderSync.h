@@ -17,6 +17,9 @@
 
 /* PROPERTIES */
 
+//preferences listener
+@property (strong) id<NSObject> prefsObserver;
+
 //directories to watch
 @property(nonatomic, retain)NSMutableSet* directories;
 

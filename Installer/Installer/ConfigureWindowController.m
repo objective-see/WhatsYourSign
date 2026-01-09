@@ -535,6 +535,9 @@ bail:
         //disable other button
         self.uninstallButton.enabled = NO;
         
+        //enable
+        self.installButton.enabled = YES;
+        
         //...and highlighted
         [self.window makeFirstResponder:self.installButton];
     }

@@ -5,7 +5,9 @@
 //  Created by Patrick Wardle on 9/25/16.
 //  Copyright (c) 2016 Objective-See. All rights reserved.
 //
+#import <os/log.h>
 
+#import "consts.h"
 #import "Update.h"
 #import "Utilities.h"
 #import "AppDelegate.h"
@@ -39,6 +41,10 @@
 // also make it key window and in forefront
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    //set 'external drives' button state
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP];
+    self.enableExtDrivesButton.state = [sharedDefaults boolForKey:PREF_ENABLE_ON_EXTERNAL_DRIVES] ? NSControlStateValueOn : NSControlStateValueOff;
+    
     //install launch?
     // don't show 'check for update' button
     if([NSProcessInfo.processInfo.arguments containsObject:@"install"]) {
@@ -77,6 +83,8 @@
     
     return;
 }
+
+//check for update
 - (IBAction)checkForUpdate:(id)sender {
     
     //update obj
@@ -211,10 +219,22 @@ NSModalResponse showAlert(NSAlertStyle style, NSString* messageText, NSString* i
     return YES;
 }
 
-//'got' it button handler
-// ->just exit application
+//'ok' button handler
+// save settings and close
 -(IBAction)close:(id)sender
 {
+    //set
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP];
+    [sharedDefaults setBool:(self.enableExtDrivesButton.state == NSControlStateValueOn) forKey:PREF_ENABLE_ON_EXTERNAL_DRIVES];
+    
+    //dbg msg
+    os_log_debug(OS_LOG_DEFAULT, "WYS: sharedDefaults: %{public}@", sharedDefaults);
+    os_log_debug(OS_LOG_DEFAULT, "WYS: sharedDefaults: %d", [sharedDefaults boolForKey:PREF_ENABLE_ON_EXTERNAL_DRIVES]);
+    
+    //broadcast
+    // maybe prefs changed
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:PREFS_CHANGED_NOTIFICATION object:nil userInfo:nil deliverImmediately:YES];
+    
     //good bye!
     [NSApp terminate:self];
 
