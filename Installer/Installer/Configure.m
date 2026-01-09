@@ -112,7 +112,7 @@ bail:
 //install
 // a) copy extension /Applications
 // b) add extension: 'pluginkit -a /path/2/WhatsYourSign.appex'
-// c) enable extension: 'pluginkit -e use -i com.objective-see.WhatsYourSignExt.FinderSync'
+// c) enable extension: 'pluginkit -e use -i com.objective-see.WYS.FinderSync'
 -(BOOL)install
 {
     //return/status var

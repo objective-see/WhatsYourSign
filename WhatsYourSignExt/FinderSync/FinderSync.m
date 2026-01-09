@@ -27,9 +27,7 @@
     {
         //init directories set
         self.directories = [NSMutableSet set];
-        
-        [FIFinderSyncController defaultController].sidebarImage = nil;
-        
+                
         //setup prefs change listener
         __weak typeof(self) weakSelf = self;
         self.prefsObserver = [[NSDistributedNotificationCenter defaultCenter]
