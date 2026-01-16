@@ -70,7 +70,7 @@
     os_log_debug(OS_LOG_DEFAULT, "WYS: volumes: %{public}@", volumes);
     
     //monitor all volumes
-    // note: monitorVolume method checks settings re: external volumes
+    // note: `monitorVolume:` method checks settings re: external volumes
     for(NSURL *volume in volumes) {
         
         NSNumber *isRootVolume = nil;
@@ -83,14 +83,11 @@
     //dbg msg
     os_log_debug(OS_LOG_DEFAULT, "WYS: will monitor %ld locations", self.directories.count);
     
-    //set watched directories
-    [FIFinderSyncController defaultController].directoryURLs = self.directories;
-    
     //register for volume mount
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidMountNotification object:nil];
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidMountNotification object:nil];
     
     //register for volume unmount
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidUnmountNotification object:nil];
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self selector: @selector(volumeEvent:) name:NSWorkspaceDidUnmountNotification object:nil];
     
 }
 
@@ -162,6 +159,9 @@
         //add
         [self.directories addObject:volume];
     }
+    
+    //set
+    FIFinderSyncController.defaultController.directoryURLs = self.directories;
      
     return;
 }
@@ -173,8 +173,8 @@
     //remove
     [self.directories removeObject:volume];
     
-    //update watched directories
-    [FIFinderSyncController defaultController].directoryURLs = self.directories;
+    //update
+    FIFinderSyncController.defaultController.directoryURLs = self.directories;
     
     return;
 }
