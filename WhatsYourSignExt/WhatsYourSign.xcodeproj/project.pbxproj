@@ -576,7 +576,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.2.0;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -588,7 +588,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WYS.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
@@ -607,7 +607,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.2.0;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEVELOPMENT_TEAM = VBG97UB4TA;
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = VBG97UB4TA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -619,7 +619,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.objective-see.WYS.FinderSync";
 				PRODUCT_NAME = WhatsYourSign;
 				PROVISIONING_PROFILE = "";
