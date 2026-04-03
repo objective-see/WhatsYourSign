@@ -255,10 +255,14 @@ OSStatus isNotarized(PKArchiveSignature* signature)
     OSStatus isItemNotarized = errSecCSUnsigned;
 
     //error
-    CFErrorRef error = nil;
+    CFErrorRef error = NULL;
 
     //hash
     NSData* hash = nil;
+    
+    //truncated hash
+    // this is what Apple uses
+    NSData* truncatedHash = nil;
     
     //algo type
     SecCSDigestAlgorithm hashType = 0;
@@ -276,12 +280,19 @@ OSStatus isNotarized(PKArchiveSignature* signature)
     {
         //SHA1
         hashType = kSecCodeSignatureHashSHA1;
+        
+        //use as is
+        truncatedHash = hash;
     }
     //SHA256 hash
     else if(CC_SHA256_DIGEST_LENGTH == hash.length)
     {
         //SHA256
         hashType = kSecCodeSignatureHashSHA256;
+        
+        //truncate, first 20 bytes
+        // this is what the notarization checks requires
+        truncatedHash = [hash subdataWithRange:NSMakeRange(0, CC_SHA1_DIGEST_LENGTH)];
     }
     
     //sanity check
@@ -293,17 +304,18 @@ OSStatus isNotarized(PKArchiveSignature* signature)
     
     //notarization check
     // do online, as we want to also detect revocations
-    if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(hash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
+    if(YES == SecAssessmentTicketLookup((__bridge CFDataRef)(truncatedHash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
     {
         //set
         isItemNotarized = errSecSuccess;
+        
     }
     //error
     // but maybe cuz revoked?
     else
     {
-        //means revoked
-        if(EACCES == CFErrorGetCode(error))
+        if(error &&
+           (EACCES == CFErrorGetCode(error)) )
         {
             //set
             isItemNotarized = errSecCSRevokedNotarization;
@@ -311,6 +323,11 @@ OSStatus isNotarized(PKArchiveSignature* signature)
     }
     
 bail:
+    
+    if(error)
+    {
+        CFRelease(error);
+    }
 
     return isItemNotarized;
 }

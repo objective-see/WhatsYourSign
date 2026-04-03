@@ -349,7 +349,7 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
         for(NSData* hash in [((__bridge NSDictionary*)signingDetails)[@"cdhashes-full"] allObjects])
         {
             //error
-            CFErrorRef error = nil;
+            CFErrorRef error = NULL;
             
             //truncated hash
             // this is what Apple uses
@@ -397,10 +397,13 @@ NSMutableDictionary* extractSigningInfo(NSString* path, SecCSFlags flags, BOOL e
             if(YES != SecAssessmentTicketLookup((__bridge CFDataRef)(truncatedHash), hashType, kSecAssessmentTicketFlagForceOnlineCheck, NULL, &error))
             {
                 //EACCES: means revoked
-                if(EACCES == CFErrorGetCode(error))
+                if(error)
                 {
-                    //set
-                    signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:errSecCSRevokedNotarization];
+                    if(EACCES == CFErrorGetCode(error))
+                    {
+                        signingInfo[KEY_SIGNING_IS_NOTARIZED] = [NSNumber numberWithInteger:errSecCSRevokedNotarization];
+                    }
+                    CFRelease(error);
                 }
             }
         }
