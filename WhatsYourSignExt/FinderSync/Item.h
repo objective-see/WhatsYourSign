@@ -19,7 +19,7 @@
 /* PROPERTIES */
 
 //window controller
-@property(nonatomic, retain)InfoWindowController* windowController;
+@property(nonatomic, weak)InfoWindowController* windowController;
 
 //name
 @property(nonatomic, retain)NSString* name;
