@@ -127,19 +127,19 @@
         }
       }
     },
-    "x4I-KI-Y8p.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Support \\\"What's Your Sign\\\"?\"; ObjectID = \"x4I-KI-Y8p\";",
+    "RIx-az-xQn.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Support WhatsYourSign?\"; ObjectID = \"RIx-az-xQn\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Support \"What's Your Sign\"?"
+            "value" : "Support WhatsYourSign?"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Apoyas \"What’s Your Sign?”"
           }
         }

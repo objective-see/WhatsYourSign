@@ -46,6 +46,12 @@
             "state" : "new",
             "value" : "Enable for External/Mounted Drives"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar para unidades externas/montadas"
+          }
         }
       }
     },
@@ -76,6 +82,12 @@
             "state" : "new",
             "value" : "Settings"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración"
+          }
         }
       }
     },
@@ -87,6 +99,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Note: When enabled, Finder may display WYS’s icon on external or mounted drives (e.g. DMGs)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota: Cuando está activado, Finder puede mostrar el icono de WYS en unidades externas o montadas (p. ej., DMG)."
           }
         }
       }
@@ -121,7 +139,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "De acuerdo"
           }
         }
@@ -154,6 +172,12 @@
             "state" : "new",
             "value" : "Check for Update"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar actualizaciones"
+          }
         }
       }
     },
@@ -169,7 +193,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Simplemente haz clic derecho o ctrl + clic en cualquier archivo para ver su información de firma."
           }
         }

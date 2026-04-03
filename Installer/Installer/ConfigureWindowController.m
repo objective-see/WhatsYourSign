@@ -44,7 +44,7 @@
 -(void)configure:(BOOL)isInstalled
 {
     //set window title
-    [self window].title = [NSString stringWithFormat:NSLocalizedString(@"WYS v%@",), getAppVersion()];
+    [self window].title = [NSString stringWithFormat:@"WYS v%@", getAppVersion()];
     
     //emoji support, 10.11+
     if(@available(macOS 10.11, *))

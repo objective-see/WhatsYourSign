@@ -168,6 +168,7 @@
     },
     "none" : {
       "comment" : "none",
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

@@ -9,32 +9,102 @@
             "state" : "new",
             "value" : "...but isn't supported on macOS %1$ld.%2$ld"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "...pero no es compatible con macOS %1$ld.%2$ld"
+          }
         }
       }
     },
     "ERROR: Update Check Failed" : {
-      "comment" : "ERROR: Update Check Failed"
+      "comment" : "ERROR: Update Check Failed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ERROR: La comprobación de actualizaciones falló"
+          }
+        }
+      }
     },
     "Ignore" : {
-      "comment" : "Ignore"
+      "comment" : "Ignore",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar"
+          }
+        }
+      }
     },
     "Installed version (%@),\r\nis the latest." : {
-      "comment" : "Installed version (%@),\r\nis the latest."
+      "comment" : "Installed version (%@),\r\nis the latest.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La versión instalada (%@)\nes la más reciente."
+          }
+        }
+      }
     },
     "No Update Available" : {
-      "comment" : "No Update Available"
+      "comment" : "No Update Available",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay actualizaciones disponibles"
+          }
+        }
+      }
     },
     "OK" : {
-      "comment" : "OK"
+      "comment" : "OK",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De acuerdo"
+          }
+        }
+      }
     },
     "Update" : {
-      "comment" : "Update"
+      "comment" : "Update",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar"
+          }
+        }
+      }
     },
     "Update Available" : {
-      "comment" : "Update available"
+      "comment" : "Update available",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualización disponible"
+          }
+        }
+      }
     },
     "Update available!" : {
-      "comment" : "Update available!"
+      "comment" : "Update available!",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Actualización disponible!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
