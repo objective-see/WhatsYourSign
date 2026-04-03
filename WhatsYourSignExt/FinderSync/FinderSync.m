@@ -262,10 +262,13 @@ bail:
         
         //register for close
         // so we can release window controller
-        [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowWillCloseNotification object:infoWindowController.window queue:nil usingBlock:^(NSNotification *note) {
+        __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowWillCloseNotification object:infoWindowController.window queue:nil usingBlock:^(NSNotification *note) {
             
             //release window controller
             [self.infoWindows removeObject:infoWindowController];
+            
+            //remove observer
+            [[NSNotificationCenter defaultCenter] removeObserver:observer];
             
         }];
         
