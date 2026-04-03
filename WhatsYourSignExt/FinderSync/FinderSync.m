@@ -27,6 +27,9 @@
     {
         //init directories set
         self.directories = [NSMutableSet set];
+        
+        //init info windows array
+        self.infoWindows = [NSMutableArray array];
                 
         //setup prefs change listener
         __weak typeof(self) weakSelf = self;
@@ -253,6 +256,18 @@ bail:
         //'save' window controller
         // allows item to call back & update window once code signing checks are completed
         infoWindowController.item.windowController = infoWindowController;
+        
+        //retain window controller
+        [self.infoWindows addObject:infoWindowController];
+        
+        //register for close
+        // so we can release window controller
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowWillCloseNotification object:infoWindowController.window queue:nil usingBlock:^(NSNotification *note) {
+            
+            //release window controller
+            [self.infoWindows removeObject:infoWindowController];
+            
+        }];
         
         //center window
         [[infoWindowController window] center];

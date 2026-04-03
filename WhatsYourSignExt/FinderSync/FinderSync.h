@@ -23,5 +23,8 @@
 //directories to watch
 @property(nonatomic, retain)NSMutableSet* directories;
 
+//active info windows
+@property(nonatomic, retain)NSMutableArray* infoWindows;
+
 @end
 
